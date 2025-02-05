@@ -1,5 +1,5 @@
 import "./App.css";
-import GameArea from "./components/GameArea/GameArea";
+import GameArea from "./components/Game/GameArea/GameArea";
 
 const App = () => {
   return (
