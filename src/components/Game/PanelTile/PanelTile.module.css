@@ -6,3 +6,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.wall {
+  background-color: var(--wall-color);
+}
+
+.numberPanel {
+  font-size: 1.6rem;
+}
