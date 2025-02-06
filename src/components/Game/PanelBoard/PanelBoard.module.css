@@ -2,12 +2,12 @@
   border-radius: 8px;
   padding: 16px;
   background-color: var(--wall-color);
-  width: 800px;
+  width: fit-content;
 }
 
 .boardGrid {
   display: grid;
-  gap: 4px;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(6, auto);
+  gap: var(--board-gap);
+  grid-template-columns: repeat(9, var(--panel-size));
+  grid-template-rows: repeat(6, var(--panel-size));
 }

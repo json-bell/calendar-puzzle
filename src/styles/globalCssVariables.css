@@ -14,5 +14,12 @@
     }
   }
 
+  /* --------------- Variables: --------------- */
+
+  /* Colours: */
   --wall-color: rgb(0, 91, 91);
+
+  /* Sizes: */
+  --panel-size: 80px;
+  --board-gap: 4px;
 }
