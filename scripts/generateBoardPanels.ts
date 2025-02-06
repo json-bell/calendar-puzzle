@@ -1,7 +1,7 @@
 import {
   getBoardPanels,
   rawSetupData,
-} from "../src/puzzle/boardPanels/generatePanelsFromContent";
+} from "../src/puzzle/boardPanels/getBoardPanels";
 import fs from "fs";
 
 const filePath = "./src/puzzle/boardPanels/index.ts";
