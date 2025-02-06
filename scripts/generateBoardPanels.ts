@@ -1,10 +1,10 @@
 import {
   getBoardPanels,
   rawSetupData,
-} from "../src/puzzle/boardData/generatePanelsFromContent";
+} from "../src/puzzle/boardPanels/generatePanelsFromContent";
 import fs from "fs";
 
-const filePath = "./src/puzzle/boardData/boardPanels.ts";
+const filePath = "./src/puzzle/boardPanels/index.ts";
 const boardPanelString = JSON.stringify(getBoardPanels(rawSetupData), null, 2)
   .replace(/\n\s{6}/g, " ")
   .replace(/\n\s{4}\}/g, " }");

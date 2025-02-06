@@ -1,4 +1,4 @@
-import boardPanels from "../boardPanels";
+import boardPanels from "..";
 import { getBoardPanels, rawSetupData } from "../generatePanelsFromContent";
 
 describe("boardPanels", () => {

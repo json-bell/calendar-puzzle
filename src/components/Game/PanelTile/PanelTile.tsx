@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./PanelTile.module.css";
-import { Panel } from "../../../puzzle/boardData/panels";
+import { Panel } from "../../../puzzle/boardPanels/panels";
 import concatStyles from "../../../utils/concatStyles/concatStyles";
 
 export interface PanelProps {
