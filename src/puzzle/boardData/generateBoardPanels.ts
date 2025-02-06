@@ -18,18 +18,17 @@ const rawSetupData: PanelContent[][] = [
   ["sep", "oct", "nov", "dec", 28, 29, 30, 14, "wall"],
 ];
 
-const mapData: [PanelType, PanelContentArray][] = [
-  ["dayName", dayNames],
-  ["dayNumber", dayNumbers],
-  ["month", months],
-  ["empty", ["empty"]],
-  ["wall", ["wall"]],
-];
-const typeMap = new Map(mapData.map(([type, arr]) => [type, new Set(arr)]));
+const panelTypeLookup: Record<PanelType, PanelContentArray> = {
+  dayName: dayNames,
+  dayNumber: dayNumbers,
+  month: months,
+  empty: ["empty"],
+  wall: ["wall"],
+};
 
 const getPanelTypeFromContent = (content: PanelContent): PanelType => {
-  for (const [type, array] of typeMap) {
-    if (array.has(content)) return type;
+  for (const [panelType, array] of Object.entries(panelTypeLookup)) {
+    if (array.includes(content)) return panelType as PanelType;
   }
   throw new Error(
     `Failed to decide the following panel content's type: ${content}`
@@ -42,9 +41,11 @@ const getPanelTypeFromContent = (content: PanelContent): PanelType => {
  * @returns an individual `Panel` object
  */
 const generatePanelFromContent = (content: PanelContent): Panel => {
+  const type = getPanelTypeFromContent(content);
   return {
-    type: getPanelTypeFromContent(content),
+    type,
     content,
+    contentIndex: panelTypeLookup[type].indexOf(content),
   };
 };
 

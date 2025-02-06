@@ -5,6 +5,7 @@ export type PanelContentArray = Readonly<PanelContent[]>;
 export type Panel = {
   type: PanelType;
   content: PanelContent;
+  contentIndex: number;
 };
 
 export const dayNumbers = [
