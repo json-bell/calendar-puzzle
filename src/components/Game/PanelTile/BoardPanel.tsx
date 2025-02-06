@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./PanelTile.module.css";
+import styles from "./BoardPanel.module.css";
 import { Panel } from "../../../puzzle/boardPanels/panels";
 import concatStyles from "../../../utils/concatStyles/concatStyles";
 
@@ -7,7 +7,7 @@ export interface PanelProps {
   panel: Panel;
 }
 
-const PanelTile: React.FC<PanelProps> = ({ panel }) => {
+const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
   if (panel.type === "wall")
     return <div className={concatStyles(styles.panel, styles.wall)} />;
   return (
@@ -22,4 +22,4 @@ const PanelTile: React.FC<PanelProps> = ({ panel }) => {
   );
 };
 
-export default PanelTile;
+export default BoardPanel;
