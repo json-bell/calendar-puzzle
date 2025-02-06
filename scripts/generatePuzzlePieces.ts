@@ -7,9 +7,9 @@ const puzzlePieceString = JSON.stringify(
   getPuzzlePieces(rawPuzzlePieces),
   null,
   2
-);
-// .replace(/\n\s{6}/g, " ")
-// .replace(/\n\s{4}\}/g, " }");
+)
+  .replace(/\n\s{8}/g, " ")
+  .replace(/\n\s{6}\]/g, " ]");
 
 fs.writeFile(
   filePath,
@@ -17,7 +17,7 @@ fs.writeFile(
 
 import { PuzzlePieceType } from "./getPuzzlePieces";
 
-const puzzlePieces: PuzzlePieceType[][] = ${puzzlePieceString};
+const puzzlePieces: PuzzlePieceType[] = ${puzzlePieceString};
   
   export default puzzlePieces;`,
   (err) => {
