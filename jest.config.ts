@@ -1,7 +1,7 @@
 import type { Config } from "jest";
 
 const config: Config = {
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: ["src/**/*.{ts,tsx}", "!src/**/*.d.ts", "!**/vendor/**"],
   coverageDirectory: "coverage",
   testEnvironment: "jsdom",
