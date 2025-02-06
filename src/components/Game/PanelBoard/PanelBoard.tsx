@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./PanelBoard.module.css";
 import boardPanels from "../../../puzzle/boardData/boardPanels";
 
-const PanelBoard: React.FC<{}> = () => {
+const PanelBoard: React.FC<never> = () => {
   return (
     <div className={styles.boardWrapper}>
       <div className={styles.boardGrid}>
