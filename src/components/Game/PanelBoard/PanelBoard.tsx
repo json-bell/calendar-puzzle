@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./PanelBoard.module.css";
 import boardPanels from "../../../puzzle/boardData/boardPanels";
+import PanelTyle from "../PanelTile/PanelTile";
 
 const PanelBoard: React.FC = () => {
   return (
@@ -8,7 +9,7 @@ const PanelBoard: React.FC = () => {
       <div className={styles.boardGrid}>
         {boardPanels.map((panelRow) =>
           panelRow.map((panel) => {
-            return <div className={styles.panel}>{panel.content}</div>;
+            return <PanelTyle panel={panel} />;
           })
         )}
       </div>
