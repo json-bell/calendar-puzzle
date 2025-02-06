@@ -1,0 +1,21 @@
+.puzzlePiece {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pieceRow {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+}
+.square {
+  width: 20px;
+  height: 20px;
+  opacity: 0.2;
+  background-color: grey;
+}
+.presentSquare {
+  background-color: brown;
+  opacity: 1;
+}
