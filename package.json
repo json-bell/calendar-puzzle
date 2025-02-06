@@ -11,6 +11,7 @@
     "preview": "vite preview",
     "postinstall": "husky",
     "generate-panels": "tsx ./scripts/generateBoardPanels",
+    "generate-pieces": "tsx ./scripts/generatePuzzlePieces",
     "test": "jest",
     "test-coverage": "jest --coverage"
   },

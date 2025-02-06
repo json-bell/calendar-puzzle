@@ -1,4 +1,4 @@
-export const rawPuzzlePieces = [
+export const rawPuzzlePieces: [0 | 1, 0 | 1, 0 | 1][][] = [
   [
     [1, 1, 1],
     [1, 0, 0],
