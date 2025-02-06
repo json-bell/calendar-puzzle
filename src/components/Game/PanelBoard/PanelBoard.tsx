@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./PanelBoard.module.css";
-import boardPanels from "../../../puzzle/boardData/boardPanels";
+import boardPanels from "../../../puzzle/boardPanels";
 import PanelTyle from "../PanelTile/PanelTile";
 
 const PanelBoard: React.FC = () => {
