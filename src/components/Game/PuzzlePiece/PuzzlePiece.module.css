@@ -1,0 +1,21 @@
+.puzzlePiece {
+  display: flex;
+  flex-direction: column;
+  gap: var(--board-gap);
+}
+
+.pieceRow {
+  display: flex;
+  flex-direction: row;
+  gap: var(--board-gap);
+}
+.square {
+  width: var(--panel-size);
+  aspect-ratio: 1/1;
+  opacity: 0.1;
+  background-color: grey;
+}
+.presentSquare {
+  background-color: brown;
+  opacity: 1;
+}

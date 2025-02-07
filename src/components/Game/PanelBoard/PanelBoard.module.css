@@ -1,23 +1,13 @@
 .boardWrapper {
   border-radius: 8px;
   padding: 16px;
-  background-color: rgb(0, 91, 91);
-  width: 800px;
-  max-width: 1200px;
+  background-color: var(--wall-color);
+  width: fit-content;
 }
 
 .boardGrid {
   display: grid;
-  gap: 4px;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(6, auto);
-}
-
-.panel {
-  width: 100%;
-  aspect-ratio: 1/1;
-  background-color: #321;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: var(--board-gap);
+  grid-template-columns: repeat(9, var(--panel-size));
+  grid-template-rows: repeat(6, var(--panel-size));
 }
