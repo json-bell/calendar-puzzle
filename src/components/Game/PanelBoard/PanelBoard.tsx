@@ -1,8 +1,6 @@
 import styles from "./PanelBoard.module.css";
 import boardPanels from "../../../puzzle/boardPanels";
 import BoardPanel from "../PanelTile/BoardPanel";
-import puzzlePieces from "../../../puzzle/puzzlePieces";
-import PuzzlePiece from "../PuzzlePiece/PuzzlePiece";
 
 const PanelBoard: React.FC = () => {
   return (
@@ -15,11 +13,6 @@ const PanelBoard: React.FC = () => {
             })
           )}
         </div>
-      </div>
-      <div style={{ display: "flex", gap: "30px", flexWrap: "wrap" }}>
-        {puzzlePieces.map((piece) => (
-          <PuzzlePiece piece={piece} key={piece.pieceId} />
-        ))}
       </div>
     </>
   );
