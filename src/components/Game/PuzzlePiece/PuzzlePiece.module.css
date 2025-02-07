@@ -7,13 +7,3 @@
   display: flex;
   flex-direction: row;
 }
-.square {
-  width: var(--panel-size);
-  aspect-ratio: 1/1;
-  opacity: 0.1;
-  background-color: grey;
-}
-.presentSquare {
-  background-color: var(--cell-color);
-  opacity: 1;
-}
