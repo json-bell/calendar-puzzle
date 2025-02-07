@@ -19,7 +19,7 @@ const PanelBoard: React.FC = () => {
       </div>
       <div style={{ display: "flex", gap: "30px", flexWrap: "wrap" }}>
         {puzzlePieces.map((piece) => (
-          <PuzzlePiece piece={piece} />
+          <PuzzlePiece piece={piece} key={piece.pieceId} />
         ))}
       </div>
     </>
