@@ -1,13 +1,11 @@
 .puzzlePiece {
   display: flex;
   flex-direction: column;
-  gap: var(--board-gap);
 }
 
 .pieceRow {
   display: flex;
   flex-direction: row;
-  gap: var(--board-gap);
 }
 .square {
   width: var(--panel-size);
@@ -16,6 +14,6 @@
   background-color: grey;
 }
 .presentSquare {
-  background-color: brown;
+  background-color: var(--cell-color);
   opacity: 1;
 }

@@ -7,7 +7,6 @@
 
 .boardGrid {
   display: grid;
-  gap: var(--board-gap);
   grid-template-columns: repeat(9, var(--panel-size));
   grid-template-rows: repeat(6, var(--panel-size));
 }
