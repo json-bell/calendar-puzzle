@@ -6,12 +6,11 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  box-sizing: border-box;
+  border: 1px var(--wall-color) solid;
+  border-radius: 12px;
 }
 
 .wall {
   background-color: var(--wall-color);
-}
-
-.numberPanel {
-  font-size: 1.6rem;
 }

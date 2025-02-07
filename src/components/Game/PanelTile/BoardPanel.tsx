@@ -1,7 +1,6 @@
-import React from "react";
 import styles from "./BoardPanel.module.css";
-import { Panel } from "../../../puzzle/boardPanels/panels";
-import concatStyles from "../../../utils/concatStyles/concatStyles";
+import { Panel, PanelContent } from "../../../puzzle/boardPanels/panels";
+import concatStyles from "../../../utils/concatClassNames/concatClassNames";
 
 export interface PanelProps {
   panel: Panel;
@@ -10,6 +9,9 @@ export interface PanelProps {
 const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
   if (panel.type === "wall")
     return <div className={concatStyles(styles.panel, styles.wall)} />;
+
+  const formatContent = (content: PanelContent): string | number =>
+    typeof content === "string" ? content.toUpperCase() : content;
   return (
     <div
       className={concatStyles(
@@ -17,7 +19,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
         panel.type === "dayNumber" && styles.numberPanel
       )}
     >
-      {panel.type !== "empty" && panel.content}
+      {panel.type !== "empty" && formatContent(panel.content)}
     </div>
   );
 };

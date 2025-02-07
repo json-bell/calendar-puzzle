@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./PanelBoard.module.css";
 import boardPanels from "../../../puzzle/boardPanels";
 import BoardPanel from "../PanelTile/BoardPanel";

@@ -1,4 +1,4 @@
-import concatStyles from "./concatStyles";
+import concatStyles from "./concatClassNames";
 
 it("combines several classNames", () => {
   expect(concatStyles("hello", "yes")).toBe("hello yes");
