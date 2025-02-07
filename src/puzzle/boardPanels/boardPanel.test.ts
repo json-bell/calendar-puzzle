@@ -1,5 +1,5 @@
-import boardPanels from "..";
-import { getBoardPanels, rawSetupData } from "../getBoardPanels";
+import boardPanels from ".";
+import { getBoardPanels, rawSetupData } from "./getBoardPanels";
 
 describe("boardPanels", () => {
   it("matches generateBoardPanels", () => {

@@ -1,8 +1,11 @@
 type BoxPresence = boolean;
 
-type PieceShapeRow = [BoxPresence, BoxPresence, BoxPresence];
+type PieceShapeRow =
+  | [BoxPresence, BoxPresence, BoxPresence]
+  | [BoxPresence, BoxPresence]
+  | [BoxPresence];
 type PieceShape = PieceShapeRow[];
-type RawShape = [0 | 1, 0 | 1, 0 | 1][];
+type RawShape = ([0 | 1] | [0 | 1, 0 | 1] | [0 | 1, 0 | 1, 0 | 1])[];
 
 export type PuzzlePieceType = {
   shape: PieceShape;

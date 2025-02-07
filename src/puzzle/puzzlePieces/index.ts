@@ -21,22 +21,22 @@ const puzzlePieces: PuzzlePieceType[] = [
   },
   {
     "shape": [
-      [ true, true, false ],
-      [ true, false, false ],
-      [ true, false, false ],
-      [ true, false, false ]
+      [ true, true ],
+      [ true, false ],
+      [ true, false ],
+      [ true, false ]
     ],
-    "pieceId": "110100100100"
+    "pieceId": "11101010"
   },
   {
     "shape": [
-      [ true, false, false ],
-      [ true, false, false ],
-      [ true, false, false ],
-      [ true, false, false ],
-      [ true, false, false ]
+      [ true ],
+      [ true ],
+      [ true ],
+      [ true ],
+      [ true ]
     ],
-    "pieceId": "100100100100100"
+    "pieceId": "11111"
   },
   {
     "shape": [
