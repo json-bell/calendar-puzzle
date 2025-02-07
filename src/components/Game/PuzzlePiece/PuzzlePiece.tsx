@@ -1,6 +1,6 @@
 import { PuzzlePieceType } from "../../../puzzle/puzzlePieces/getPuzzlePieces";
 import styles from "./PuzzlePiece.module.css";
-import Cell from "../Cell/Cell";
+import Cell, { CellType } from "../Cell/Cell";
 import EmptyCell from "../Cell/EmptyCell";
 // import useMouse from "../../../utils/useMousePosition.ts/useMouse";
 
@@ -16,7 +16,12 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ piece }) => {
       {piece.shape.map((row, rowIndex) => (
         <div className={styles.pieceRow} key={rowIndex}>
           {row.map((isSquare, colIndex) => {
-            const cell = { pieceId: piece.pieceId, rowIndex, colIndex };
+            const cell: CellType = {
+              pieceId: piece.pieceId,
+              rowIndex,
+              colIndex,
+              cellId: `${piece.pieceId}${rowIndex}${colIndex}`,
+            };
             return isSquare ? (
               <Cell key={piece.pieceId} cell={cell} />
             ) : (

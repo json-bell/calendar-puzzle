@@ -9,6 +9,7 @@ const sizeVariables = {
 const colourVariables = {
   "--wall-color": `rgb(0, 91, 91)`,
   "--cell-color": `brown`,
+  "--hovered-cell-color": `blue`,
 };
 
 export const globalCSSVariables = {
