@@ -1,13 +1,9 @@
 import fs from "fs";
 import { getPuzzlePieces } from "../src/puzzle/puzzlePieces/getPuzzlePieces";
-import { rawPuzzlePieces } from "../src/puzzle/puzzlePieces/rawData";
+import rawPieceData from "../src/puzzle/puzzlePieces/rawPieceData";
 
 const filePath = "./src/puzzle/puzzlePieces/index.ts";
-const puzzlePieceString = JSON.stringify(
-  getPuzzlePieces(rawPuzzlePieces),
-  null,
-  2
-)
+const puzzlePieceString = JSON.stringify(getPuzzlePieces(rawPieceData), null, 2)
   .replace(/\n\s{8}/g, " ")
   .replace(/\n\s{6}\]/g, " ]");
 
