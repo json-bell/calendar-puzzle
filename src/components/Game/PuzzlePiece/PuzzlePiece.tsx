@@ -17,6 +17,7 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ piece }) => {
 
   return (
     <div
+      data-testid={`puzzle-piece-${piece.pieceId}`}
       className={cx(
         styles.puzzlePiece,
         selectedPiece?.pieceId === piece.pieceId && styles.selectedPiece
