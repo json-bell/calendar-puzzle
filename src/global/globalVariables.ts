@@ -7,9 +7,11 @@ const sizeVariables = {
 };
 
 const colourVariables = {
-  "--wall-color": `rgb(0, 91, 91)`,
-  "--cell-color": `brown`,
-  "--hovered-cell-color": `blue`,
+  "--wall-color": "rgb(0, 91, 91)",
+  "--cell-color": "brown",
+  "--cell-color-hovered": "green",
+  "--cell-color-selected-piece": "red",
+  "--cell-color-selected-cell": "white", // UNUSED ATM
 };
 
 export const globalCSSVariables = {

@@ -10,7 +10,7 @@ const SelectionProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <SelectionStateContext.Provider value={userSelection}>
-      <SelectionDispatchContext.Provider value={setUserSelection}>
+      <SelectionDispatchContext.Provider value={{ setUserSelection }}>
         {children}
       </SelectionDispatchContext.Provider>
     </SelectionStateContext.Provider>

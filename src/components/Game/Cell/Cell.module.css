@@ -12,7 +12,7 @@
 }
 
 .hoveredCell {
-  background-color: green;
+  background-color: var(--cell-color-hovered);
 }
 
 .emptyCell {
