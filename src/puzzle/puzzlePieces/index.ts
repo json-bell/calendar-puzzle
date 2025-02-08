@@ -1,8 +1,8 @@
 // This is a script generated file - do not edit. Run `yarn generate-panels` to re-generate the file.
 
-import { PuzzlePieceType } from "./getPuzzlePieces";
+import { Piece } from "../pieceTypes";
 
-const puzzlePieces: PuzzlePieceType[] = [
+const puzzlePieces: Piece[] = [
   {
     "shape": [
       [ true, true, true ],

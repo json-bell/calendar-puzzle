@@ -1,26 +1,18 @@
-type BoxPresence = boolean;
+import { CellPresence, Piece, PieceShape } from "../pieceTypes";
 
-type PieceShapeRow =
-  | [BoxPresence, BoxPresence, BoxPresence]
-  | [BoxPresence, BoxPresence]
-  | [BoxPresence];
-type PieceShape = PieceShapeRow[];
-type RawShape = ([0 | 1] | [0 | 1, 0 | 1] | [0 | 1, 0 | 1, 0 | 1])[];
+const rowMap = (row: (0 | 1)[]) =>
+  row.map((num: 0 | 1) => num === 1) as [boolean];
+// this could actually be 1,2 or 3 length long but TS doesn't like Array.map preserving lengths
 
-export type PuzzlePieceType = {
-  shape: PieceShape;
-  pieceId: string;
-};
+const getShapeFromData = (
+  rawShape: PieceShape<0 | 1>
+): PieceShape<CellPresence> => rawShape.map(rowMap);
 
-const getShapeFromData = (rawShape: RawShape): PieceShape =>
-  rawShape.map((row) => {
-    return row.map((num) => num === 1) as PieceShapeRow;
-  });
-const getIdFromData = (rawShape: RawShape): string => {
+const getIdFromData = (rawShape: PieceShape<0 | 1>): string => {
   return rawShape.map((row) => row.join("")).join("");
 };
 
-export const getPuzzlePieces = (rawShapes: RawShape[]): PuzzlePieceType[] => {
+export const getPuzzlePieces = (rawShapes: PieceShape<0 | 1>[]): Piece[] => {
   return rawShapes.map((rawShape) => ({
     shape: getShapeFromData(rawShape),
     pieceId: getIdFromData(rawShape),

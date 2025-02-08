@@ -1,14 +1,8 @@
-import {
-  dayNames,
-  dayNumbers,
-  months,
-  Panel,
-  PanelContent,
-  PanelContentArray,
-  PanelType,
-} from "./panels";
+import { Panel, PanelContent, PanelDateType } from "../panelTypes";
+import { BoardShape } from "../types";
+import { dayNames, dayNumbers, months } from "./dateData";
 
-export const rawSetupData: PanelContent[][] = [
+export const rawSetupData: BoardShape<PanelContent> = [
   ["jan", "feb", "mar", "apr", 1, 2, 3, "mon", "tue"],
   ["may", 4, 5, 6, 7, 8, 9, "wed", "empty"],
   ["jun", 10, 11, 12, 13, 31, 15, "thu", "empty"],
@@ -17,7 +11,7 @@ export const rawSetupData: PanelContent[][] = [
   ["sep", "oct", "nov", "dec", 28, 29, 30, 14, "wall"],
 ];
 
-const panelTypeLookup: Record<PanelType, PanelContentArray> = {
+const panelTypeLookup: Record<PanelDateType, readonly PanelContent[]> = {
   dayName: dayNames,
   dayNumber: dayNumbers,
   month: months,
@@ -25,9 +19,9 @@ const panelTypeLookup: Record<PanelType, PanelContentArray> = {
   wall: ["wall"],
 };
 
-const getPanelTypeFromContent = (content: PanelContent): PanelType => {
+const getPanelTypeFromContent = (content: PanelContent): PanelDateType => {
   for (const [panelType, array] of Object.entries(panelTypeLookup)) {
-    if (array.includes(content)) return panelType as PanelType;
+    if (array.includes(content)) return panelType as PanelDateType;
   }
   throw new Error(
     `Failed to decide the following panel content's type: ${content}`
@@ -48,6 +42,7 @@ const generatePanelFromContent = (content: PanelContent): Panel => {
   };
 };
 
-export const getBoardPanels = (rawData: PanelContent[][]): Panel[][] => {
-  return rawData.map((row) => row.map(generatePanelFromContent));
-};
+export const getBoardPanels = (
+  rawData: BoardShape<PanelContent>
+): BoardShape<Panel> =>
+  rawData.map((row) => row.map(generatePanelFromContent)) as BoardShape<Panel>;
