@@ -1,5 +1,5 @@
 import styles from "./BoardPanel.module.css";
-import { Panel, PanelContent } from "../../../puzzle/boardPanels/panels";
+import { Panel, PanelContent } from "../../../puzzle/boardPanels/dateData";
 import concatStyles from "../../../utils/concatClassNames/concatClassNames";
 
 export interface PanelProps {

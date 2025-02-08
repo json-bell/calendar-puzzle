@@ -13,7 +13,7 @@ fs.writeFile(
   filePath,
   `// This is a script generated file - do not edit. Run \`yarn generate-panels\` to re-generate the file.
 
-import { Panel } from "./panels";
+import { Panel } from "../panelTypes";
 
 const boardPanels: Panel[][] = ${boardPanelString};
   

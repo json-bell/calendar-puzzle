@@ -1,4 +1,6 @@
-const rawPieceData: ([0 | 1] | [0 | 1, 0 | 1] | [0 | 1, 0 | 1, 0 | 1])[][] = [
+import { PieceShape } from "../pieceTypes";
+
+const rawPieceData: PieceShape<0 | 1>[] = [
   [
     [1, 1, 1],
     [1, 0, 0],
