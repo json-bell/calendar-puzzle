@@ -1,14 +1,12 @@
-import { PuzzlePieceType } from "../../../puzzle/puzzlePieces/getPuzzlePieces";
 import styles from "./PuzzlePiece.module.css";
-import Cell, { CellType } from "../Cell/Cell";
+import Cell from "../Cell/Cell";
 import EmptyCell from "../Cell/EmptyCell";
+import type { CellType, Piece } from "../../../puzzle/pieceTypes";
 // import useMouse from "../../../utils/useMousePosition.ts/useMouse";
 
 export interface PuzzlePieceProps {
-  piece: PuzzlePieceType;
+  piece: Piece;
 }
-
-// type Position = { left: number; top: number };
 
 const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ piece }) => {
   return (

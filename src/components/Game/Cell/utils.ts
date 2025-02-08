@@ -1,4 +1,4 @@
-import { CellType } from "./Cell";
+import { CellType } from "../../../puzzle/pieceTypes";
 
 export const getCellFromId = (
   cellId: string
