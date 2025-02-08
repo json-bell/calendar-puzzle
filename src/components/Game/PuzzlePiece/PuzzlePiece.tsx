@@ -11,19 +11,19 @@ export interface PuzzlePieceProps {
 const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ piece }) => {
   return (
     <div className={styles.puzzlePiece}>
-      {piece.shape.map((row, rowIndex) => (
-        <div className={styles.pieceRow} key={rowIndex}>
-          {row.map((isSquare, colIndex) => {
+      {piece.shape.map((row, y) => (
+        <div className={styles.pieceRow} key={y}>
+          {row.map((isSquare, x) => {
             const cell: CellType = {
               pieceId: piece.pieceId,
-              rowIndex,
-              colIndex,
-              cellId: `${piece.pieceId}${rowIndex}${colIndex}`,
+              x,
+              y,
+              cellSlug: `${piece.pieceId}${x}${y}`,
             };
             return isSquare ? (
-              <Cell key={cell.cellId} cell={cell} />
+              <Cell key={cell.cellSlug} cell={cell} />
             ) : (
-              <EmptyCell key={cell.cellId} />
+              <EmptyCell key={cell.cellSlug} />
             );
           })}
         </div>

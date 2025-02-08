@@ -1,4 +1,5 @@
-import { PanelDetails } from "./panelTypes";
+import { Panel, PanelDetails } from "./panelTypes";
+import { CellType, Piece } from "./pieceTypes";
 
 type BoardRow<T> = [T, T, T, T, T, T, T, T, T];
 
@@ -14,13 +15,18 @@ export type BoardShape<T> = [
 export type Board = BoardShape<PanelDetails>;
 
 export type PiecePosition = {
-  pieceId: number;
+  cell: CellType;
   rotation: 0 | 1 | 2 | 3;
-  x: number;
-  y: number;
+  panelX: number;
+  panelY: number;
 };
 
 export type Game = {
-  piecePositions: PiecePosition[];
-  board: Board;
+  piecePositions: PiecePosition[]; // SOURCE OF TRUTH
+  board: Board; //
+};
+
+export type Selections = {
+  selectedPiece: Piece | null;
+  selectedPanel: Panel | null;
 };

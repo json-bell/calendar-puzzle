@@ -13,6 +13,8 @@ export type Panel = {
   type: PanelDateType;
   content: PanelContent;
   contentIndex: number;
+  x: number;
+  y: number;
 };
 
 export type PanelStatus = "free" | "covered" | "wall";

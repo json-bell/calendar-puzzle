@@ -18,4 +18,5 @@
 .emptyCell {
   opacity: 0.1;
   background-color: grey;
+  pointer-events: none;
 }

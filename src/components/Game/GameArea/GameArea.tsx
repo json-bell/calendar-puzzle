@@ -9,7 +9,6 @@ const GameArea = () => {
     <GameProvider>
       <section className={styles.gameArea}>
         <PanelBoard />
-        {/* Pieces */}
         <div className={styles.piecesContainer}>
           {puzzlePieces.map((piece) => (
             <PuzzlePiece piece={piece} key={piece.pieceId} />
