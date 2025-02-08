@@ -30,6 +30,7 @@ const Cell: React.FC<CellProps> = ({ cell }) => {
 
   return (
     <button
+      data-testid="cell"
       {...handlers}
       className={cx(
         styles.cell,
