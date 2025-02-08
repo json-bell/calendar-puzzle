@@ -6,3 +6,10 @@ export type Piece = {
   shape: PieceShape<CellPresence>;
   pieceId: string;
 };
+
+export type CellType = {
+  pieceId: string;
+  rowIndex: number;
+  colIndex: number;
+  cellId: string;
+};

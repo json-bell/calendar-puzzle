@@ -1,13 +1,7 @@
 import { useState } from "react";
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import styles from "./Cell.module.css";
-
-export type CellType = {
-  pieceId: string;
-  rowIndex: number;
-  colIndex: number;
-  cellId: string;
-};
+import type { CellType } from "../../../puzzle/pieceTypes";
 
 export interface CellProps {
   cell: CellType;
