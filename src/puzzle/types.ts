@@ -22,7 +22,15 @@ export type Game = {
 };
 
 export type UserSelection = {
-  selectedPiece: Piece | null;
   selectedPanel: Panel | null;
   rotation: PieceRotation | null;
-};
+} & (
+  | {
+      selectedPiece: Piece;
+      selectedCell: CellType;
+    }
+  | {
+      selectedPiece: null;
+      selectedCell: null;
+    }
+);

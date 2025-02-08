@@ -2,7 +2,7 @@ import { useState } from "react";
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import styles from "./Cell.module.css";
 import type { CellType } from "../../../puzzle/pieceTypes";
-import useSelectionDispatch from "../../../context/UserSelection/dispatch";
+import useUserSelection from "../../../context/UserSelection/dispatch";
 import puzzlePieces from "../../../puzzle/puzzlePieces";
 
 export interface CellProps {
@@ -11,12 +11,13 @@ export interface CellProps {
 
 const Cell: React.FC<CellProps> = ({ cell }) => {
   const [hovered, setHovered] = useState(false);
-  const { setUserSelection } = useSelectionDispatch();
+  const { userSelection, setUserSelection } = useUserSelection();
+  const isSelected = userSelection.selectedCell?.cellSlug === cell.cellSlug;
   const setSelectedPiece = (cell: CellType) => {
     setUserSelection((currentSelection) => ({
       ...currentSelection,
       selectedPiece: puzzlePieces[cell.pieceId],
-      // ADD SELECTED CELL SO IT'S THE CELL THAT GOES THERE TOO
+      selectedCell: cell,
     }));
   };
   // const [selectedCell, setSelectedCell] = useSelectedCell();
@@ -33,7 +34,8 @@ const Cell: React.FC<CellProps> = ({ cell }) => {
       className={cx(
         styles.cell,
         styles.generalCell,
-        hovered && styles.hoveredCell
+        hovered && styles.hoveredCell,
+        isSelected && styles.selectedCell
       )}
     />
   );

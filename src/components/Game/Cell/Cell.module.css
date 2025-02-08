@@ -20,3 +20,7 @@
   background-color: grey;
   pointer-events: none;
 }
+
+.selectedCell {
+  background-color: aliceblue;
+}
