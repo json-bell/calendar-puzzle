@@ -9,7 +9,7 @@ const PanelBoard: React.FC = () => {
         <div className={styles.boardGrid}>
           {boardPanels.map((panelRow) =>
             panelRow.map((panel) => {
-              return <BoardPanel panel={panel} />;
+              return <BoardPanel key={panel.content} panel={panel} />;
             })
           )}
         </div>

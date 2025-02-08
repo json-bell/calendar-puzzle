@@ -1,9 +1,12 @@
 .puzzlePiece {
   display: flex;
   flex-direction: column;
+  width: fit-content;
+  height: fit-content;
 }
 
 .pieceRow {
   display: flex;
   flex-direction: row;
+  width: min-content;
 }
