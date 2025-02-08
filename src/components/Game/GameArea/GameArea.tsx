@@ -2,7 +2,7 @@ import PanelBoard from "../PanelBoard/PanelBoard";
 import puzzlePieces from "../../../puzzle/puzzlePieces";
 import PuzzlePiece from "../PuzzlePiece/PuzzlePiece";
 import styles from "./GameArea.module.css";
-import GameProvider from "../GameProvider/GameProvider";
+import GameProvider from "../../../context/Game/GameProvider";
 
 const GameArea = () => {
   return (
