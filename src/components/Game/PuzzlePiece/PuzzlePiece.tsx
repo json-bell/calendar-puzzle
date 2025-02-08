@@ -23,9 +23,9 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ piece }) => {
               cellId: `${piece.pieceId}${rowIndex}${colIndex}`,
             };
             return isSquare ? (
-              <Cell key={piece.pieceId} cell={cell} />
+              <Cell key={cell.cellId} cell={cell} />
             ) : (
-              <EmptyCell key={piece.pieceId} />
+              <EmptyCell key={cell.cellId} />
             );
           })}
         </div>

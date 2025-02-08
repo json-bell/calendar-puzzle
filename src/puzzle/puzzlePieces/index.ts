@@ -48,12 +48,12 @@ const puzzlePieces: PuzzlePieceType[] = [
   },
   {
     "shape": [
-      [ true, false, false ],
-      [ true, true, false ],
-      [ false, true, false ],
-      [ false, true, false ]
+      [ true, false ],
+      [ true, true ],
+      [ false, true ],
+      [ false, true ]
     ],
-    "pieceId": "100110010010"
+    "pieceId": "10110101"
   },
   {
     "shape": [
@@ -65,12 +65,12 @@ const puzzlePieces: PuzzlePieceType[] = [
   },
   {
     "shape": [
-      [ true, false, false ],
-      [ true, true, false ],
-      [ true, false, false ],
-      [ true, false, false ]
+      [ true, false ],
+      [ true, true ],
+      [ true, false ],
+      [ true, false ]
     ],
-    "pieceId": "100110100100"
+    "pieceId": "10111010"
   },
   {
     "shape": [
