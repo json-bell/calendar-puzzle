@@ -1,8 +1,9 @@
 // This is a script generated file - do not edit. Run `yarn generate-panels` to re-generate the file.
 
 import { Panel } from "../panelTypes";
+import { BoardShape } from "../types";
 
-const boardPanels: Panel[][] = [
+const boardPanels: BoardShape<Panel> = [
   [
     { "content": "jan", "x": 0, "y": 0, "type": "month", "contentIndex": 0 },
     { "content": "feb", "x": 1, "y": 0, "type": "month", "contentIndex": 1 },
