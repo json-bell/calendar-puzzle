@@ -14,7 +14,12 @@ const colourVariables = {
   "--cell-color-selected-cell": "white", // UNUSED ATM
 };
 
+const zIndices = {
+  "--z-index-piece-preview": 100,
+};
+
 export const globalCSSVariables = {
   ...sizeVariables,
   ...colourVariables,
+  ...zIndices,
 } as CSSProperties;
