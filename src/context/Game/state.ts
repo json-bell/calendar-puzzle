@@ -5,6 +5,12 @@ import puzzlePieces from "../../puzzle/puzzlePieces";
 
 export const initialGameState: Game = {
   gamePieces: puzzlePieces.map((piece) => ({ piece, position: null })),
+  userSelection: {
+    rotation: null,
+    selectedCell: null,
+    selectedPanel: null,
+    selectedPiece: null,
+  },
   board: getBoardFromPositions([]),
 };
 

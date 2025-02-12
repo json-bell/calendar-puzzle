@@ -22,5 +22,5 @@
 }
 
 .selectedCell {
-  background-color: aliceblue;
+  background-color: var(--cell-color-selected);
 }

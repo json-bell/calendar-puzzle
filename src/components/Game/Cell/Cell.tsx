@@ -2,8 +2,10 @@ import { useState } from "react";
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import styles from "./Cell.module.css";
 import type { CellType } from "../../../puzzle/pieceTypes";
-import useUserSelection from "../../../context/UserSelection/dispatch";
 import puzzlePieces from "../../../puzzle/puzzlePieces";
+import useGameState from "../../../context/Game/state";
+import useGameDispatch from "../../../context/Game/dispatch";
+import { Actions } from "../../../context/Game/types";
 
 export interface CellProps {
   cell: CellType;
@@ -11,16 +13,15 @@ export interface CellProps {
 
 const Cell: React.FC<CellProps> = ({ cell }) => {
   const [hovered, setHovered] = useState(false);
-  const { userSelection, setUserSelection } = useUserSelection();
+  const { userSelection } = useGameState();
+  const dispatch = useGameDispatch();
   const isSelected = userSelection.selectedCell?.cellSlug === cell.cellSlug;
   const setSelectedPiece = (cell: CellType) => {
-    setUserSelection((currentSelection) => ({
-      ...currentSelection,
-      selectedPiece: puzzlePieces[cell.pieceId],
-      selectedCell: cell,
-    }));
+    dispatch({
+      type: Actions.SELECT_SIDE_PIECE,
+      payload: { cell, piece: puzzlePieces[cell.pieceId] },
+    });
   };
-  // const [selectedCell, setSelectedCell] = useSelectedCell();
 
   const handlers = {
     onMouseEnter: () => setHovered(true),

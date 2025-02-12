@@ -2,7 +2,7 @@ import styles from "./BoardPanel.module.css";
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import { Panel } from "../../../puzzle/panelTypes";
 import { formatContent } from "../../../puzzle/boardPanels/utils/formatContent";
-import useUserSelection from "../../../context/UserSelection/dispatch";
+import useGameState from "../../../context/Game/state";
 import { useState } from "react";
 import PuzzlePiece from "../PuzzlePiece/PuzzlePiece";
 import { panelSizeGlobal } from "../../../global/globalVariables";
@@ -12,16 +12,16 @@ export interface PanelProps {
 }
 
 const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
-  const { userSelection } = useUserSelection();
+  const { userSelection } = useGameState();
   const { selectedCell, selectedPiece } = userSelection;
-  const [isPreviewing, setIsHovered] = useState(false);
+  const [isPreviewing, setIsPreviewing] = useState(false);
 
   if (panel.type === "wall")
     return <div className={cx(styles.panel, styles.wall)} />;
 
   const handlers = {
-    onMouseEnter: () => setIsHovered(true),
-    onMouseLeave: () => setIsHovered(false),
+    onMouseEnter: () => setIsPreviewing(true),
+    onMouseLeave: () => setIsPreviewing(false),
   };
 
   return (
@@ -30,7 +30,8 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
       <div
         className={cx(
           styles.panel,
-          panel.type === "dayNumber" && styles.numberPanel
+          panel.type === "dayNumber" && styles.numberPanel,
+          isPreviewing && selectedPiece && styles.previewedPanel
         )}
       >
         {panel.type !== "empty" && formatContent(panel.content)}

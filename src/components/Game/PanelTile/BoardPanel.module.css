@@ -12,10 +12,13 @@
   justify-content: center;
   width: 100%;
   aspect-ratio: 1/1;
-  background-color: #321;
+  background-color: var(--panel-color);
   box-sizing: border-box;
   border: 4px var(--wall-color) solid;
   border-radius: 12px;
+}
+.previewedPanel {
+  background-color: var(--panel-color-previewed);
 }
 
 .wall {

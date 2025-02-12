@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-import SelectionProvider from "../../context/UserSelection/SelectionProvider";
 import GameProvider from "../../context/Game/GameProvider";
 
 const renderWithContext = (
@@ -7,9 +6,7 @@ const renderWithContext = (
   options?: Parameters<typeof render>[1]
 ) => {
   const renderedVal: ReturnType<typeof render> = render(
-    <GameProvider>
-      <SelectionProvider>{ui}</SelectionProvider>
-    </GameProvider>,
+    <GameProvider>{ui}</GameProvider>,
     options
   );
   return renderedVal;

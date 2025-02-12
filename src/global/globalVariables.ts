@@ -11,7 +11,9 @@ const colourVariables = {
   "--cell-color": "brown",
   "--cell-color-hovered": "green",
   "--cell-color-selected-piece": "red",
-  "--cell-color-selected-cell": "white", // UNUSED ATM
+  "--cell-color-selected": "orange",
+  "--panel-color": "#321",
+  "--panel-color-previewed": "grey",
 };
 
 const zIndices = {

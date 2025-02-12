@@ -16,26 +16,24 @@ export type PiecePosition = {
   panelY: number;
 };
 
+type SelectionRrestrictions =
+  | { selectedPiece: Piece; selectedCell: CellType }
+  | { selectedPiece: null; selectedCell: null };
+
+export type UserSelection = {
+  selectedPanel: Panel | null;
+  rotation: PieceRotation | null;
+  selectedPiece: Piece | null;
+  selectedCell: CellType | null;
+} & SelectionRrestrictions;
+
 export type GamePiece = {
   piece: Piece;
   position: null | PiecePosition;
 };
 
 export type Game = {
-  gamePieces: GamePiece[]; // Source of Truth
+  gamePieces: GamePiece[]; // Source of Truth of Placement
+  userSelection: UserSelection;
   board: Board; // deduced from piecePositions in reducer
 };
-
-export type UserSelection = {
-  selectedPanel: Panel | null;
-  rotation: PieceRotation | null;
-} & (
-  | {
-      selectedPiece: Piece;
-      selectedCell: CellType;
-    }
-  | {
-      selectedPiece: null;
-      selectedCell: null;
-    }
-);

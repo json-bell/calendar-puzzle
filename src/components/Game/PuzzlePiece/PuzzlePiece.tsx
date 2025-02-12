@@ -2,8 +2,8 @@ import styles from "./PuzzlePiece.module.css";
 import Cell from "../Cell/Cell";
 import EmptyCell from "../Cell/EmptyCell";
 import type { CellType, Piece } from "../../../puzzle/pieceTypes";
-import useUserSelection from "../../../context/UserSelection/dispatch";
 import cx from "../../../utils/concatClassNames/concatClassNames";
+import useGameState from "../../../context/Game/state";
 // import useMouse from "../../../utils/useMousePosition.ts/useMouse";
 
 export interface PuzzlePieceProps {
@@ -13,7 +13,7 @@ export interface PuzzlePieceProps {
 const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ piece }) => {
   const {
     userSelection: { selectedPiece },
-  } = useUserSelection();
+  } = useGameState();
 
   return (
     <div
