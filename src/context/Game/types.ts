@@ -6,7 +6,7 @@ export enum Actions {
   SELECT_SIDE_PIECE = "SELECT_SIDE_PIECE",
   PLACE_PIECE = "PLACE_PIECE",
   ROTATE_PIECE = "ROTATE_PIECE ",
-  PICK_UP_PIECE = "PICK_UP_PIECE",
+  REMOVE_PIECE = "REMOVE_PIECE",
 }
 
 type Payload = {
@@ -22,7 +22,7 @@ export type GameAction = { type: Actions; payload?: Partial<Payload> } & (
       type: Actions.SELECT_SIDE_PIECE;
       payload: Pick<Payload, "piece" | "cell">;
     }
-  | { type: Actions.PLACE_PIECE /* ,...Details */ }
+  | { type: Actions.PLACE_PIECE; payload: Pick<Payload, "panelPosition"> }
   | { type: Actions.ROTATE_PIECE /* ,...Details */ }
-  | { type: Actions.PICK_UP_PIECE /* ,...Details */ }
+  | { type: Actions.REMOVE_PIECE /* ,...Details */ }
 );

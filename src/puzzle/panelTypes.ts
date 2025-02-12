@@ -1,5 +1,5 @@
 import { DayName, DayNumber, Month } from "./boardPanels/dateData";
-import { Piece } from "./pieceTypes";
+import { CellType } from "./pieceTypes";
 
 export type PanelDateType =
   | "dayNumber"
@@ -23,6 +23,6 @@ export type PanelDetails = {
   panel: Panel;
   state: PanelStatus;
 } & (
-  | { state: "covered"; coveredBy: Piece["pieceId"] }
+  | { state: "covered"; coveredBy: CellType }
   | { state: "free" | "wall"; coveredBy?: never }
 );

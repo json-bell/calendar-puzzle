@@ -34,3 +34,14 @@
 .piecePreview > * > * > * {
   background-color: green !important;
 }
+
+.piecePlaced {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: var(--z-index-piece-preview);
+}
+
+.piecePlaced > * > * > * {
+  background-color: white !important;
+}

@@ -12,16 +12,37 @@ const getPanelWithDetails = (panel: Panel): PanelDetails => {
 export const getBoardFromPositions = (
   gamePieces: Game["gamePieces"]
 ): Game["board"] => {
-  console.error(
-    "Gotta generate the Board here & add all the Panel status stuff"
-  );
-  console.log({ gamePieces });
+  // console.error(
+  //   "Gotta generate the Board here & add all the Panel status stuff"
+  // );
+  // console.log({ gamePieces });
 
   const panelsWithoutPieces = mapBoard(boardPanels, (panel: Panel) =>
     getPanelWithDetails(panel)
   );
 
-  return panelsWithoutPieces;
+  // step 2: get BoardShape<CellType> of cells covering any board part
+
+  const panelsWithPieces = mapBoard(
+    panelsWithoutPieces,
+    (panelDetails: PanelDetails): PanelDetails => {
+      const cellsCovering = gamePieces.filter(({ position }) => {
+        return (
+          position?.panelX === panelDetails.panel.panelX &&
+          position.panelY === panelDetails.panel.panelY
+        );
+      });
+      if (cellsCovering.length === 0) return panelDetails;
+
+      return {
+        ...panelDetails,
+        state: "covered",
+        coveredBy: cellsCovering[0].position!.cell,
+      };
+    }
+  );
+
+  return panelsWithPieces;
 };
 
 export default getBoardFromPositions;

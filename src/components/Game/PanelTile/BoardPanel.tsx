@@ -6,22 +6,39 @@ import useGameState from "../../../context/Game/state";
 import { useState } from "react";
 import PuzzlePiece from "../PuzzlePiece/PuzzlePiece";
 import { panelSizeGlobal } from "../../../global/globalVariables";
+import useGameDispatch from "../../../context/Game/dispatch";
+import { Actions } from "../../../context/Game/types";
 
 export interface PanelProps {
   panel: Panel;
 }
 
 const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
-  const { userSelection } = useGameState();
+  const { userSelection, board, gamePieces } = useGameState();
   const { selectedCell, selectedPiece } = userSelection;
   const [isPreviewing, setIsPreviewing] = useState(false);
+
+  const dispatch = useGameDispatch();
+  const handlePlacePiece =
+    selectedPiece &&
+    (() => {
+      dispatch({
+        type: Actions.PLACE_PIECE,
+        payload: {
+          panelPosition: { panelX: panel.panelX, panelY: panel.panelY },
+        },
+      });
+    });
 
   if (panel.type === "wall")
     return <div className={cx(styles.panel, styles.wall)} />;
 
+  const coveringCell = board[panel.panelY][panel.panelX].coveredBy;
+
   const handlers = {
     onMouseEnter: () => setIsPreviewing(true),
     onMouseLeave: () => setIsPreviewing(false),
+    onClick: () => handlePlacePiece?.(),
   };
 
   return (
@@ -39,13 +56,24 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
       {/* Piece Preview */}
       {isPreviewing && selectedPiece && (
         <div
-          className={styles.piecePreview}
+          className={cx(styles.piecePreview)}
           style={{
             left: `-${selectedCell.cellX * panelSizeGlobal}px`,
             top: `-${selectedCell.cellY * panelSizeGlobal}px`,
           }}
         >
           <PuzzlePiece piece={selectedPiece} />
+        </div>
+      )}
+      {coveringCell && (
+        <div
+          className={cx(styles.piecePlaced)}
+          style={{
+            left: `-${coveringCell.cellX * panelSizeGlobal}px`,
+            top: `-${coveringCell.cellY * panelSizeGlobal}px`,
+          }}
+        >
+          <PuzzlePiece piece={gamePieces[coveringCell.pieceId].piece} />
         </div>
       )}
     </button>
