@@ -40,8 +40,8 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
         <div
           className={styles.piecePreview}
           style={{
-            left: `-${selectedCell.x * panelSizeGlobal}px`,
-            top: `-${selectedCell.y * panelSizeGlobal}px`,
+            left: `-${selectedCell.cellX * panelSizeGlobal}px`,
+            top: `-${selectedCell.cellY * panelSizeGlobal}px`,
           }}
         >
           <PuzzlePiece piece={selectedPiece} />

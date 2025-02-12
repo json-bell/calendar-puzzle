@@ -35,8 +35,8 @@ const getPanelTypeFromContent = (content: PanelContent): PanelDateType => {
  */
 const generatePanelFromContent = (args: {
   content: PanelContent;
-  x: number;
-  y: number;
+  panelX: number;
+  panelY: number;
 }): Panel => {
   const type = getPanelTypeFromContent(args.content);
   return {
@@ -49,6 +49,8 @@ const generatePanelFromContent = (args: {
 export const getBoardPanels = (
   rawData: BoardShape<PanelContent>
 ): BoardShape<Panel> =>
-  rawData.map((row, y) =>
-    row.map((content, x) => generatePanelFromContent({ content, x, y }))
+  rawData.map((row, panelY) =>
+    row.map((content, panelX) =>
+      generatePanelFromContent({ content, panelX, panelY })
+    )
   ) as BoardShape<Panel>;

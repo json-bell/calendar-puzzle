@@ -1,7 +1,7 @@
-import { createContext, Dispatch, SetStateAction, useContext } from "react";
-import { Game } from "../../puzzle/types";
+import { createContext, Dispatch, useContext } from "react";
+import { GameAction } from "./types";
 
-type GameDispatch = Dispatch<SetStateAction<Game>>;
+type GameDispatch = Dispatch<GameAction>;
 
 export const GameDispatchContext = createContext<GameDispatch>(() => {});
 

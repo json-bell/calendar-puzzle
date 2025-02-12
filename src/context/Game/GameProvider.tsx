@@ -1,23 +1,19 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useReducer } from "react";
 import { GameStateContext, initialGameState } from "./state";
-import { Game } from "../../puzzle/types";
 import { GameDispatchContext } from "./dispatch";
-import getBoardFromPositions from "../../puzzle/game/getBoardFromPositions";
+import gameReducer from "./reducer";
+import { GameAction } from "./types";
+import { Game } from "../../puzzle/types";
 
 const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [gameState, setGameState] = useState<Game>(initialGameState);
-  const piecePositions = gameState.piecePositions;
-
-  useEffect(() => {
-    setGameState(({ piecePositions }) => ({
-      piecePositions,
-      board: getBoardFromPositions(piecePositions),
-    }));
-  }, [piecePositions]);
+  const [gameState, gameDispatch] = useReducer<Game, [action: GameAction]>(
+    gameReducer,
+    initialGameState
+  );
 
   return (
     <GameStateContext.Provider value={gameState}>
-      <GameDispatchContext.Provider value={setGameState}>
+      <GameDispatchContext.Provider value={gameDispatch}>
         {children}
       </GameDispatchContext.Provider>
     </GameStateContext.Provider>

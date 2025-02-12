@@ -10,7 +10,7 @@ export type Piece = {
 
 export type CellType = {
   pieceId: Piece["pieceId"];
-  x: number;
-  y: number;
+  cellX: number;
+  cellY: number;
   cellSlug: string;
 };

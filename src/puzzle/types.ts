@@ -16,9 +16,14 @@ export type PiecePosition = {
   panelY: number;
 };
 
+export type GamePiece = {
+  piece: Piece;
+  position: null | PiecePosition;
+};
+
 export type Game = {
-  piecePositions: PiecePosition[]; // Source of Truth
-  board: Board; // deduced in useEffect from piecePositions
+  gamePieces: GamePiece[]; // Source of Truth
+  board: Board; // deduced from piecePositions in reducer
 };
 
 export type UserSelection = {

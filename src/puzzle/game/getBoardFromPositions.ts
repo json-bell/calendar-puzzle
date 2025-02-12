@@ -9,12 +9,12 @@ const getPanelWithDetails = (panel: Panel): PanelDetails => {
 };
 
 export const getBoardFromPositions = (
-  piecePositions: Game["piecePositions"]
+  gamePieces: Game["gamePieces"]
 ): Game["board"] => {
   console.error(
     "Gotta generate the Board here & add all the Panel status stuff"
   );
-  console.log({ piecePositions });
+  console.log({ gamePieces });
   return boardPanels.map(
     (panelRow) =>
       panelRow.map((panel) =>

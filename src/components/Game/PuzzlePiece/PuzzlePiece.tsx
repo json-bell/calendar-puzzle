@@ -23,14 +23,14 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ piece }) => {
         selectedPiece?.pieceId === piece.pieceId && styles.selectedPiece
       )}
     >
-      {piece.shape.map((row, y) => (
-        <div className={styles.pieceRow} key={y}>
-          {row.map((isSquare, x) => {
+      {piece.shape.map((row, cellY) => (
+        <div className={styles.pieceRow} key={cellY}>
+          {row.map((isSquare, cellX) => {
             const cell: CellType = {
               pieceId: piece.pieceId,
-              x,
-              y,
-              cellSlug: `${piece.pieceId}${x}${y}`,
+              cellX,
+              cellY,
+              cellSlug: `${piece.pieceId}${cellX}${cellY}`,
             };
             return isSquare ? (
               <Cell key={cell.cellSlug} cell={cell} />

@@ -8,8 +8,8 @@ describe("Cell", () => {
     const user = userEvent.setup();
     const { getByTestId } = renderWithContext(
       <>
-        <Cell cell={{ cellSlug: "test", pieceId: 2, x: 0, y: 0 }} />
-        <Cell cell={{ cellSlug: "test-2", pieceId: 2, x: 0, y: 0 }} />
+        <Cell cell={{ cellSlug: "test", pieceId: 2, cellX: 0, cellY: 0 }} />
+        <Cell cell={{ cellSlug: "test-2", pieceId: 2, cellX: 0, cellY: 0 }} />
       </>
     );
 
@@ -28,7 +28,7 @@ describe("Cell", () => {
       <>
         <PuzzlePiece piece={{ pieceId: 2, shape: [], slug: "1" }} />
         <PuzzlePiece piece={{ pieceId: 4, shape: [], slug: "4" }} />
-        <Cell cell={{ cellSlug: "test", pieceId: 2, x: 0, y: 0 }} />
+        <Cell cell={{ cellSlug: "test", pieceId: 2, cellX: 0, cellY: 0 }} />
       </>
     );
 

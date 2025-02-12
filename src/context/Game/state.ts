@@ -1,9 +1,10 @@
 import { createContext, useContext } from "react";
 import { Game } from "../../puzzle/types";
 import getBoardFromPositions from "../../puzzle/game/getBoardFromPositions";
+import puzzlePieces from "../../puzzle/puzzlePieces";
 
 export const initialGameState: Game = {
-  piecePositions: [],
+  gamePieces: puzzlePieces.map((piece) => ({ piece, position: null })),
   board: getBoardFromPositions([]),
 };
 
