@@ -1,2 +1,2 @@
-yarn tsc -b --noEmit
+yarn check-ts
 yarn test

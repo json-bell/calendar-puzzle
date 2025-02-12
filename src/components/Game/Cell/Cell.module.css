@@ -12,10 +12,15 @@
 }
 
 .hoveredCell {
-  background-color: green;
+  background-color: var(--cell-color-hovered);
 }
 
 .emptyCell {
   opacity: 0.1;
   background-color: grey;
+  pointer-events: none;
+}
+
+.selectedCell {
+  background-color: var(--cell-color-selected);
 }
