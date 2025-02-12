@@ -1,6 +1,7 @@
 import boardPanels from "../boardPanels";
 import { Panel, PanelDetails, PanelStatus } from "../panelTypes";
-import { BoardRow, BoardShape, Game } from "../types";
+import { Game } from "../types";
+import mapBoard from "../utils/mapBoard";
 
 const getPanelWithDetails = (panel: Panel): PanelDetails => {
   if (panel.type === "wall") return { panel, state: "wall" };
@@ -15,12 +16,12 @@ export const getBoardFromPositions = (
     "Gotta generate the Board here & add all the Panel status stuff"
   );
   console.log({ gamePieces });
-  return boardPanels.map(
-    (panelRow) =>
-      panelRow.map((panel) =>
-        getPanelWithDetails(panel)
-      ) as BoardRow<PanelDetails>
-  ) as BoardShape<PanelDetails>;
+
+  const panelsWithoutPieces = mapBoard(boardPanels, (panel: Panel) =>
+    getPanelWithDetails(panel)
+  );
+
+  return panelsWithoutPieces;
 };
 
 export default getBoardFromPositions;

@@ -1,5 +1,6 @@
 import { Panel, PanelContent, PanelDateType } from "../panelTypes";
 import { BoardShape } from "../types";
+import mapBoard from "../utils/mapBoard";
 import { dayNames, dayNumbers, months } from "./dateData";
 
 export const rawSetupData: BoardShape<PanelContent> = [
@@ -49,8 +50,6 @@ const generatePanelFromContent = (args: {
 export const getBoardPanels = (
   rawData: BoardShape<PanelContent>
 ): BoardShape<Panel> =>
-  rawData.map((row, panelY) =>
-    row.map((content, panelX) =>
-      generatePanelFromContent({ content, panelX, panelY })
-    )
-  ) as BoardShape<Panel>;
+  mapBoard(rawData, (content, panelX, panelY) =>
+    generatePanelFromContent({ content, panelX, panelY })
+  );
