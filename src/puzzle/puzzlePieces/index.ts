@@ -9,7 +9,8 @@ const puzzlePieces: Piece[] = [
       [ true, false, false ],
       [ true, false, false ]
     ],
-    "pieceId": "111100100"
+    "pieceId": 0,
+    "slug": "111100100"
   },
   {
     "shape": [
@@ -17,7 +18,8 @@ const puzzlePieces: Piece[] = [
       [ false, true, false ],
       [ false, true, false ]
     ],
-    "pieceId": "111010010"
+    "pieceId": 1,
+    "slug": "111010010"
   },
   {
     "shape": [
@@ -26,7 +28,8 @@ const puzzlePieces: Piece[] = [
       [ true, false ],
       [ true, false ]
     ],
-    "pieceId": "11101010"
+    "pieceId": 2,
+    "slug": "11101010"
   },
   {
     "shape": [
@@ -36,7 +39,8 @@ const puzzlePieces: Piece[] = [
       [ true ],
       [ true ]
     ],
-    "pieceId": "11111"
+    "pieceId": 3,
+    "slug": "11111"
   },
   {
     "shape": [
@@ -44,7 +48,8 @@ const puzzlePieces: Piece[] = [
       [ true, true, true ],
       [ true, false, false ]
     ],
-    "pieceId": "001111100"
+    "pieceId": 4,
+    "slug": "001111100"
   },
   {
     "shape": [
@@ -53,7 +58,8 @@ const puzzlePieces: Piece[] = [
       [ false, true ],
       [ false, true ]
     ],
-    "pieceId": "10110101"
+    "pieceId": 5,
+    "slug": "10110101"
   },
   {
     "shape": [
@@ -61,7 +67,8 @@ const puzzlePieces: Piece[] = [
       [ true, true, true ],
       [ false, true, false ]
     ],
-    "pieceId": "100111010"
+    "pieceId": 6,
+    "slug": "100111010"
   },
   {
     "shape": [
@@ -70,21 +77,24 @@ const puzzlePieces: Piece[] = [
       [ true, false ],
       [ true, false ]
     ],
-    "pieceId": "10111010"
+    "pieceId": 7,
+    "slug": "10111010"
   },
   {
     "shape": [
       [ true, true, true ],
       [ true, true, false ]
     ],
-    "pieceId": "111110"
+    "pieceId": 8,
+    "slug": "111110"
   },
   {
     "shape": [
       [ true, true, true ],
       [ true, false, true ]
     ],
-    "pieceId": "111101"
+    "pieceId": 9,
+    "slug": "111101"
   }
 ];
   

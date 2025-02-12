@@ -2,6 +2,8 @@ import styles from "./PuzzlePiece.module.css";
 import Cell from "../Cell/Cell";
 import EmptyCell from "../Cell/EmptyCell";
 import type { CellType, Piece } from "../../../puzzle/pieceTypes";
+import cx from "../../../utils/concatClassNames/concatClassNames";
+import useGameState from "../../../context/Game/state";
 // import useMouse from "../../../utils/useMousePosition.ts/useMouse";
 
 export interface PuzzlePieceProps {
@@ -9,21 +11,31 @@ export interface PuzzlePieceProps {
 }
 
 const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ piece }) => {
+  const {
+    userSelection: { selectedPiece },
+  } = useGameState();
+
   return (
-    <div className={styles.puzzlePiece}>
-      {piece.shape.map((row, rowIndex) => (
-        <div className={styles.pieceRow} key={rowIndex}>
-          {row.map((isSquare, colIndex) => {
+    <div
+      data-testid={`puzzle-piece-${piece.pieceId}`}
+      className={cx(
+        styles.puzzlePiece,
+        selectedPiece?.pieceId === piece.pieceId && styles.selectedPiece
+      )}
+    >
+      {piece.shape.map((row, cellY) => (
+        <div className={styles.pieceRow} key={cellY}>
+          {row.map((isSquare, cellX) => {
             const cell: CellType = {
               pieceId: piece.pieceId,
-              rowIndex,
-              colIndex,
-              cellId: `${piece.pieceId}${rowIndex}${colIndex}`,
+              cellX,
+              cellY,
+              cellSlug: `${piece.pieceId}${cellX}${cellY}`,
             };
             return isSquare ? (
-              <Cell key={cell.cellId} cell={cell} />
+              <Cell key={cell.cellSlug} cell={cell} />
             ) : (
-              <EmptyCell key={cell.cellId} />
+              <EmptyCell key={cell.cellSlug} />
             );
           })}
         </div>

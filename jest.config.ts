@@ -8,6 +8,10 @@ const config: Config = {
   transform: {
     ".(ts|tsx)": "ts-jest",
   },
+  moduleNameMapper: {
+    // Map CSS/less/scss to jest-css-modules
+    "\\.(css|less|scss|sss|styl)$": "jest-css-modules",
+  },
 
   coveragePathIgnorePatterns: [
     "/node_modules/",

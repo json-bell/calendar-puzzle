@@ -1,16 +1,47 @@
-.panel {
-  width: fit-content;
-  aspect-ratio: 1/1;
-  background-color: #321;
+.panelWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
+  position: relative;
+  padding: 0;
+}
+
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: var(--panel-color);
   box-sizing: border-box;
-  border: 2px var(--wall-color) solid;
+  border: 4px var(--wall-color) solid;
   border-radius: 12px;
+}
+.previewedPanel {
+  background-color: var(--panel-color-previewed);
 }
 
 .wall {
   background-color: var(--wall-color);
+}
+
+.piecePreview {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: var(--z-index-piece-preview);
+}
+.piecePreview > * > * > * {
+  background-color: green !important;
+}
+
+.piecePlaced {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: var(--z-index-piece-preview);
+}
+
+.piecePlaced > * > * > * {
+  background-color: white !important;
 }
