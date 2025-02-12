@@ -22,5 +22,7 @@ export type PanelStatus = "free" | "covered" | "wall";
 export type PanelDetails = {
   panel: Panel;
   state: PanelStatus;
-  coveredBy?: Piece["pieceId"];
-};
+} & (
+  | { state: "covered"; coveredBy: Piece["pieceId"] }
+  | { state: "free" | "wall"; coveredBy?: never }
+);
