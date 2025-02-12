@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 0;
 }
 
 .panel {
@@ -13,7 +14,7 @@
   aspect-ratio: 1/1;
   background-color: #321;
   box-sizing: border-box;
-  border: 5px var(--wall-color) solid;
+  border: 4px var(--wall-color) solid;
   border-radius: 12px;
 }
 

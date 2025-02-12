@@ -26,7 +26,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
 
   return (
     <button {...handlers} className={styles.panelWrapper}>
-      {/* Panel Wrapper */}
+      {/* Panel */}
       <div
         className={cx(
           styles.panel,
