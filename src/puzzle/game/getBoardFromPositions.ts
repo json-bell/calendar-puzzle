@@ -29,16 +29,26 @@ const addPieceCoverageToBoard = (
       "Piece rotation is not supported in generating board from piece positions"
     );
   }
+  // ISSUE: MAKE SECTION PURE WITH REDUCER
   rotatedPiece.forEach((pieceRow, YinShape) =>
     pieceRow.forEach((isCovered, XinShape) => {
       if (!isCovered) return;
+      const coveredPanelY = YinShape + pieceCoords.y;
+      const coveredPanelX = XinShape + pieceCoords.x;
+      if (
+        coveredPanelY < 0 ||
+        coveredPanelY > 5 ||
+        coveredPanelX < 0 ||
+        coveredPanelX > 8
+      )
+        return;
       const coveringCell = {
         cellX: XinShape,
         cellY: YinShape,
         pieceId: cell.pieceId,
       };
       console.log("placing cell:", coveringCell);
-      board[YinShape + pieceCoords.y][XinShape + pieceCoords.x].push({
+      board[coveredPanelY][coveredPanelX].push({
         ...coveringCell,
         cellSlug: getCellSlug(coveringCell),
       });
@@ -77,6 +87,7 @@ export const getBoardFromPositions = (
   ) => {
     const coveringCellArray = boardCoverage[colIndex][rowIndex];
     if (coveringCellArray.length === 0) return panelDetails;
+    if (panelDetails.state === "wall") return panelDetails;
     return {
       ...panelDetails,
       state: "covered",
