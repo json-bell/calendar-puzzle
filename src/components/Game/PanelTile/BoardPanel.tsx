@@ -48,7 +48,8 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
         className={cx(
           styles.panel,
           panel.type === "dayNumber" && styles.numberPanel,
-          isPreviewing && selectedPiece && styles.previewedPanel
+          isPreviewing && selectedPiece && styles.previewedPanel,
+          coveringCell && styles.coveredCell
         )}
       >
         {panel.type !== "empty" && formatContent(panel.content)}
@@ -65,6 +66,8 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
           <PuzzlePiece piece={selectedPiece} />
         </div>
       )}
+
+      {/* ISSUE: CURRENTLY EVERY TIME THERE'S A PIECE IT IS PLACING AN ENTIRE PIECE */}
       {coveringCell && (
         <div
           className={cx(styles.piecePlaced)}
