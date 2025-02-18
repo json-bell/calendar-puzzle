@@ -11,9 +11,12 @@ const getPanelWithDetails = (panel: Panel): PanelDetails => {
   return { panel, state };
 };
 
-type BoardCoverage = BoardShape<CellType[]>;
+export const getPiecelessBoard: () => BoardShape<PanelDetails> = () =>
+  mapBoard(boardPanels, (panel: Panel) => getPanelWithDetails(panel));
 
-const addPieceCoverageToBoard = (
+export type BoardCoverage = BoardShape<CellType[]>;
+
+export const addPieceCoverageToBoard = (
   board: BoardCoverage,
   gamePiece: GamePiece
 ): BoardCoverage => {
@@ -29,6 +32,7 @@ const addPieceCoverageToBoard = (
       "Piece rotation is not supported in generating board from piece positions"
     );
   }
+  const outputBoard = mapBoard(board, (cellArr) => [...cellArr]);
   // ISSUE: MAKE SECTION PURE WITH REDUCER
   rotatedPiece.forEach((pieceRow, YinShape) =>
     pieceRow.forEach((isCovered, XinShape) => {
@@ -47,20 +51,17 @@ const addPieceCoverageToBoard = (
         cellY: YinShape,
         pieceId: cell.pieceId,
       };
-      console.log("placing cell:", coveringCell);
-      board[coveredPanelY][coveredPanelX].push({
+      outputBoard[coveredPanelY][coveredPanelX].push({
         ...coveringCell,
         cellSlug: getCellSlug(coveringCell),
       });
-      console.log(board[0]);
     })
   );
-  return board;
+  return outputBoard;
 };
 
 export const getBoardCoverage = (
-  gamePieces: Game["gamePieces"],
-  boardPanels: BoardShape<Panel>
+  gamePieces: Game["gamePieces"]
 ): BoardCoverage => {
   const emptyBoard: BoardCoverage = mapBoard(boardPanels, () => []);
 
@@ -72,14 +73,13 @@ export const getBoardCoverage = (
 export const getBoardFromPositions = (
   gamePieces: Game["gamePieces"]
 ): Game["board"] => {
-  // console.log({ gamePieces });
-
-  const panelsWithoutPieces = mapBoard(boardPanels, (panel: Panel) =>
-    getPanelWithDetails(panel)
-  );
+  // step 1: get Board shape with appropriate details
+  const panelsWithoutPieces = getPiecelessBoard();
 
   // step 2: get BoardShape<CellType> of cells covering any board part
-  const boardCoverage = getBoardCoverage(gamePieces, boardPanels);
+  const boardCoverage = getBoardCoverage(gamePieces);
+
+  // step 3: apply coverage to covered board cells
   const addCoverageToPanels: BoardMapperFn<PanelDetails, PanelDetails> = (
     panelDetails,
     rowIndex,
@@ -95,7 +95,6 @@ export const getBoardFromPositions = (
     };
   };
 
-  // step 3: apply coverage to covered board cells
   const panelWithPieces = mapBoard(panelsWithoutPieces, addCoverageToPanels);
   return panelWithPieces;
 
