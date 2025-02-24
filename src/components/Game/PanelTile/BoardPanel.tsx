@@ -8,6 +8,7 @@ import PuzzlePiece from "../PuzzlePiece/PuzzlePiece";
 import { panelSizeGlobal } from "../../../global/globalVariables";
 import useGameDispatch from "../../../context/Game/dispatch";
 import { Actions } from "../../../context/Game/types";
+import PiecePreview from "../PuzzlePiece/PiecePreview";
 
 export interface PanelProps {
   panel: Panel;
@@ -20,6 +21,11 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
 
   const dispatch = useGameDispatch();
   const handlePlacePiece = () => {
+    // if (coveringCell) {
+    //   if (coveringCell === selectedPiece) rotatePieceAroundCell();
+    //   else selectCell(coveringCell);
+    // }
+    // else
     if (selectedPiece) {
       dispatch({
         type: Actions.PLACE_PIECE,
@@ -63,7 +69,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
             top: `-${selectedCell.cellY * panelSizeGlobal}px`,
           }}
         >
-          <PuzzlePiece piece={selectedPiece} />
+          <PiecePreview piece={selectedPiece} />
         </div>
       )}
 

@@ -12,6 +12,7 @@ const colourVariables = {
   "--cell-color-hovered": "green",
   "--cell-color-selected-piece": "red",
   "--cell-color-selected": "orange",
+  "--cell-color-piece-preview": "yellow",
   "--panel-color": "#321",
   "--panel-color-previewed": "grey",
 };

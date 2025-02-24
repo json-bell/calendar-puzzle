@@ -1,5 +1,6 @@
 .generalCell {
   width: var(--panel-size);
+  box-sizing: border-box;
   background-color: var(--cell-color);
   opacity: 1;
   aspect-ratio: 1/1;
@@ -19,6 +20,11 @@
   opacity: 0.1;
   background-color: grey;
   pointer-events: none;
+}
+
+.previewedCell {
+  opacity: 0.5;
+  background-color: var(--cell-color-piece-preview);
 }
 
 .selectedCell {
