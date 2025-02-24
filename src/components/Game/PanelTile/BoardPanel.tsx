@@ -19,16 +19,16 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
   const [isPreviewing, setIsPreviewing] = useState(false);
 
   const dispatch = useGameDispatch();
-  const handlePlacePiece =
-    selectedPiece &&
-    (() => {
+  const handlePlacePiece = () => {
+    if (selectedPiece) {
       dispatch({
         type: Actions.PLACE_PIECE,
         payload: {
           panelPosition: { panelX: panel.panelX, panelY: panel.panelY },
         },
       });
-    });
+    }
+  };
 
   if (panel.type === "wall")
     return <div className={cx(styles.panel, styles.wall)} />;
@@ -38,7 +38,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
   const handlers = {
     onMouseEnter: () => setIsPreviewing(true),
     onMouseLeave: () => setIsPreviewing(false),
-    onClick: () => handlePlacePiece?.(),
+    onClick: () => handlePlacePiece(),
   };
 
   return (
@@ -48,7 +48,8 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
         className={cx(
           styles.panel,
           panel.type === "dayNumber" && styles.numberPanel,
-          isPreviewing && selectedPiece && styles.previewedPanel
+          isPreviewing && selectedPiece && styles.previewedPanel,
+          coveringCell && styles.coveredCell
         )}
       >
         {panel.type !== "empty" && formatContent(panel.content)}
@@ -65,6 +66,8 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
           <PuzzlePiece piece={selectedPiece} />
         </div>
       )}
+
+      {/* ISSUE: CURRENTLY EVERY TIME THERE'S A PIECE IT IS PLACING AN ENTIRE PIECE */}
       {coveringCell && (
         <div
           className={cx(styles.piecePlaced)}
