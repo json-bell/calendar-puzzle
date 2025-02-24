@@ -39,11 +39,6 @@
   z-index: var(--z-index-piece-preview);
 }
 
-.piecePlaced > * > * > * {
-  background-color: white !important;
-}
-
-.coveredCell {
-  /* text-shadow: white 4 4 4; */
-  border-radius: 40px !important;
+.coveredPanel {
+  border-radius: 40px;
 }
