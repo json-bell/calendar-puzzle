@@ -8,13 +8,14 @@ const getShapeFromData = (
   rawShape: PieceShape<0 | 1>
 ): PieceShape<CellPresence> => rawShape.map(rowMap);
 
-const getIdFromData = (rawShape: PieceShape<0 | 1>): string => {
+const getSlugFromData = (rawShape: PieceShape<0 | 1>): string => {
   return rawShape.map((row) => row.join("")).join("");
 };
 
 export const getPuzzlePieces = (rawShapes: PieceShape<0 | 1>[]): Piece[] => {
-  return rawShapes.map((rawShape) => ({
+  return rawShapes.map((rawShape, index) => ({
     shape: getShapeFromData(rawShape),
-    pieceId: getIdFromData(rawShape),
+    pieceId: index,
+    slug: getSlugFromData(rawShape),
   }));
 };

@@ -10,3 +10,7 @@
   flex-direction: row;
   width: min-content;
 }
+
+.selectedPiece {
+  --cell-color: var(--cell-color-selected-piece);
+}

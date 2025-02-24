@@ -1,73 +1,74 @@
 // This is a script generated file - do not edit. Run `yarn generate-panels` to re-generate the file.
 
 import { Panel } from "../panelTypes";
+import { BoardShape } from "../types";
 
-const boardPanels: Panel[][] = [
+const boardPanels: BoardShape<Panel> = [
   [
-    { "type": "month", "content": "jan", "contentIndex": 0 },
-    { "type": "month", "content": "feb", "contentIndex": 1 },
-    { "type": "month", "content": "mar", "contentIndex": 2 },
-    { "type": "month", "content": "apr", "contentIndex": 3 },
-    { "type": "dayNumber", "content": 1, "contentIndex": 0 },
-    { "type": "dayNumber", "content": 2, "contentIndex": 1 },
-    { "type": "dayNumber", "content": 3, "contentIndex": 2 },
-    { "type": "dayName", "content": "mon", "contentIndex": 0 },
-    { "type": "dayName", "content": "tue", "contentIndex": 1 }
+    { "content": "jan", "panelX": 0, "panelY": 0, "type": "month", "contentIndex": 0 },
+    { "content": "feb", "panelX": 1, "panelY": 0, "type": "month", "contentIndex": 1 },
+    { "content": "mar", "panelX": 2, "panelY": 0, "type": "month", "contentIndex": 2 },
+    { "content": "apr", "panelX": 3, "panelY": 0, "type": "month", "contentIndex": 3 },
+    { "content": 1, "panelX": 4, "panelY": 0, "type": "dayNumber", "contentIndex": 0 },
+    { "content": 2, "panelX": 5, "panelY": 0, "type": "dayNumber", "contentIndex": 1 },
+    { "content": 3, "panelX": 6, "panelY": 0, "type": "dayNumber", "contentIndex": 2 },
+    { "content": "mon", "panelX": 7, "panelY": 0, "type": "dayName", "contentIndex": 0 },
+    { "content": "tue", "panelX": 8, "panelY": 0, "type": "dayName", "contentIndex": 1 }
   ],
   [
-    { "type": "month", "content": "may", "contentIndex": 4 },
-    { "type": "dayNumber", "content": 4, "contentIndex": 3 },
-    { "type": "dayNumber", "content": 5, "contentIndex": 4 },
-    { "type": "dayNumber", "content": 6, "contentIndex": 5 },
-    { "type": "dayNumber", "content": 7, "contentIndex": 6 },
-    { "type": "dayNumber", "content": 8, "contentIndex": 7 },
-    { "type": "dayNumber", "content": 9, "contentIndex": 8 },
-    { "type": "dayName", "content": "wed", "contentIndex": 2 },
-    { "type": "empty", "content": "empty", "contentIndex": 0 }
+    { "content": "may", "panelX": 0, "panelY": 1, "type": "month", "contentIndex": 4 },
+    { "content": 4, "panelX": 1, "panelY": 1, "type": "dayNumber", "contentIndex": 3 },
+    { "content": 5, "panelX": 2, "panelY": 1, "type": "dayNumber", "contentIndex": 4 },
+    { "content": 6, "panelX": 3, "panelY": 1, "type": "dayNumber", "contentIndex": 5 },
+    { "content": 7, "panelX": 4, "panelY": 1, "type": "dayNumber", "contentIndex": 6 },
+    { "content": 8, "panelX": 5, "panelY": 1, "type": "dayNumber", "contentIndex": 7 },
+    { "content": 9, "panelX": 6, "panelY": 1, "type": "dayNumber", "contentIndex": 8 },
+    { "content": "wed", "panelX": 7, "panelY": 1, "type": "dayName", "contentIndex": 2 },
+    { "content": "empty", "panelX": 8, "panelY": 1, "type": "empty", "contentIndex": 0 }
   ],
   [
-    { "type": "month", "content": "jun", "contentIndex": 5 },
-    { "type": "dayNumber", "content": 10, "contentIndex": 9 },
-    { "type": "dayNumber", "content": 11, "contentIndex": 10 },
-    { "type": "dayNumber", "content": 12, "contentIndex": 11 },
-    { "type": "dayNumber", "content": 13, "contentIndex": 12 },
-    { "type": "dayNumber", "content": 31, "contentIndex": 30 },
-    { "type": "dayNumber", "content": 15, "contentIndex": 14 },
-    { "type": "dayName", "content": "thu", "contentIndex": 3 },
-    { "type": "empty", "content": "empty", "contentIndex": 0 }
+    { "content": "jun", "panelX": 0, "panelY": 2, "type": "month", "contentIndex": 5 },
+    { "content": 10, "panelX": 1, "panelY": 2, "type": "dayNumber", "contentIndex": 9 },
+    { "content": 11, "panelX": 2, "panelY": 2, "type": "dayNumber", "contentIndex": 10 },
+    { "content": 12, "panelX": 3, "panelY": 2, "type": "dayNumber", "contentIndex": 11 },
+    { "content": 13, "panelX": 4, "panelY": 2, "type": "dayNumber", "contentIndex": 12 },
+    { "content": 31, "panelX": 5, "panelY": 2, "type": "dayNumber", "contentIndex": 30 },
+    { "content": 15, "panelX": 6, "panelY": 2, "type": "dayNumber", "contentIndex": 14 },
+    { "content": "thu", "panelX": 7, "panelY": 2, "type": "dayName", "contentIndex": 3 },
+    { "content": "empty", "panelX": 8, "panelY": 2, "type": "empty", "contentIndex": 0 }
   ],
   [
-    { "type": "month", "content": "jul", "contentIndex": 6 },
-    { "type": "dayNumber", "content": 16, "contentIndex": 15 },
-    { "type": "dayNumber", "content": 17, "contentIndex": 16 },
-    { "type": "dayNumber", "content": 18, "contentIndex": 17 },
-    { "type": "dayNumber", "content": 19, "contentIndex": 18 },
-    { "type": "dayNumber", "content": 20, "contentIndex": 19 },
-    { "type": "dayNumber", "content": 21, "contentIndex": 20 },
-    { "type": "dayName", "content": "fri", "contentIndex": 4 },
-    { "type": "dayName", "content": "sat", "contentIndex": 5 }
+    { "content": "jul", "panelX": 0, "panelY": 3, "type": "month", "contentIndex": 6 },
+    { "content": 16, "panelX": 1, "panelY": 3, "type": "dayNumber", "contentIndex": 15 },
+    { "content": 17, "panelX": 2, "panelY": 3, "type": "dayNumber", "contentIndex": 16 },
+    { "content": 18, "panelX": 3, "panelY": 3, "type": "dayNumber", "contentIndex": 17 },
+    { "content": 19, "panelX": 4, "panelY": 3, "type": "dayNumber", "contentIndex": 18 },
+    { "content": 20, "panelX": 5, "panelY": 3, "type": "dayNumber", "contentIndex": 19 },
+    { "content": 21, "panelX": 6, "panelY": 3, "type": "dayNumber", "contentIndex": 20 },
+    { "content": "fri", "panelX": 7, "panelY": 3, "type": "dayName", "contentIndex": 4 },
+    { "content": "sat", "panelX": 8, "panelY": 3, "type": "dayName", "contentIndex": 5 }
   ],
   [
-    { "type": "month", "content": "aug", "contentIndex": 7 },
-    { "type": "dayNumber", "content": 22, "contentIndex": 21 },
-    { "type": "dayNumber", "content": 23, "contentIndex": 22 },
-    { "type": "dayNumber", "content": 24, "contentIndex": 23 },
-    { "type": "dayNumber", "content": 25, "contentIndex": 24 },
-    { "type": "dayNumber", "content": 26, "contentIndex": 25 },
-    { "type": "dayNumber", "content": 27, "contentIndex": 26 },
-    { "type": "empty", "content": "empty", "contentIndex": 0 },
-    { "type": "dayName", "content": "sun", "contentIndex": 6 }
+    { "content": "aug", "panelX": 0, "panelY": 4, "type": "month", "contentIndex": 7 },
+    { "content": 22, "panelX": 1, "panelY": 4, "type": "dayNumber", "contentIndex": 21 },
+    { "content": 23, "panelX": 2, "panelY": 4, "type": "dayNumber", "contentIndex": 22 },
+    { "content": 24, "panelX": 3, "panelY": 4, "type": "dayNumber", "contentIndex": 23 },
+    { "content": 25, "panelX": 4, "panelY": 4, "type": "dayNumber", "contentIndex": 24 },
+    { "content": 26, "panelX": 5, "panelY": 4, "type": "dayNumber", "contentIndex": 25 },
+    { "content": 27, "panelX": 6, "panelY": 4, "type": "dayNumber", "contentIndex": 26 },
+    { "content": "empty", "panelX": 7, "panelY": 4, "type": "empty", "contentIndex": 0 },
+    { "content": "sun", "panelX": 8, "panelY": 4, "type": "dayName", "contentIndex": 6 }
   ],
   [
-    { "type": "month", "content": "sep", "contentIndex": 8 },
-    { "type": "month", "content": "oct", "contentIndex": 9 },
-    { "type": "month", "content": "nov", "contentIndex": 10 },
-    { "type": "month", "content": "dec", "contentIndex": 11 },
-    { "type": "dayNumber", "content": 28, "contentIndex": 27 },
-    { "type": "dayNumber", "content": 29, "contentIndex": 28 },
-    { "type": "dayNumber", "content": 30, "contentIndex": 29 },
-    { "type": "dayNumber", "content": 14, "contentIndex": 13 },
-    { "type": "wall", "content": "wall", "contentIndex": 0 }
+    { "content": "sep", "panelX": 0, "panelY": 5, "type": "month", "contentIndex": 8 },
+    { "content": "oct", "panelX": 1, "panelY": 5, "type": "month", "contentIndex": 9 },
+    { "content": "nov", "panelX": 2, "panelY": 5, "type": "month", "contentIndex": 10 },
+    { "content": "dec", "panelX": 3, "panelY": 5, "type": "month", "contentIndex": 11 },
+    { "content": 28, "panelX": 4, "panelY": 5, "type": "dayNumber", "contentIndex": 27 },
+    { "content": 29, "panelX": 5, "panelY": 5, "type": "dayNumber", "contentIndex": 28 },
+    { "content": 30, "panelX": 6, "panelY": 5, "type": "dayNumber", "contentIndex": 29 },
+    { "content": 14, "panelX": 7, "panelY": 5, "type": "dayNumber", "contentIndex": 13 },
+    { "content": "wall", "panelX": 8, "panelY": 5, "type": "wall", "contentIndex": 0 }
   ]
 ];
   
