@@ -4,6 +4,7 @@ import EmptyCell from "../Cell/EmptyCell";
 import type { CellType, Piece } from "../../../puzzle/pieceTypes";
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import useGameState from "../../../context/Game/state";
+import getCellSlug from "../../../puzzle/cell/getCellSlug";
 // import useMouse from "../../../utils/useMousePosition.ts/useMouse";
 
 export interface PuzzlePieceProps {
@@ -30,7 +31,7 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ piece }) => {
               pieceId: piece.pieceId,
               cellX,
               cellY,
-              cellSlug: `${piece.pieceId}${cellX}${cellY}`,
+              cellSlug: getCellSlug({ cellX, cellY, pieceId: piece.pieceId }),
             };
             return isSquare ? (
               <Cell key={cell.cellSlug} cell={cell} />

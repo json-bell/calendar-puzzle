@@ -31,6 +31,7 @@
   opacity: 0.5;
   z-index: var(--z-index-piece-preview);
 }
+/* This >*>*>* has gotta go - need some sort of dichotomy in puzzle piece that does either Preview or Button w/ functionality */
 .piecePreview > * > * > * {
   background-color: green !important;
 }
@@ -38,10 +39,15 @@
 .piecePlaced {
   position: absolute;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.1;
   z-index: var(--z-index-piece-preview);
 }
 
 .piecePlaced > * > * > * {
   background-color: white !important;
+}
+
+.coveredCell {
+  /* text-shadow: white 4 4 4; */
+  border-radius: 40px !important;
 }
