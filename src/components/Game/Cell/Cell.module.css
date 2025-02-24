@@ -24,9 +24,23 @@
 
 .previewedCell {
   opacity: 0.5;
-  background-color: var(--cell-color-piece-preview);
+  background-color: var(--piece-color-preview);
 }
 
 .selectedCell {
   background-color: var(--cell-color-selected);
+}
+
+.placedCell {
+  position: absolute;
+  opacity: 0.3;
+  background-color: var(--piece-color-placed);
+}
+
+.placedSelectedPanel {
+  background-color: var(--piece-color-selected-placed);
+}
+
+.placedSelectedCell {
+  background-color: var(--cell-color-selected-placed);
 }
