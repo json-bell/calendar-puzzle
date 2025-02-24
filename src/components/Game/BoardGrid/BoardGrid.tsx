@@ -1,8 +1,8 @@
-import styles from "./PanelBoard.module.css";
+import styles from "./BoardGrid.module.css";
 import boardPanels from "../../../puzzle/boardPanels";
 import BoardPanel from "../PanelTile/BoardPanel";
 
-const PanelBoard: React.FC = () => {
+const BoardGrid: React.FC = () => {
   return (
     <>
       <div className={styles.boardWrapper}>
@@ -18,4 +18,4 @@ const PanelBoard: React.FC = () => {
   );
 };
 
-export default PanelBoard;
+export default BoardGrid;

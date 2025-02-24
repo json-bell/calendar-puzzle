@@ -4,12 +4,13 @@ export type CellPresence = boolean; // Whether that rectangle slot has a cell
 
 export type Piece = {
   shape: PieceShape<CellPresence>;
-  pieceId: string;
+  pieceId: number;
+  slug: string;
 };
 
 export type CellType = {
-  pieceId: string;
-  rowIndex: number;
-  colIndex: number;
-  cellId: string;
+  pieceId: Piece["pieceId"];
+  cellX: number;
+  cellY: number;
+  cellSlug: string;
 };
