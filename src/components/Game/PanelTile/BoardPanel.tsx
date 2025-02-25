@@ -14,6 +14,12 @@ export interface PanelProps {
   panel: Panel;
 }
 
+type PanelSelectionState =
+  | "coveringCellSelected"
+  | "covered"
+  | "placeable"
+  | "nothing";
+
 const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
   const { userSelection, board } = useGameState();
   const { selectedCell, selectedPiece } = userSelection;
@@ -26,19 +32,39 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
 
   const coveringCell = board[panel.panelY][panel.panelX].coveredBy;
 
+  const getPanelStatus: () => PanelSelectionState = () => {
+    if (!coveringCell) return selectedCell ? "placeable" : "nothing";
+    if (coveringCell.cellSlug === selectedCell?.cellSlug)
+      return "coveringCellSelected";
+    return "covered";
+  };
+  const panelStatus = getPanelStatus();
+
   const handlePlacePiece = () => {
-    // if (coveringCell) {
-    //   if (coveringCell === selectedPiece) rotatePieceAroundCell();
-    //   else selectCell(coveringCell);
-    // }
-    // else
-    if (selectedPiece) {
-      dispatch({
-        type: Actions.PLACE_PIECE,
-        payload: {
-          panelPosition: { panelX: panel.panelX, panelY: panel.panelY },
-        },
-      });
+    switch (panelStatus) {
+      case "placeable": {
+        dispatch({
+          type: Actions.PLACE_PIECE,
+          payload: { panel },
+        });
+        break;
+      }
+      case "covered": {
+        dispatch({
+          type: Actions.SELECT_PLAYED_PIECE,
+          payload: { cell: coveringCell!, panel },
+        });
+        break;
+      }
+      case "coveringCellSelected": {
+        console.error(
+          "Clicking of a selected cell isn't yet set up - this should rotate the cell & flip it when lapping"
+        );
+        break;
+      }
+      case "nothing": {
+        break;
+      }
     }
   };
 
@@ -63,7 +89,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
       </div>
 
       {/* Selected Piece Preview if Panel is Empty*/}
-      {isPreviewing && selectedPiece && (
+      {isPreviewing && selectedPiece && panelStatus === "placeable" && (
         <div
           className={cx(styles.piecePreview)}
           style={{
