@@ -1,18 +1,12 @@
 # IN DEV
 
-## CAL-2 Make placed overlays called at individual Panel level
+## CAL-3 Make clicking a piece with placed overlay select that piece
 
-Right now the overlays from a placed piece are called only at the panel where the cell is placed - change this to be from each covered panel
+Clicking a placed cell on any piece should select that piece and that cell - the preview from hovering panels should reflect this change
 
 ---
 
 # Backlog
-
-## CAL-? Make clicking a piece with placed overlay select that piece
-
-Desc
-
----
 
 ## Story - Add rotations - clicking the selected cell should rotate the piece
 
@@ -31,6 +25,12 @@ With reduced cycles for things that don't go that far so that positions <-> plac
 ---
 
 # DONE
+
+## CAL-2 Make placed overlays called at individual Panel level
+
+Right now the overlays from a placed piece are called only at the panel where the cell is placed - change this to be from each covered panel
+
+---
 
 ## CAL-1 Make Preview component
 

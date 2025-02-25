@@ -1,12 +1,21 @@
 import { Reducer } from "react";
-import { Game, GamePiece } from "../../puzzle/types";
+import { Game, GamePiece, UserSelection } from "../../puzzle/types";
 import { GameAction, Actions } from "./types";
 import getBoardFromPositions from "../../puzzle/game/getBoardFromPositions";
 
 const gameReducer: Reducer<Game, GameAction> = (state, action) => {
   switch (action.type) {
     case Actions.SELECT_PLAYED_PIECE: {
-      return state;
+      const { panel, cell } = action.payload;
+      const { piece, position } = state.gamePieces[cell.pieceId];
+      const { rotation } = position || { rotation: 0 };
+      const userSelection: UserSelection = {
+        rotation,
+        selectedCell: cell,
+        selectedPanel: panel,
+        selectedPiece: piece,
+      };
+      return { ...state, userSelection };
     }
     case Actions.SELECT_SIDE_PIECE: {
       return {
@@ -23,7 +32,7 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
     }
     case Actions.PLACE_PIECE: {
       const {
-        panelPosition: { panelX, panelY },
+        panel: { panelX, panelY },
       } = action.payload;
       const { selectedCell, selectedPiece, rotation } = state.userSelection;
       if (!selectedCell) return state;
