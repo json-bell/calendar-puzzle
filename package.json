@@ -14,7 +14,8 @@
     "generate-panels": "tsx ./scripts/generateBoardPanels",
     "generate-pieces": "tsx ./scripts/generatePuzzlePieces",
     "test": "jest",
-    "test-coverage": "jest --coverage"
+    "test-coverage": "jest --coverage",
+    "open-coverage": "open coverage/lcov-report/index.html"
   },
   "dependencies": {
     "react": "^19.0.0",
