@@ -1,3 +1,4 @@
+import { Panel } from "../../puzzle/panelTypes";
 import { CellType, Piece } from "../../puzzle/pieceTypes";
 import { PieceRotation } from "../../puzzle/types";
 
@@ -14,15 +15,19 @@ type Payload = {
   cell: CellType;
   rotation: PieceRotation;
   panelPosition: { panelX: number; panelY: number };
+  panel: Panel;
 };
 
 export type GameAction = { type: Actions; payload?: Partial<Payload> } & (
-  | { type: Actions.SELECT_PLAYED_PIECE /* ,...Details */ }
+  | {
+      type: Actions.SELECT_PLAYED_PIECE;
+      payload: Pick<Payload, "panel" | "cell">;
+    }
   | {
       type: Actions.SELECT_SIDE_PIECE;
       payload: Pick<Payload, "piece" | "cell">;
     }
-  | { type: Actions.PLACE_PIECE; payload: Pick<Payload, "panelPosition"> }
+  | { type: Actions.PLACE_PIECE; payload: Pick<Payload, "panel"> }
   | { type: Actions.ROTATE_PIECE /* ,...Details */ }
   | { type: Actions.REMOVE_PIECE /* ,...Details */ }
 );
