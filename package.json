@@ -13,6 +13,7 @@
     "postinstall": "husky",
     "generate-panels": "tsx ./scripts/generateBoardPanels",
     "generate-pieces": "tsx ./scripts/generatePuzzlePieces",
+    "generate-orientations": "tsx ./scripts/generateUniqueOrientations",
     "test": "jest",
     "test-coverage": "jest --coverage",
     "open-coverage": "open coverage/lcov-report/index.html"
