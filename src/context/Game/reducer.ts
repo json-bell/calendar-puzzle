@@ -8,9 +8,10 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
     case Actions.SELECT_PLAYED_PIECE: {
       const { panel, cell } = action.payload;
       const { piece, position } = state.gamePieces[cell.pieceId];
-      const { rotation } = position || { rotation: 0 };
+      const { rotation, flipped } = position || { rotation: 0, flipped: 0 };
       const userSelection: UserSelection = {
         rotation,
+        flipped,
         selectedCell: cell,
         selectedPanel: panel,
         selectedPiece: piece,
@@ -34,7 +35,8 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
       const {
         panel: { panelX, panelY },
       } = action.payload;
-      const { selectedCell, selectedPiece, rotation } = state.userSelection;
+      const { selectedCell, selectedPiece, rotation, flipped } =
+        state.userSelection;
       if (!selectedCell) return state;
       const gamePieces: GamePiece[] = state.gamePieces.map((gamePiece) => {
         const { piece, position } = gamePiece;
@@ -44,6 +46,7 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
               position: {
                 cell: selectedCell,
                 rotation: rotation ?? 0,
+                flipped: flipped ?? 0,
                 panelX,
                 panelY,
               },
