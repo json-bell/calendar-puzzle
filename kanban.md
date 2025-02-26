@@ -1,8 +1,8 @@
 # IN DEV
 
-## CAL-4 Add Flipped to Game & State
+## CAL-5 Limit piece rotation
 
-Add the tracking of whether the piece is mirrored - this is the first ticket, in charge of updating types & game state with mirror: 0 set for now
+Limit rotation & mirroring of pieces (e.g. `|` shape only has rotation:0,1 and no flip)
 
 ---
 
@@ -33,6 +33,12 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-4 Add Flipped to Game & State
+
+Add the tracking of whether the piece is mirrored - this is the first ticket, in charge of updating types & game state with mirror: 0 set for now
+
+---
 
 ## CAL-3 Make clicking a piece with placed overlay select that piece
 
