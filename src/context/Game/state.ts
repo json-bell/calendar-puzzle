@@ -7,6 +7,7 @@ export const initialGameState: Game = {
   gamePieces: puzzlePieces.map((piece) => ({ piece, position: null })),
   userSelection: {
     rotation: null,
+    flipped: null,
     selectedCell: null,
     selectedPanel: null,
     selectedPiece: null,

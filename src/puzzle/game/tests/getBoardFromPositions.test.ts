@@ -47,6 +47,7 @@ describe("addPieceCoverageToBoard", () => {
       panelX: 2,
       panelY: 0,
       rotation: 0,
+      flipped: 0,
     },
   };
   const otherPlacedPiece: GamePiece = {
@@ -56,6 +57,7 @@ describe("addPieceCoverageToBoard", () => {
       panelX: 6,
       panelY: 3,
       rotation: 0,
+      flipped: 0,
     },
   };
 
@@ -76,6 +78,7 @@ describe("addPieceCoverageToBoard", () => {
         panelX: 2,
         panelY: 0,
         rotation: 0,
+        flipped: 0,
       },
     };
 
@@ -107,6 +110,7 @@ describe("addPieceCoverageToBoard", () => {
         panelX: 2,
         panelY: 4,
         rotation: 0,
+        flipped: 0,
       },
     };
 
@@ -180,6 +184,7 @@ describe("addPieceCoverageToBoard", () => {
             panelX,
             panelY,
             rotation: 0,
+            flipped: 0,
           },
         };
         return gamePiece;
