@@ -8,7 +8,7 @@ const getShapeFromData = (
   rawShape: PieceShape<0 | 1>
 ): PieceShape<CellPresence> => rawShape.map(rowMap);
 
-const getSlugFromData = (rawShape: PieceShape<0 | 1>): string => {
+export const getSlugFromData = (rawShape: PieceShape<0 | 1>): string => {
   return rawShape.map((row) => row.join("")).join("");
 };
 
