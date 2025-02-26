@@ -33,12 +33,15 @@ describe("uniqueOrientations", () => {
     expect(getUniquePieceOrientations()).toEqual(uniqueOrientations);
   });
   it("correctly gets simplest rotation and flip", () => {
-    const { rotation, flip } = getOrientationsFromPiece([[true]], 0);
-    expect(rotation).toBe(1);
-    expect(flip).toBe(1);
+    const { uniqueRotations, uniqueFlips } = getOrientationsFromPiece(
+      [[true]],
+      0
+    );
+    expect(uniqueRotations).toBe(1);
+    expect(uniqueFlips).toBe(1);
   });
   it("correctly extends full orbit", () => {
-    const { rotation, flip } = getOrientationsFromPiece(
+    const { uniqueRotations, uniqueFlips } = getOrientationsFromPiece(
       [
         [true, false, false],
         [true, true, true],
@@ -46,19 +49,19 @@ describe("uniqueOrientations", () => {
       ],
       0
     );
-    expect(rotation).toBe(4);
-    expect(flip).toBe(2);
+    expect(uniqueRotations).toBe(4);
+    expect(uniqueFlips).toBe(2);
   });
   describe("correctly find partial orbits", () => {
     it.each(orientationTest)(
       "finds a piece",
       ({ rotation: expectedRotation, flip: expectedFlip }, { shape }) => {
-        const { rotation, flip } = getOrientationsFromPiece(
+        const { uniqueRotations, uniqueFlips } = getOrientationsFromPiece(
           shape as Piece["shape"],
           0
         );
-        expect(rotation).toBe(expectedRotation);
-        expect(flip).toBe(expectedFlip);
+        expect(uniqueRotations).toBe(expectedRotation);
+        expect(uniqueFlips).toBe(expectedFlip);
       }
     );
   });
