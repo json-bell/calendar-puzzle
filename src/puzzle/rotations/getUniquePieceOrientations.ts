@@ -26,9 +26,9 @@ export const getOrientationsFromPiece = (
   );
   const flippedSlugs = flippedShapes.map(getShapeSlug);
 
-  const rotation = (rotatedSlugs.indexOf(pieceSlug) + 1) as 1 | 2 | 4;
-  const flip = flippedSlugs.includes(pieceSlug) ? 1 : 2;
-  return { pieceId, rotation, flip };
+  const uniqueRotations = (rotatedSlugs.indexOf(pieceSlug) + 1) as 1 | 2 | 4;
+  const uniqueFlips = flippedSlugs.includes(pieceSlug) ? 1 : 2;
+  return { pieceId, uniqueRotations, uniqueFlips };
 };
 
 const getUniquePieceOrientations = () => {

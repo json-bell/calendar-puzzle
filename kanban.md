@@ -1,10 +1,6 @@
 # IN DEV
 
-## CAL-5 Limit piece rotation
-
-Limit rotation & mirroring of pieces (e.g. `|` shape only has rotation:0,1 and no flip)
-
----
+CAL-6 apply rotations
 
 # Backlog
 
@@ -33,6 +29,12 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-5 Limit piece rotation
+
+Limit rotation & mirroring of pieces (e.g. `|` shape only has rotation:0,1 and no flip)
+
+---
 
 ## CAL-4 Add Flipped to Game & State
 

@@ -19,8 +19,13 @@ export type PiecePosition = {
 };
 
 type SelectionRestrictions =
-  | { selectedPiece: Piece; selectedCell: CellType }
-  | { selectedPiece: null; selectedCell: null };
+  | {
+      selectedPiece: Piece;
+      selectedCell: CellType;
+      rotation: PieceRotation;
+      flipped: PieceFlipped;
+    }
+  | { selectedPiece: null; selectedCell: null; rotation: null; flipped: null };
 
 export type UserSelection = {
   selectedPanel: Panel | null;
