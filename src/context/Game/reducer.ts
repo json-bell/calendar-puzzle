@@ -5,6 +5,7 @@ import getBoardFromPositions from "../../puzzle/game/getBoardFromPositions";
 import {
   getRotatedPlacedPiece,
   getRotatedUserSelection,
+  shiftPieceToSelectedCell,
 } from "./utils/reducerUtils";
 
 const gameReducer: Reducer<Game, GameAction> = (state, action) => {
@@ -20,7 +21,12 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
         selectedPanel: panel,
         selectedPiece: piece,
       };
-      return { ...state, userSelection };
+
+      const gamePieces = [...state.gamePieces];
+      const shiftedGamePiece = shiftPieceToSelectedCell(userSelection);
+      if (shiftedGamePiece) gamePieces[cell.pieceId] = shiftedGamePiece;
+
+      return { ...state, userSelection, gamePieces };
     }
     case Actions.SELECT_SIDE_PIECE: {
       return {

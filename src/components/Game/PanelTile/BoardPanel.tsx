@@ -57,9 +57,6 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
         break;
       }
       case "coveringCellSelected": {
-        console.error(
-          "Clicking of a selected cell isn't yet set up - this should rotate the cell & flip it when lapping"
-        );
         dispatch({
           type: Actions.ROTATE_SELECTED_PIECE,
           payload: { cell: coveringCell! },

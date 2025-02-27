@@ -42,3 +42,23 @@ export const getRotatedPlacedPiece = (gamePiece: GamePiece): GamePiece => {
 
   return { ...gamePiece, position: { ...position, rotation, flipped } };
 };
+
+export const shiftPieceToSelectedCell = ({
+  flipped,
+  rotation,
+  selectedCell,
+  selectedPanel,
+  selectedPiece,
+}: UserSelection): GamePiece | undefined => {
+  if (!selectedCell || !selectedPanel) return;
+  return {
+    piece: selectedPiece,
+    position: {
+      cell: selectedCell,
+      flipped,
+      rotation,
+      panelX: selectedPanel.panelX,
+      panelY: selectedPanel.panelY,
+    },
+  };
+};
