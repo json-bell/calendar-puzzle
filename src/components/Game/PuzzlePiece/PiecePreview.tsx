@@ -2,7 +2,6 @@ import styles from "./PuzzlePiece.module.css";
 import EmptyCell from "../Cell/EmptyCell";
 import type { Piece } from "../../../puzzle/pieceTypes";
 import cx from "../../../utils/concatClassNames/concatClassNames";
-import getCellSlug from "../../../puzzle/cell/getCellSlug";
 import PreviewedCell from "../Cell/PreviewedCell";
 
 export interface PiecePreviewProps {
@@ -17,16 +16,11 @@ const PiecePreview: React.FC<PiecePreviewProps> = ({ piece }) => {
     >
       {piece.shape.map((row, cellY) => (
         <div className={styles.pieceRow} key={cellY}>
-          {row.map((isSquare, cellX) => {
-            const cellSlug = getCellSlug({
-              cellX,
-              cellY,
-              pieceId: piece.pieceId,
-            });
-            return isSquare ? (
-              <PreviewedCell key={cellSlug} />
+          {row.map((cellPresence, cellX) => {
+            return cellPresence ? (
+              <PreviewedCell key={cellPresence.cellSlug} />
             ) : (
-              <EmptyCell key={cellSlug} />
+              <EmptyCell key={`${cellX}-empty`} />
             );
           })}
         </div>

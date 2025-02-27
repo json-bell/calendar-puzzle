@@ -1,10 +1,17 @@
-import { Piece } from "../pieceTypes";
+import { PieceShape } from "../pieceTypes";
 import getUniquePieceOrientations, {
   getOrientationsFromPiece,
 } from "./getUniquePieceOrientations";
+import { UniqueOrientation } from "./types";
 import uniqueOrientations from "./uniqueOrientations";
 
-const orientationTest = [
+const orientationTest: [
+  {
+    rotation: UniqueOrientation["uniqueRotations"];
+    flip: UniqueOrientation["uniqueFlips"];
+  },
+  { shape: PieceShape<boolean> }
+][] = [
   [{ rotation: 2, flip: 1 }, { shape: [[true, true, true]] }],
   [
     { rotation: 4, flip: 1 },
@@ -57,7 +64,7 @@ describe("uniqueOrientations", () => {
       "finds a piece",
       ({ rotation: expectedRotation, flip: expectedFlip }, { shape }) => {
         const { uniqueRotations, uniqueFlips } = getOrientationsFromPiece(
-          shape as Piece["shape"],
+          shape,
           0
         );
         expect(uniqueRotations).toBe(expectedRotation);
