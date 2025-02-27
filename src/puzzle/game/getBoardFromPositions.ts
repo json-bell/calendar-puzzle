@@ -7,9 +7,9 @@ import { BoardShape, Game, GamePiece } from "../types";
 import mapBoard, { BoardMapperFn } from "../utils/mapBoard";
 
 const getPanelWithDetails = (panel: Panel): PanelDetails => {
-  if (panel.type === "wall") return { panel, state: "wall" };
+  if (panel.type === "wall") return { panel, state: "wall", coveringCells: [] };
   const state: PanelStatus = "free";
-  return { panel, state };
+  return { panel, state, coveringCells: [] };
 };
 
 export const getPiecelessBoard: () => BoardShape<PanelDetails> = () =>
@@ -88,33 +88,33 @@ export const getBoardFromPositions = (
     return {
       ...panelDetails,
       state: "covered",
-      coveredBy: coveringCellArray[0],
+      coveringCells: coveringCellArray,
     };
   };
 
   const panelWithPieces = mapBoard(panelsWithoutPieces, addCoverageToPanels);
   return panelWithPieces;
 
-  const panelsWithPlacedPositionCovered = mapBoard(
-    panelsWithoutPieces,
-    (panelDetails: PanelDetails): PanelDetails => {
-      const cellsCovering = gamePieces.filter(({ position }) => {
-        return (
-          position?.panelX === panelDetails.panel.panelX &&
-          position.panelY === panelDetails.panel.panelY
-        );
-      });
-      if (cellsCovering.length === 0) return panelDetails;
+  // const panelsWithPlacedPositionCovered = mapBoard(
+  //   panelsWithoutPieces,
+  //   (panelDetails: PanelDetails): PanelDetails => {
+  //     const cellsCovering = gamePieces.filter(({ position }) => {
+  //       return (
+  //         position?.panelX === panelDetails.panel.panelX &&
+  //         position.panelY === panelDetails.panel.panelY
+  //       );
+  //     });
+  //     if (cellsCovering.length === 0) return panelDetails;
 
-      return {
-        ...panelDetails,
-        state: "covered",
-        coveredBy: cellsCovering[0].position!.cell,
-      };
-    }
-  );
+  //     return {
+  //       ...panelDetails,
+  //       state: "covered",
+  //       coveredBy: cellsCovering[0].position!.cell,
+  //     };
+  //   }
+  // );
 
-  return panelsWithPlacedPositionCovered;
+  // return panelsWithPlacedPositionCovered;
 };
 
 export default getBoardFromPositions;

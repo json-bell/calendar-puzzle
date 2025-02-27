@@ -23,6 +23,6 @@ export type PanelDetails = {
   panel: Panel;
   state: PanelStatus;
 } & (
-  | { state: "covered"; coveredBy: CellType }
-  | { state: "free" | "wall"; coveredBy?: never }
+  | { state: "covered"; coveringCells: CellType[] }
+  | { state: "free" | "wall"; coveringCells: never[] }
 );
