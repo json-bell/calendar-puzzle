@@ -1,5 +1,6 @@
 import boardPanels from "../../boardPanels";
 import puzzlePieces from "../../puzzlePieces";
+import { getShapeFromData } from "../../puzzlePieces/getPuzzlePieces";
 import { BoardShape, GamePiece } from "../../types";
 import mapBoard from "../../utils/mapBoard";
 import {
@@ -173,11 +174,14 @@ describe("addPieceCoverageToBoard", () => {
           piece: {
             pieceId: 1,
             slug: "1",
-            shape: [
-              [0, 1, 0],
-              [1, 1, 1],
-              [0, 1, 0],
-            ].map((row) => row.map((num) => !!num)) as [[boolean]],
+            shape: getShapeFromData(
+              [
+                [0, 1, 0],
+                [1, 1, 1],
+                [0, 1, 0],
+              ],
+              1
+            ),
           },
           position: {
             cell: { cellSlug: "", cellX: 1, cellY: 1, pieceId: 0 },
@@ -208,6 +212,7 @@ describe("addPieceCoverageToBoard", () => {
     }
   );
   it.todo("rotates piece correctly");
+  it.todo("places rotated piece correctly");
   it("doesn't mutate the board", () => {
     const cleanBoard = mapBoard(boardPanels, () => []);
     const inputBoard = mapBoard(boardPanels, () => []);
