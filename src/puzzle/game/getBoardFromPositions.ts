@@ -1,5 +1,4 @@
 import boardPanels from "../boardPanels";
-import getCellSlug from "../cell/getCellSlug";
 import { Panel, PanelDetails, PanelStatus } from "../panelTypes";
 import { CellType } from "../pieceTypes";
 import { getRotatedCellCoords } from "../rotations/getRotatedCellCoords";
@@ -27,11 +26,6 @@ export const addPieceCoverageToBoard = (
   const { piece } = gamePiece;
   const { cell, panelX, panelY, rotation, flipped } = gamePiece.position;
 
-  // if (rotation !== 0) {
-  //   throw new Error(
-  //     "Piece rotation is not supported in generating board from piece positions"
-  //   );
-  // }
   const rotatedShape = getRotatedPiece(piece.shape, rotation, flipped);
 
   const { rotatedCellX, rotatedCellY } = getRotatedCellCoords({
@@ -45,26 +39,19 @@ export const addPieceCoverageToBoard = (
   const outputBoard = mapBoard(board, (cellArr) => [...cellArr]);
   // ISSUE: MAKE SECTION PURE WITH REDUCER
   rotatedShape.forEach((pieceRow, YinShape) =>
-    pieceRow.forEach((isCellPresent, XinShape) => {
-      if (!isCellPresent) return;
+    pieceRow.forEach((cellPresence, XinShape) => {
+      if (!cellPresence) return;
       const coveredPanelY = YinShape + pieceCoords.y;
       const coveredPanelX = XinShape + pieceCoords.x;
-      if (
+
+      const outOfBoard =
         coveredPanelY < 0 ||
         coveredPanelY > 5 ||
         coveredPanelX < 0 ||
-        coveredPanelX > 8
-      )
-        return;
-      const coveringCell = {
-        cellX: XinShape,
-        cellY: YinShape,
-        pieceId: cell.pieceId,
-      };
-      outputBoard[coveredPanelY][coveredPanelX].push({
-        ...coveringCell,
-        cellSlug: getCellSlug(coveringCell),
-      });
+        coveredPanelX > 8;
+      if (outOfBoard) return;
+
+      outputBoard[coveredPanelY][coveredPanelX].push(cellPresence);
     })
   );
   return outputBoard;
