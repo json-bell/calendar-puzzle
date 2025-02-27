@@ -1,36 +1,55 @@
 import styles from "./PuzzlePiece.module.css";
 import EmptyCell from "../Cell/EmptyCell";
-import type { Piece } from "../../../puzzle/pieceTypes";
 import cx from "../../../utils/concatClassNames/concatClassNames";
-import getCellSlug from "../../../puzzle/cell/getCellSlug";
 import PreviewedCell from "../Cell/PreviewedCell";
+import { panelSizeGlobal } from "../../../global/globalVariables";
+import useGameState from "../../../context/Game/state";
+import getRotatedPiece from "../../../puzzle/rotations/getRotatedPiece";
+import { getRotatedCellCoords } from "../../../puzzle/rotations/getRotatedCellCoords";
 
 export interface PiecePreviewProps {
-  piece: Piece;
+  _: never;
 }
 
-const PiecePreview: React.FC<PiecePreviewProps> = ({ piece }) => {
+const PiecePreview: React.FC = () => {
+  const {
+    userSelection: { selectedCell, selectedPiece, rotation, flipped },
+  } = useGameState();
+
+  if (!selectedPiece) return null;
+
+  const shape = getRotatedPiece(selectedPiece.shape, rotation, flipped);
+  const { rotatedCellX, rotatedCellY } = getRotatedCellCoords({
+    cell: selectedCell,
+    piece: selectedPiece,
+    rotation,
+    flipped,
+  });
+
   return (
     <div
-      data-testid={`puzzle-piece-${piece.pieceId}`}
-      className={cx(styles.puzzlePiece)}
+      className={cx(styles.piecePreview)}
+      style={{
+        left: `-${rotatedCellX * panelSizeGlobal}px`,
+        top: `-${rotatedCellY * panelSizeGlobal}px`,
+      }}
     >
-      {piece.shape.map((row, cellY) => (
-        <div className={styles.pieceRow} key={cellY}>
-          {row.map((isSquare, cellX) => {
-            const cellSlug = getCellSlug({
-              cellX,
-              cellY,
-              pieceId: piece.pieceId,
-            });
-            return isSquare ? (
-              <PreviewedCell key={cellSlug} />
-            ) : (
-              <EmptyCell key={cellSlug} />
-            );
-          })}
-        </div>
-      ))}
+      <div
+        data-testid={`puzzle-piece-${selectedPiece.pieceId}`}
+        className={cx(styles.puzzlePiece)}
+      >
+        {shape.map((row, cellY) => (
+          <div className={styles.pieceRow} key={cellY}>
+            {row.map((cellPresence, cellX) => {
+              return cellPresence ? (
+                <PreviewedCell key={cellPresence.cellSlug} />
+              ) : (
+                <EmptyCell key={`${cellX}-empty`} />
+              );
+            })}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

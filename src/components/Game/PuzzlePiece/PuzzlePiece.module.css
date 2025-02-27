@@ -14,3 +14,10 @@
 .selectedPiece {
   --cell-color: var(--cell-color-selected-piece);
 }
+
+.piecePreview {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: var(--z-index-piece-preview);
+}

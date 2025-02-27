@@ -1,7 +1,8 @@
 import boardPanels from "../boardPanels";
-import getCellSlug from "../cell/getCellSlug";
 import { Panel, PanelDetails, PanelStatus } from "../panelTypes";
 import { CellType } from "../pieceTypes";
+import { getRotatedCellCoords } from "../rotations/getRotatedCellCoords";
+import getRotatedPiece from "../rotations/getRotatedPiece";
 import { BoardShape, Game, GamePiece } from "../types";
 import mapBoard, { BoardMapperFn } from "../utils/mapBoard";
 
@@ -22,39 +23,35 @@ export const addPieceCoverageToBoard = (
 ): BoardCoverage => {
   if (!gamePiece.position) return board;
   // else piece is placed
-  const { shape: pieceShape } = gamePiece.piece;
-  const { cell, panelX, panelY, rotation } = gamePiece.position;
+  const { piece } = gamePiece;
+  const { cell, panelX, panelY, rotation, flipped } = gamePiece.position;
 
-  const rotatedPiece = pieceShape;
-  const pieceCoords = { x: panelX - cell.cellX, y: panelY - cell.cellY };
-  if (rotation !== 0) {
-    throw new Error(
-      "Piece rotation is not supported in generating board from piece positions"
-    );
-  }
+  const rotatedShape = getRotatedPiece(piece.shape, rotation, flipped);
+
+  const { rotatedCellX, rotatedCellY } = getRotatedCellCoords({
+    cell,
+    piece,
+    rotation,
+    flipped,
+  });
+  const pieceCoords = { x: panelX - rotatedCellX, y: panelY - rotatedCellY };
+
   const outputBoard = mapBoard(board, (cellArr) => [...cellArr]);
   // ISSUE: MAKE SECTION PURE WITH REDUCER
-  rotatedPiece.forEach((pieceRow, YinShape) =>
-    pieceRow.forEach((isCovered, XinShape) => {
-      if (!isCovered) return;
+  rotatedShape.forEach((pieceRow, YinShape) =>
+    pieceRow.forEach((cellPresence, XinShape) => {
+      if (!cellPresence) return;
       const coveredPanelY = YinShape + pieceCoords.y;
       const coveredPanelX = XinShape + pieceCoords.x;
-      if (
+
+      const outOfBoard =
         coveredPanelY < 0 ||
         coveredPanelY > 5 ||
         coveredPanelX < 0 ||
-        coveredPanelX > 8
-      )
-        return;
-      const coveringCell = {
-        cellX: XinShape,
-        cellY: YinShape,
-        pieceId: cell.pieceId,
-      };
-      outputBoard[coveredPanelY][coveredPanelX].push({
-        ...coveringCell,
-        cellSlug: getCellSlug(coveringCell),
-      });
+        coveredPanelX > 8;
+      if (outOfBoard) return;
+
+      outputBoard[coveredPanelY][coveredPanelX].push(cellPresence);
     })
   );
   return outputBoard;

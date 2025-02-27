@@ -1,10 +1,6 @@
 # IN DEV
 
-## CAL-5 Limit piece rotation
-
-Limit rotation & mirroring of pieces (e.g. `|` shape only has rotation:0,1 and no flip)
-
----
+CAL-6 apply rotations
 
 # Backlog
 
@@ -13,6 +9,10 @@ Limit rotation & mirroring of pieces (e.g. `|` shape only has rotation:0,1 and n
 CAL-4: Track Mirroring in types & Game
 
 CAL-5: Limit rotation & mirroring of pieces (e.g. `|` shape only has rotation:0,1 and no flip)
+
+CAL-?: rotate hovered placement preview
+
+CAL-?: add Icons for Flip (along top-left to bottom-right diagonal) & Clockwise-rotation
 
 #### Consider how a piece will be FLIPPED over (mirrored)
 
@@ -33,6 +33,12 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-5 Limit piece rotation
+
+Limit rotation & mirroring of pieces (e.g. `|` shape only has rotation:0,1 and no flip)
+
+---
 
 ## CAL-4 Add Flipped to Game & State
 

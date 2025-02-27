@@ -2,6 +2,11 @@ import { Reducer } from "react";
 import { Game, GamePiece, UserSelection } from "../../puzzle/types";
 import { GameAction, Actions } from "./types";
 import getBoardFromPositions from "../../puzzle/game/getBoardFromPositions";
+import {
+  getRotatedPlacedPiece,
+  getRotatedUserSelection,
+  shiftPieceToSelectedCell,
+} from "./utils/reducerUtils";
 
 const gameReducer: Reducer<Game, GameAction> = (state, action) => {
   switch (action.type) {
@@ -16,7 +21,12 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
         selectedPanel: panel,
         selectedPiece: piece,
       };
-      return { ...state, userSelection };
+
+      const gamePieces = [...state.gamePieces];
+      const shiftedGamePiece = shiftPieceToSelectedCell(userSelection);
+      if (shiftedGamePiece) gamePieces[cell.pieceId] = shiftedGamePiece;
+
+      return { ...state, userSelection, gamePieces };
     }
     case Actions.SELECT_SIDE_PIECE: {
       return {
@@ -25,6 +35,8 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
           ...state.userSelection,
           selectedCell: action.payload.cell,
           selectedPiece: action.payload.piece,
+          rotation: 0,
+          flipped: 0,
         },
       };
     }
@@ -39,22 +51,41 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
         state.userSelection;
       if (!selectedCell) return state;
       const gamePieces: GamePiece[] = state.gamePieces.map((gamePiece) => {
-        const { piece, position } = gamePiece;
+        const { piece } = gamePiece;
         return selectedPiece?.pieceId === piece.pieceId
           ? {
               piece,
               position: {
                 cell: selectedCell,
-                rotation: rotation ?? 0,
-                flipped: flipped ?? 0,
+                rotation,
+                flipped,
                 panelX,
                 panelY,
               },
             }
-          : { piece, position };
+          : gamePiece;
       });
       const board = getBoardFromPositions(gamePieces);
       return { ...state, board, gamePieces };
+    }
+    case Actions.ROTATE_SELECTED_PIECE: {
+      if (!state.userSelection.selectedCell) return state;
+      const { pieceId } = state.userSelection.selectedCell;
+      const userSelection = getRotatedUserSelection(
+        state.userSelection,
+        pieceId
+      );
+
+      const gamePieces = [...state.gamePieces];
+      gamePieces[pieceId] = getRotatedPlacedPiece(gamePieces[pieceId]);
+      const board = getBoardFromPositions(gamePieces);
+
+      return {
+        ...state,
+        userSelection,
+        gamePieces,
+        board,
+      };
     }
     case Actions.ROTATE_PIECE: {
       return state;
