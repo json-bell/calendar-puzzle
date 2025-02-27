@@ -10,6 +10,10 @@ CAL-4: Track Mirroring in types & Game
 
 CAL-5: Limit rotation & mirroring of pieces (e.g. `|` shape only has rotation:0,1 and no flip)
 
+CAL-?: rotate hovered placement preview
+
+CAL-?: add Icons for Flip (along top-left to bottom-right diagonal) & Clockwise-rotation
+
 #### Consider how a piece will be FLIPPED over (mirrored)
 
 8 ROTATIONS! 0,0 -> 0,1 -> 0,2 -> 0,3 -> 1,0 -> 1,1 -> 1,2 -> 1,3 -> 0,0 ...
