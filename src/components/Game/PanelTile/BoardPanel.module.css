@@ -25,13 +25,6 @@
   background-color: var(--wall-color);
 }
 
-.piecePreview {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.5;
-  z-index: var(--z-index-piece-preview);
-}
-
 .piecePlaced {
   position: absolute;
   pointer-events: none;

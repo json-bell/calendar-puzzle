@@ -4,7 +4,6 @@ import { Panel } from "../../../puzzle/panelTypes";
 import { formatContent } from "../../../puzzle/boardPanels/utils/formatContent";
 import useGameState from "../../../context/Game/state";
 import { useState } from "react";
-import { panelSizeGlobal } from "../../../global/globalVariables";
 import useGameDispatch from "../../../context/Game/dispatch";
 import { Actions } from "../../../context/Game/types";
 import PiecePreview from "../PuzzlePiece/PiecePreview";
@@ -91,15 +90,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
 
       {/* Selected Piece Preview if Panel is Empty*/}
       {isPreviewing && selectedPiece && panelStatus === "placeable" && (
-        <div
-          className={cx(styles.piecePreview)}
-          style={{
-            left: `-${selectedCell.cellX * panelSizeGlobal}px`,
-            top: `-${selectedCell.cellY * panelSizeGlobal}px`,
-          }}
-        >
-          <PiecePreview piece={selectedPiece} />
-        </div>
+        <PiecePreview />
       )}
 
       {/* ISSUE: CURRENTLY EVERY TIME THERE'S A PIECE IT IS PLACING AN ENTIRE PIECE */}
