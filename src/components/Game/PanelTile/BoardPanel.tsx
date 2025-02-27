@@ -29,13 +29,18 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
   if (panel.type === "wall")
     return <div className={cx(styles.panel, styles.wall)} />;
 
-  const coveringCell = board[panel.panelY][panel.panelX].coveredBy;
+  const { coveringCells } = board[panel.panelY][panel.panelX];
+  const coveringSlugs = coveringCells.map(({ cellSlug }) => cellSlug);
+  const isCovered = coveringCells.length !== 0;
+  const isPieceSelected =
+    selectedCell &&
+    coveringCells.map(({ pieceId }) => pieceId).includes(selectedCell?.pieceId);
+  const isCellSelected =
+    selectedCell && coveringSlugs.includes(selectedCell.cellSlug);
 
   const getPanelStatus: () => PanelSelectionState = () => {
-    if (!coveringCell) return selectedCell ? "placeable" : "nothing";
-    if (coveringCell.cellSlug === selectedCell?.cellSlug)
-      return "coveringCellSelected";
-    return "covered";
+    if (isCovered) return isCellSelected ? "coveringCellSelected" : "covered";
+    return selectedPiece ? "placeable" : "nothing";
   };
   const panelStatus = getPanelStatus();
 
@@ -51,14 +56,14 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
       case "covered": {
         dispatch({
           type: Actions.SELECT_PLAYED_PIECE,
-          payload: { cell: coveringCell!, panel },
+          payload: { cell: coveringCells[0], panel },
         });
         break;
       }
       case "coveringCellSelected": {
         dispatch({
           type: Actions.ROTATE_SELECTED_PIECE,
-          payload: { cell: coveringCell! },
+          payload: { cell: coveringCells[0] },
         });
         break;
       }
@@ -82,23 +87,21 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
           styles.panel,
           panel.type === "dayNumber" && styles.numberPanel,
           isPreviewing && selectedPiece && styles.previewedPanel,
-          coveringCell && styles.coveredPanel
+          isCovered && styles.coveredPanel
         )}
       >
         {panel.type !== "empty" && formatContent(panel.content)}
       </div>
 
       {/* Selected Piece Preview if Panel is Empty*/}
-      {isPreviewing && selectedPiece && panelStatus === "placeable" && (
-        <PiecePreview />
-      )}
+      {isPreviewing && panelStatus === "placeable" && <PiecePreview />}
 
       {/* ISSUE: CURRENTLY EVERY TIME THERE'S A PIECE IT IS PLACING AN ENTIRE PIECE */}
-      {coveringCell && (
+      {isCovered && (
         <>
           <PlacedCell
-            isCellSelected={coveringCell.cellSlug === selectedCell?.cellSlug}
-            isPanelSelected={coveringCell.pieceId === selectedCell?.pieceId}
+            isCellSelected={!!isCellSelected}
+            isPanelSelected={!!isPieceSelected}
           />
         </>
       )}
