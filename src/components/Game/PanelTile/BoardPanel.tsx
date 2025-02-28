@@ -15,6 +15,7 @@ export interface PanelProps {
 
 type PanelSelectionState =
   | "coveringCellSelected"
+  | "coveringPieceSelected"
   | "covered"
   | "placeable"
   | "nothing";
@@ -39,8 +40,14 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
     selectedCell && coveringSlugs.includes(selectedCell.cellSlug);
 
   const getPanelStatus: () => PanelSelectionState = () => {
-    if (isCovered) return isCellSelected ? "coveringCellSelected" : "covered";
-    return selectedPiece ? "placeable" : "nothing";
+    if (isCovered) {
+      if (isCellSelected) return "coveringCellSelected";
+      if (isPieceSelected) return "coveringPieceSelected";
+      return "covered";
+    }
+
+    if (selectedPiece) return "placeable";
+    return "nothing";
   };
   const panelStatus = getPanelStatus();
 
@@ -60,6 +67,19 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
         });
         break;
       }
+      case "coveringPieceSelected": {
+        dispatch({
+          type: Actions.SELECT_PLAYED_PIECE,
+          payload: {
+            cell:
+              coveringCells.find(({ pieceId }) => {
+                return pieceId === selectedPiece?.pieceId;
+              }) || coveringCells[0],
+            panel,
+          },
+        });
+        break;
+      }
       case "coveringCellSelected": {
         dispatch({
           type: Actions.ROTATE_SELECTED_PIECE,
@@ -73,7 +93,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
     }
   };
 
-  const handlers = {
+  const handlers: Partial<React.JSX.IntrinsicElements["button"]> = {
     onMouseEnter: () => setIsPreviewing(true),
     onMouseLeave: () => setIsPreviewing(false),
     onClick: () => handlePlacePiece(),
