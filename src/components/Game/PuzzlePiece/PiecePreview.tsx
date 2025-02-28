@@ -42,7 +42,10 @@ const PiecePreview: React.FC = () => {
           <div className={styles.pieceRow} key={cellY}>
             {row.map((cellPresence, cellX) => {
               return cellPresence ? (
-                <PreviewedCell key={cellPresence.cellSlug} />
+                <PreviewedCell
+                  key={cellPresence.cellSlug}
+                  pieceId={cellPresence.pieceId}
+                />
               ) : (
                 <EmptyCell key={`${cellX}-empty`} />
               );

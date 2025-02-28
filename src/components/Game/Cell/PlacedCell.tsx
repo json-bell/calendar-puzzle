@@ -1,5 +1,6 @@
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import styles from "./Cell.module.css";
+import getPlacedPieceColour from "./getPlacedPieceColour";
 
 interface PlacedCellProps {
   isPanelSelected: boolean;
@@ -24,7 +25,7 @@ const PlacedCell: React.FC<PlacedCellProps> = ({
         isPanelSelected
           ? {}
           : {
-              backgroundColor: `hsl(${36 * pieceId}, 100%, 50%)`,
+              backgroundColor: getPlacedPieceColour(pieceId),
             }
       }
     />
