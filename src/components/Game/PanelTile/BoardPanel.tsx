@@ -102,6 +102,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
           <PlacedCell
             isCellSelected={!!isCellSelected}
             isPanelSelected={!!isPieceSelected}
+            pieceId={coveringCells[0].pieceId}
           />
         </>
       )}
