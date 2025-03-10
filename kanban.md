@@ -1,10 +1,12 @@
 # IN DEV
 
-CAL-6 apply rotations
+CAL-7: Create Basic Controls
 
 # Backlog
 
 ## Story - Add rotations - clicking the selected cell should rotate the piece
+
+CAL-SOON
 
 CAL-?: rotate hovered placement preview
 
@@ -38,6 +40,12 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-6 apply rotations
+
+Applies pieces rotations to puzzle - first functional version of puzzle
+
+---
 
 ## CAL-5 Limit piece rotation
 
