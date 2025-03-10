@@ -4,23 +4,29 @@ import EmptyCell from "../Cell/EmptyCell";
 import type { Piece } from "../../../puzzle/pieceTypes";
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import useGameState from "../../../context/Game/state";
-// import useMouse from "../../../utils/useMousePosition.ts/useMouse";
 
 export interface PuzzlePieceProps {
   piece: Piece;
+  isPlaced?: boolean;
 }
 
-const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ piece }) => {
+const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
+  piece,
+  isPlaced = false,
+}) => {
   const {
     userSelection: { selectedPiece },
   } = useGameState();
+
+  const isSelected = selectedPiece?.pieceId === piece.pieceId;
 
   return (
     <div
       data-testid={`puzzle-piece-${piece.pieceId}`}
       className={cx(
         styles.puzzlePiece,
-        selectedPiece?.pieceId === piece.pieceId && styles.selectedPiece
+        isSelected && styles.selectedPiece,
+        isPlaced && styles.placedPiece
       )}
     >
       {piece.shape.map((row, cellY) => (
