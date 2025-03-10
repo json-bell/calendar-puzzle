@@ -1,31 +1,28 @@
 # IN DEV
 
-CAL-7: Create Basic Controls
+CAL-8: Style piece selection area
+
+Making area scrollable for all the tiles, and rotateable, selectable, etc. within the piece selection area
 
 # Backlog
 
 ## Story - Add rotations - clicking the selected cell should rotate the piece
 
-CAL-SOON
+CAL-SOON:
 
-CAL-?: rotate hovered placement preview
+CAL-?: See panels with multiple pieces placed
 
-CAL-?: Create util that checks borders of a cell
+CAL-?: rotate pieces in the selection
+
+CAL-?: Create util that checks borders of a cell in a piece OR GENERALLY make border of partial grid
+-> MAKE BORDERS IN THE PLACED COLOUR OF ALL THE PIECES SO YOU CAN SEE WHEN THEY OVERLAP
 
 CAL-?: add Icons for Flip (along top-left to bottom-right diagonal) & Clockwise-rotation
 
 CAL-FAR?: Add 2 choices of controls: Dragging or Clicking
 -> Drag start is selection, and then previewing happens when dragging over
 
-CAL-?: Add _unused panels_ as a scrollable track underneath
-
 CAL-?: Add ability to throw panel away
-
-#### Consider how a piece will be FLIPPED over (mirrored)
-
-8 ROTATIONS! 0,0 -> 0,1 -> 0,2 -> 0,3 -> 1,0 -> 1,1 -> 1,2 -> 1,3 -> 0,0 ...
-
-With reduced cycles for things that don't go that far so that positions <-> placements are bijective
 
 ---
 
@@ -34,6 +31,8 @@ With reduced cycles for things that don't go that far so that positions <-> plac
 Reducer, mb just one big snapshot with specific state
 
 ---
+
+### Story - Date selection and completion
 
 ---
 
