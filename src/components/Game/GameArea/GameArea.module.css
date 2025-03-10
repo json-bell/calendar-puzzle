@@ -1,13 +1,26 @@
 .gameArea {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas: "board menu" "pieces pieces";
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto;
+  height: calc(100vh - 2 * var(--root-padding));
 }
 
 .piecesContainer {
+  grid-area: pieces;
   display: flex;
   gap: 80px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow: scroll;
   padding: 20px;
   justify-content: center;
+  border: 2px blue solid;
+}
+
+.gameControls {
+  background-color: grey;
+  display: flex;
+  padding: 24px;
+  right: 0;
+  width: 240px;
 }
