@@ -1,4 +1,5 @@
 .gameArea {
+  max-width: 100%;
   display: grid;
   grid-template-areas: "board menu" "pieces pieces";
   grid-template-columns: auto auto auto;
@@ -8,13 +9,10 @@
 
 .piecesContainer {
   grid-area: pieces;
-  display: flex;
-  gap: 80px;
-  flex-wrap: nowrap;
-  overflow: scroll;
   padding: 20px;
-  justify-content: safe center;
   border: 2px blue solid;
+  max-width: 100%;
+  overflow-y: hidden;
 }
 
 .gameControls {

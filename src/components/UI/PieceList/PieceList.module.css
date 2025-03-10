@@ -1,0 +1,10 @@
+.pieceListContainer {
+  display: flex;
+  gap: 80px;
+  width: auto;
+  height: 100%;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  overflow-y: scroll;
+  justify-content: safe center;
+}
