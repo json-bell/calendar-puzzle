@@ -72,9 +72,9 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
           type: Actions.SELECT_PLAYED_PIECE,
           payload: {
             cell:
-              coveringCells.find(({ pieceId }) => {
-                return pieceId === selectedPiece?.pieceId;
-              }) || coveringCells[0],
+              coveringCells.find(
+                ({ pieceId }) => pieceId === selectedPiece?.pieceId
+              ) || coveringCells[0],
             panel,
           },
         });

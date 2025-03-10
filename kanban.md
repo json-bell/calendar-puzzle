@@ -6,13 +6,18 @@ CAL-6 apply rotations
 
 ## Story - Add rotations - clicking the selected cell should rotate the piece
 
-CAL-4: Track Mirroring in types & Game
-
-CAL-5: Limit rotation & mirroring of pieces (e.g. `|` shape only has rotation:0,1 and no flip)
-
 CAL-?: rotate hovered placement preview
 
+CAL-?: Create util that checks borders of a cell
+
 CAL-?: add Icons for Flip (along top-left to bottom-right diagonal) & Clockwise-rotation
+
+CAL-FAR?: Add 2 choices of controls: Dragging or Clicking
+-> Drag start is selection, and then previewing happens when dragging over
+
+CAL-?: Add _unused panels_ as a scrollable track underneath
+
+CAL-?: Add ability to throw panel away
 
 #### Consider how a piece will be FLIPPED over (mirrored)
 
