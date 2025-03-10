@@ -13,14 +13,11 @@
   flex-wrap: nowrap;
   overflow: scroll;
   padding: 20px;
-  justify-content: center;
+  justify-content: safe center;
   border: 2px blue solid;
 }
 
 .gameControls {
-  background-color: grey;
-  display: flex;
   padding: 24px;
-  right: 0;
-  width: 240px;
+  width: fit-content;
 }

@@ -31,5 +31,5 @@ export type GameAction = { type: Actions; payload?: Partial<Payload> } & (
   | { type: Actions.PLACE_PIECE; payload: Pick<Payload, "panel"> }
   | { type: Actions.ROTATE_PIECE /* ,...Details */ }
   | { type: Actions.ROTATE_SELECTED_PIECE; payload: Pick<Payload, "cell"> }
-  | { type: Actions.REMOVE_PIECE /* ,...Details */ }
+  | { type: Actions.REMOVE_PIECE; payload: Pick<Payload, "piece"> }
 );
