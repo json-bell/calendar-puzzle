@@ -1,9 +1,8 @@
 import BoardGrid from "../BoardGrid/BoardGrid";
-import puzzlePieces from "../../../puzzle/puzzlePieces";
-import PuzzlePiece from "../PuzzlePiece/PuzzlePiece";
 import styles from "./GameArea.module.css";
 import GameProvider from "../../../context/Game/GameProvider";
 import GameControls from "../../UI/GameControls/GameControls";
+import PieceList from "../../UI/PieceList/PieceList";
 
 const GameArea = () => {
   return (
@@ -14,9 +13,7 @@ const GameArea = () => {
           <GameControls />
         </div>
         <div className={styles.piecesContainer}>
-          {puzzlePieces.map((piece) => (
-            <PuzzlePiece piece={piece} key={piece.pieceId} />
-          ))}
+          <PieceList />
         </div>
       </section>
     </GameProvider>

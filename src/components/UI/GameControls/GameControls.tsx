@@ -1,7 +1,7 @@
 import DeletePieceButton from "../DeletePieceButton/DeletePieceButton";
 import styles from "./GameControls.module.css";
 
-const GameControls = () => {
+const GameControls: React.FC = () => {
   return (
     <div className={styles.gameControlsContainer}>
       <h2 style={{ margin: 0 }}> Menu</h2>

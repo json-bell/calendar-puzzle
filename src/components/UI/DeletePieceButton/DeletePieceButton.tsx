@@ -14,7 +14,6 @@ const DeletePieceButton = () => {
 
   const selectedPiecePosition =
     selectedPiece && gamePieces[selectedPiece?.pieceId].position;
-  console.log({ selectedPiece }, selectedPiece?.pieceId);
 
   const removePiece = selectedPiecePosition
     ? () => {
