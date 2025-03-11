@@ -13,6 +13,7 @@
     "postinstall": "husky",
     "generate-panels": "tsx ./scripts/generateBoardPanels",
     "generate-pieces": "tsx ./scripts/generatePuzzlePieces",
+    "generate-borders": "tsx ./scripts/generatePieceBorderLookup",
     "generate-orientations": "tsx ./scripts/generateUniqueOrientations",
     "test": "jest",
     "test-coverage": "jest --coverage",
