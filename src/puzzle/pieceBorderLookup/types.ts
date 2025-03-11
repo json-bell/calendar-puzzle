@@ -7,12 +7,10 @@ export type CellEdgeBorders = {
   right: boolean;
 };
 
-// export type CellCornerBorders = {
-//   top_left: boolean; // = top && left
-//   top_right: boolean; // = top && right
-//   bottom_left: boolean; // = bottom && left
-//   bottom_right: boolean; // = bottom && right
-// };
+export type CornerRadii = [boolean, boolean, boolean, boolean];
+export type RenderingCellBorders = CellEdgeBorders & {
+  cornerRadii: CornerRadii;
+};
 
 export type PieceBorders = PieceShape<CellEdgeBorders>;
 
