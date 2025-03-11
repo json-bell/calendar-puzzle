@@ -1,2 +1,2 @@
-yarn check-ts
+yarn tscheck
 yarn test
