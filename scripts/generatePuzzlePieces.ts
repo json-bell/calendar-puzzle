@@ -9,7 +9,7 @@ const puzzlePieceString = JSON.stringify(getPuzzlePieces(rawPieceData), null, 2)
 
 fs.writeFile(
   filePath,
-  `// This is a script generated file - do not edit. Run \`yarn generate-panels\` to re-generate the file.
+  `// This is a script generated file - do not edit. Run \`yarn generate-pieces\` to re-generate the file.
 
 import { Piece } from "../pieceTypes";
 
