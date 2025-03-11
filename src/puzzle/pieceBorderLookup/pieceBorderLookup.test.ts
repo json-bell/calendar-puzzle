@@ -3,31 +3,16 @@ import { PieceShape } from "../pieceTypes";
 import rawPieceData from "../puzzlePieces/rawPieceData";
 import getPieceBorderLookup from "./getPieceBorderLookup";
 import getPieceBorders from "./getPieceBorders";
-import { CellBorders } from "./types";
+import { CellEdgeBorders } from "./types";
 
-const fullCellBorders: CellBorders = {
+const fullCellBorders: CellEdgeBorders = {
   bottom: true,
-  bottom_left: true,
-  bottom_right: true,
   left: true,
   right: true,
   top: true,
-  top_left: true,
-  top_right: true,
 };
 
-const emptyCellBorders: CellBorders = {
-  bottom: false,
-  bottom_left: false,
-  bottom_right: false,
-  left: false,
-  right: false,
-  top: false,
-  top_left: false,
-  top_right: false,
-};
-
-const emptyDirections: Partial<CellBorders> = {
+const emptyCellBorders: CellEdgeBorders = {
   bottom: false,
   left: false,
   right: false,
@@ -66,8 +51,8 @@ describe("getPieceBorders", () => {
     it.each(cornerCoords)(
       "correctly finds the corner value",
       (cellY, cellX) => {
-        expect(fullPieceBorders[cellY][cellX]).toMatchObject({
-          ...emptyDirections,
+        expect(fullPieceBorders[cellY][cellX]).toEqual({
+          ...emptyCellBorders,
           [cellY ? "bottom" : "top"]: true,
           [cellX ? "right" : "left"]: true,
         });

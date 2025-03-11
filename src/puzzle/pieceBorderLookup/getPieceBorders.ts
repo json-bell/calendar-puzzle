@@ -1,5 +1,5 @@
 import { PieceShape } from "../pieceTypes";
-import { CellBorders, PieceBorders } from "./types";
+import { CellEdgeBorders, PieceBorders } from "./types";
 
 const getPieceBorders = (piece: PieceShape<0 | 1>): PieceBorders => {
   const getCellPresence = (cellY: number, cellX: number): boolean => {
@@ -8,21 +8,14 @@ const getPieceBorders = (piece: PieceShape<0 | 1>): PieceBorders => {
 
   return piece.map(
     (row, cellY) =>
-      row.map((_, cellX): CellBorders => {
+      row.map((_, cellX): CellEdgeBorders => {
         const top = getCellPresence(cellY - 1, cellX);
         const left = getCellPresence(cellY, cellX - 1);
         const bottom = getCellPresence(cellY + 1, cellX);
         const right = getCellPresence(cellY, cellX + 1);
 
-        const corners = {
-          top_left: top && left,
-          top_right: top && right,
-          bottom_left: bottom && left,
-          bottom_right: bottom && right,
-        };
-
-        return { top, left, right, bottom, ...corners };
-      }) as [CellBorders]
+        return { top, left, right, bottom };
+      }) as [CellEdgeBorders]
   );
 };
 
