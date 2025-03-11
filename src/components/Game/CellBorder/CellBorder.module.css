@@ -1,0 +1,7 @@
+.cellBorder {
+  width: var(--panel-size);
+  box-sizing: border-box;
+  opacity: 1;
+  aspect-ratio: 1/1;
+  position: absolute;
+}
