@@ -1,4 +1,5 @@
-import { PieceShape } from "../pieceTypes";
+import { CellType, PieceShape } from "../pieceTypes";
+import { PieceFlipped, PieceRotation } from "../types";
 
 export type CellEdgeBorders = {
   top: boolean;
@@ -15,3 +16,8 @@ export type RenderingCellBorders = CellEdgeBorders & {
 export type PieceBorders = PieceShape<CellEdgeBorders>;
 
 export type PiecesBorderLookup = PieceBorders[];
+
+export type BorderProcessingArgs = {
+  rotation: PieceRotation;
+  flipped: PieceFlipped;
+} & Pick<CellType, "cellX" | "cellY" | "pieceId">;

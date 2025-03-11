@@ -8,6 +8,7 @@ import useGameDispatch from "../../../context/Game/dispatch";
 import { Actions } from "../../../context/Game/types";
 import PiecePreview from "../PuzzlePiece/PiecePreview";
 import PlacedCell from "../Cell/PlacedCell";
+import CellBorder from "../CellBorder/CellBorder";
 
 export interface PanelProps {
   panel: Panel;
@@ -21,7 +22,7 @@ type PanelSelectionState =
   | "nothing";
 
 const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
-  const { userSelection, board } = useGameState();
+  const { userSelection, board, gamePieces } = useGameState();
   const { selectedCell, selectedPiece } = userSelection;
   const [isPreviewing, setIsPreviewing] = useState(false);
 
@@ -116,16 +117,26 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
       {/* Selected Piece Preview if Panel is Empty*/}
       {isPreviewing && panelStatus === "placeable" && <PiecePreview />}
 
-      {/* ISSUE: CURRENTLY EVERY TIME THERE'S A PIECE IT IS PLACING AN ENTIRE PIECE */}
+      {/* Placed Pieces Preview */}
       {isCovered && (
-        <>
-          <PlacedCell
-            isCellSelected={!!isCellSelected}
-            isPanelSelected={!!isPieceSelected}
-            pieceId={coveringCells[0].pieceId}
-          />
-        </>
+        <PlacedCell
+          isCellSelected={!!isCellSelected}
+          isPanelSelected={!!isPieceSelected}
+          pieceId={coveringCells[0].pieceId}
+        />
       )}
+
+      {/* Placed Pieces Borders */}
+      {isCovered &&
+        coveringCells.map((cell) => {
+          return (
+            <CellBorder
+              cell={cell}
+              rotation={gamePieces[cell.pieceId].position?.rotation}
+              flipped={gamePieces[cell.pieceId].position?.flipped}
+            />
+          );
+        })}
     </button>
   );
 };

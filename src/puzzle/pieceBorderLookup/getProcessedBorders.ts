@@ -1,8 +1,10 @@
 import pieceBorderLookup from ".";
-import { CellType } from "../pieceTypes";
-import { PieceFlipped, PieceRotation } from "../types";
 import { processBorders } from "./processBorders";
-import { RenderingCellBorders, CornerRadii } from "./types";
+import {
+  RenderingCellBorders,
+  CornerRadii,
+  BorderProcessingArgs,
+} from "./types";
 
 const getProcessedBorders = ({
   rotation,
@@ -10,10 +12,7 @@ const getProcessedBorders = ({
   cellX,
   cellY,
   pieceId,
-}: {
-  rotation: PieceRotation;
-  flipped: PieceFlipped;
-} & Pick<CellType, "cellX" | "cellY" | "pieceId">): RenderingCellBorders => {
+}: BorderProcessingArgs): RenderingCellBorders => {
   const originalBorders = pieceBorderLookup[pieceId][cellY][cellX];
 
   const processedBorders = processBorders(originalBorders, {
