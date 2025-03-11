@@ -128,7 +128,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
 
       {/* Placed Pieces Borders */}
       {isCovered &&
-        coveringCells.map((cell) => {
+        coveringCells.toReversed().map((cell) => {
           return (
             <CellBorder
               cell={cell}
