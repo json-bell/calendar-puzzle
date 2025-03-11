@@ -25,6 +25,10 @@ one for getting the CSS for the cell: b
 
 ## Story - Add rotations - clicking the selected cell should rotate the piece
 
+CAL-?: Reorganise window for desktop: board, menu, piece list
+
+CAL-?: Reorganise window for mobile: board, menu (possibly v small with bin icon), piece list
+
 CAL-?: See panels with multiple pieces placed
 
 CAL-?: Continue piece selection area styling -> rotatable & flippable, deselect by clicking in it, ...
