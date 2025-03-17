@@ -1,6 +1,51 @@
 # IN DEV
 
-CAL-9: Piece borders
+CAL-10: Layout for desktop: board, menu, piece list
+
+From 1140px: Board takes whole left side
+Scrolling track for pieces on the right
+Menu on the bottom
+
+# Backlog
+
+## Story - Add rotations - clicking the selected cell should rotate the piece
+
+CAL-?: Reorganise window for mobile: board, menu (possibly v small with bin icon), piece list
+
+CAL-?: See panels with multiple pieces placed
+
+CAL-?: Continue piece selection area styling -> rotatable & flippable, deselect by clicking in it, ...
+
+CAL-?: rotate pieces in the selection? Tbh mb not even
+
+CAL-?: add Icons for Flip (along top-left to bottom-right diagonal) & Clockwise-rotation, & hovering piece changes its colour? & Selecting changes border mb - or the other way around
+
+CAL-?: Generate Solutions
+
+CAL-?: Adds hints: clicking hint & selecting a piece correctly places it
+
+CAL-FAR: Add keyboard controls: 1 to 0 for piece selection
+
+CAL-FAR?: Add 2 choices of controls: Dragging or Clicking
+-> Drag start is selection, and then previewing happens when dragging over
+
+---
+
+### Story - Increase Coverage
+
+Reducer, mb just one big snapshot with specific state
+
+---
+
+### Story - Date selection and completion
+
+---
+
+---
+
+# DONE
+
+## CAL-9: Piece borders
 
 Goal: Have piece borders always visible on the board, even with overlaying tiles, so that you can see what is placed where when several pieces are there, as well as customisable coloring when it's selected (black when selected, piece colour when not)
 
@@ -20,43 +65,6 @@ one for getting the NEIGHBOURS that's almost a lookup object
 
 one for getting the CSS for the cell: b
 ----> need a NEW DIV bc the border radiuses will be _different_
-
-# Backlog
-
-## Story - Add rotations - clicking the selected cell should rotate the piece
-
-CAL-?: Reorganise window for desktop: board, menu, piece list
-
-CAL-?: Reorganise window for mobile: board, menu (possibly v small with bin icon), piece list
-
-CAL-?: See panels with multiple pieces placed
-
-CAL-?: Continue piece selection area styling -> rotatable & flippable, deselect by clicking in it, ...
-
-CAL-?: rotate pieces in the selection
-
-CAL-?: add Icons for Flip (along top-left to bottom-right diagonal) & Clockwise-rotation
-
-CAL-FAR?: Add 2 choices of controls: Dragging or Clicking
--> Drag start is selection, and then previewing happens when dragging over
-
-CAL-?: Add ability to throw panel away
-
----
-
-### Story - Increase Coverage
-
-Reducer, mb just one big snapshot with specific state
-
----
-
-### Story - Date selection and completion
-
----
-
----
-
-# DONE
 
 ## CAL-8: Create piece selection area
 

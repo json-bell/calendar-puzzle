@@ -1,21 +1,37 @@
 .gameArea {
   max-width: 100%;
+  max-height: calc(100% - 80px);
   display: grid;
-  grid-template-areas: "board menu" "pieces pieces";
-  grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto;
+  grid-template-areas: "board pieces" "controls pieces";
+  grid-template-columns: auto 1fr;
+  gap: 40px;
+  grid-template-rows: auto 1fr;
   height: calc(100vh - 2 * var(--root-padding));
+}
+
+.boardArea {
+  grid-area: board;
+  height: min-content;
+  width: min-content;
 }
 
 .piecesContainer {
   grid-area: pieces;
   padding: 20px;
-  border: 2px blue solid;
+  background-color: #223;
+  border: 2px white solid;
+  border-radius: 20px;
+
+  justify-self: center;
+  /* Desktop */
+  width: calc(3 * var(--panel-size));
   max-width: 100%;
-  overflow-y: hidden;
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 .gameControls {
-  padding: 24px;
-  width: fit-content;
+  grid-area: controls;
+  max-width: 100%;
+  height: 100%;
 }

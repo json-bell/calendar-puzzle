@@ -134,6 +134,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
               cell={cell}
               rotation={gamePieces[cell.pieceId].position?.rotation}
               flipped={gamePieces[cell.pieceId].position?.flipped}
+              isSelected={selectedPiece?.pieceId === cell.pieceId}
             />
           );
         })}

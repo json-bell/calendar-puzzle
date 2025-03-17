@@ -8,15 +8,16 @@ const getBorderStyles = (args: BorderProcessingArgs): CSSProperties => {
   const borders = getProcessedBorders(args);
 
   return {
-    borderColor: getPlacedPieceColour(pieceId),
-    borderWidth: "2px",
+    borderColor: args.isSelected ? "white" : getPlacedPieceColour(pieceId),
     borderRadius: borders.cornerRadii
       .map((bool) => (bool ? "4px" : "0px"))
       .join(" "),
-    borderLeftStyle: borders.left ? "solid" : "none",
-    borderRightStyle: borders.right ? "solid" : "none",
-    borderTopStyle: borders.top ? "solid" : "none",
-    borderBottomStyle: borders.bottom ? "solid" : "none",
+
+    // undefined borderStyle inherits from CSS
+    borderLeftStyle: borders.left ? undefined : "none",
+    borderRightStyle: borders.right ? undefined : "none",
+    borderTopStyle: borders.top ? undefined : "none",
+    borderBottomStyle: borders.bottom ? undefined : "none",
   };
 };
 
