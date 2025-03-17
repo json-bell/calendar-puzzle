@@ -1,4 +1,4 @@
-.deleteButton {
+.controlButton {
   background-color: #441600;
 
   display: flex;
@@ -20,4 +20,5 @@
   background-color: rgb(57, 57, 57);
   border: none;
   color: grey;
+  cursor: not-allowed;
 }

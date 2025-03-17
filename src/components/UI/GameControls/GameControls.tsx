@@ -1,4 +1,4 @@
-import DeletePieceButton from "../DeletePieceButton/DeletePieceButton";
+import DeletePieceButton from "../Button/SpecificButtons/DeletePieceButton";
 import styles from "./GameControls.module.css";
 
 const GameControls: React.FC = () => {
