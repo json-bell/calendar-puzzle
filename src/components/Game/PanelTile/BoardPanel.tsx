@@ -45,7 +45,10 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
         };
 
     return (
-      <button className={styles.panelWrapper} onClick={removePiece}>
+      <button
+        className={cx(styles.panelWrapper, styles.binButton)}
+        onClick={removePiece}
+      >
         <div
           className={cx(
             styles.panel,

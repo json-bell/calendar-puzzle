@@ -27,8 +27,18 @@
   inset: 4px;
   height: auto;
   width: auto;
-  border: white solid 2px;
+  border: white solid 1px;
   z-index: 0;
+}
+
+.binButton > :not(.wall) {
+  transition: ease 0.2s scale;
+}
+.binButton:has(.wall:not(.inactiveBinPanel)) {
+  cursor: pointer;
+}
+.binButton:hover:has(.wall:not(.inactiveBinPanel)) > :not(.wall) {
+  scale: 1.1;
 }
 
 .inactiveBinPanel {
