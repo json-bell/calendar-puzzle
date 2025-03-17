@@ -1,0 +1,13 @@
+.binWrapper {
+  height: 100%;
+  width: fit-content;
+  opacity: 1;
+  display: flex;
+  place-items: center center;
+  color: white;
+}
+
+.inactiveWrapper {
+  color: grey;
+  opacity: 0.5;
+}

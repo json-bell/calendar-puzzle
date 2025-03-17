@@ -23,6 +23,16 @@
 
 .wall {
   background-color: var(--wall-color);
+  position: absolute;
+  inset: 4px;
+  height: auto;
+  width: auto;
+  border: white solid 2px;
+  z-index: 0;
+}
+
+.inactiveBinPanel {
+  border-color: grey;
 }
 
 .piecePlaced {
