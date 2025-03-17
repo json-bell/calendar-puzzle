@@ -13,6 +13,11 @@ const PlacedCell: React.FC<PlacedCellProps> = ({
   isPanelSelected,
   pieceId,
 }) => {
+  const backgroundColor = ((): string => {
+    if (isCellSelected) return "var(--cell-color-selected-placed)";
+    return getPlacedPieceColour(pieceId);
+  })();
+
   return (
     <div
       className={cx(
@@ -21,13 +26,7 @@ const PlacedCell: React.FC<PlacedCellProps> = ({
         isPanelSelected && styles.placedSelectedPanel,
         isCellSelected && styles.placedSelectedCell
       )}
-      style={
-        isPanelSelected
-          ? {}
-          : {
-              backgroundColor: getPlacedPieceColour(pieceId),
-            }
-      }
+      style={{ backgroundColor }}
     />
   );
 };

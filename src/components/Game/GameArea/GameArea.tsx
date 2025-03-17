@@ -8,7 +8,9 @@ const GameArea = () => {
   return (
     <GameProvider>
       <section className={styles.gameArea}>
-        <BoardGrid />
+        <div className={styles.boardArea}>
+          <BoardGrid />
+        </div>
         <div className={styles.gameControls}>
           <GameControls />
         </div>

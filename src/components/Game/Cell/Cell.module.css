@@ -42,5 +42,6 @@
 }
 
 .placedSelectedCell {
+  /* TODO THIS IS WHAT IS REPLACED WITH THE ICON */
   background-color: var(--cell-color-selected-placed);
 }
