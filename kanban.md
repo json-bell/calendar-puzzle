@@ -1,31 +1,14 @@
 # IN DEV
 
-CAL-9: Piece borders
+CAL-10: Layout for desktop: board, menu, piece list
 
-Goal: Have piece borders always visible on the board, even with overlaying tiles, so that you can see what is placed where when several pieces are there, as well as customisable coloring when it's selected (black when selected, piece colour when not)
-
-Possible solutions:
-
-- util at the board level that renders borders when necessary
-- util at the cell level that checks if a border is necessary
-- util at the global level, lookup object checking for borders, and then some extra stuff for the rendering whenever panels appear
-  -> I prefer this in a lot of ways
-  -> top left, top right, bottom left, bottom right for the
-
-e.g. `pieceBorderLookup({rotation,flipped,pieceId,cellId})[top,bottom,left,right,TL,TR,BL,BR]`
-
--> TWO LAYERS
-
-one for getting the NEIGHBOURS that's almost a lookup object
-
-one for getting the CSS for the cell: b
-----> need a NEW DIV bc the border radiuses will be _different_
+From 1140px: Board takes whole left side
+Scrolling track for pieces on the right
+Menu on the bottom
 
 # Backlog
 
 ## Story - Add rotations - clicking the selected cell should rotate the piece
-
-CAL-?: Reorganise window for desktop: board, menu, piece list
 
 CAL-?: Reorganise window for mobile: board, menu (possibly v small with bin icon), piece list
 
@@ -57,6 +40,27 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-9: Piece borders
+
+Goal: Have piece borders always visible on the board, even with overlaying tiles, so that you can see what is placed where when several pieces are there, as well as customisable coloring when it's selected (black when selected, piece colour when not)
+
+Possible solutions:
+
+- util at the board level that renders borders when necessary
+- util at the cell level that checks if a border is necessary
+- util at the global level, lookup object checking for borders, and then some extra stuff for the rendering whenever panels appear
+  -> I prefer this in a lot of ways
+  -> top left, top right, bottom left, bottom right for the
+
+e.g. `pieceBorderLookup({rotation,flipped,pieceId,cellId})[top,bottom,left,right,TL,TR,BL,BR]`
+
+-> TWO LAYERS
+
+one for getting the NEIGHBOURS that's almost a lookup object
+
+one for getting the CSS for the cell: b
+----> need a NEW DIV bc the border radiuses will be _different_
 
 ## CAL-8: Create piece selection area
 
