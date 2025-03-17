@@ -1,16 +1,12 @@
 # IN DEV
 
-CAL-10: Layout for desktop: board, menu, piece list
+CAL-9: Reorganise window for mobile: board, menu (possibly v small with bin icon), piece list
 
-From 1140px: Board takes whole left side
-Scrolling track for pieces on the right
-Menu on the bottom
+Bin icon: in bottom right of screen on the "wall" cell
 
 # Backlog
 
 ## Story - Add rotations - clicking the selected cell should rotate the piece
-
-CAL-?: Reorganise window for mobile: board, menu (possibly v small with bin icon), piece list
 
 CAL-?: See panels with multiple pieces placed
 
@@ -44,6 +40,12 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-10: Layout for desktop: board, menu, piece list
+
+From 1140px: Board takes whole left side
+Scrolling track for pieces on the right
+Menu on the bottom
 
 ## CAL-9: Piece borders
 
