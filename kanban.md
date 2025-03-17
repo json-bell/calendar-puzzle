@@ -16,14 +16,18 @@ CAL-?: See panels with multiple pieces placed
 
 CAL-?: Continue piece selection area styling -> rotatable & flippable, deselect by clicking in it, ...
 
-CAL-?: rotate pieces in the selection
+CAL-?: rotate pieces in the selection? Tbh mb not even
 
-CAL-?: add Icons for Flip (along top-left to bottom-right diagonal) & Clockwise-rotation
+CAL-?: add Icons for Flip (along top-left to bottom-right diagonal) & Clockwise-rotation, & hovering piece changes its colour? & Selecting changes border mb - or the other way around
+
+CAL-?: Generate Solutions
+
+CAL-?: Adds hints: clicking hint & selecting a piece correctly places it
+
+CAL-FAR: Add keyboard controls: 1 to 0 for piece selection
 
 CAL-FAR?: Add 2 choices of controls: Dragging or Clicking
 -> Drag start is selection, and then previewing happens when dragging over
-
-CAL-?: Add ability to throw panel away
 
 ---
 
