@@ -20,4 +20,5 @@ export type PiecesBorderLookup = PieceBorders[];
 export type BorderProcessingArgs = {
   rotation: PieceRotation;
   flipped: PieceFlipped;
+  isSelected: boolean;
 } & Pick<CellType, "cellX" | "cellY" | "pieceId">;
