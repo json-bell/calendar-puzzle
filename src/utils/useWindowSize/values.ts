@@ -1,6 +1,6 @@
 import { WindowSize } from "./types";
 
-export const panelSizeGlobal: { [K in WindowSize]: number } = {
+export const panelSizeLookup: { [K in WindowSize]: number } = {
   large: 80,
   medium: 60,
   small: 48,

@@ -1,10 +1,18 @@
 import { CSSProperties } from "react";
 import { WindowSize } from "../utils/useWindowSize/types";
-import { panelSizeGlobal } from "../utils/useWindowSize/values";
+import { panelSizeLookup } from "../utils/useWindowSize/values";
 
-const sizeVariables = (sizeKey: WindowSize) => ({
-  "--panel-size": `${panelSizeGlobal[sizeKey]}px`,
-});
+export const getGlobalSizeVariables = (viewport: WindowSize) => {
+  return { panelSize: panelSizeLookup[viewport] };
+};
+
+const globalSizeVariables = (sizeKey: WindowSize) => {
+  const { panelSize } = getGlobalSizeVariables(sizeKey);
+
+  return {
+    "--panel-size": `${panelSize}px`,
+  };
+};
 
 const colourVariables = {
   "--wall-color": "rgb(0, 91, 91)",
@@ -28,7 +36,7 @@ export const globalCSSVariables: (opts: {
   sizeKey: WindowSize;
 }) => CSSProperties = ({ sizeKey }) =>
   ({
-    ...sizeVariables(sizeKey),
+    ...globalSizeVariables(sizeKey),
     ...colourVariables,
     ...zIndices,
   } as CSSProperties);
