@@ -1,45 +1,70 @@
 # IN DEV
 
-CAL-11: Reorganise window for mobile: board, menu (possibly v small with bin icon), piece list
-
-Bin icon: in bottom right of screen on the "wall" cell
-
 # Backlog
 
-## Story - Add rotations - clicking the selected cell should rotate the piece
+## Epic - good vs bad win
 
-CAL-?: See panels with multiple pieces placed
+Render when a piece has been flipped over, and mark win accordingly
 
-CAL-?: Continue piece selection area styling -> rotatable & flippable, deselect by clicking in it, ...
+## Epic - Detecting Win and choosing date
 
-CAL-?: rotate pieces in the selection? Tbh mb not even
+CAL-?: Create function that checks for a win for a specific date
 
-CAL-?: add Icons for Flip (along top-left to bottom-right diagonal) & Clockwise-rotation, & hovering piece changes its colour? & Selecting changes border mb - or the other way around
+CAL-?: Date selection - 3 fields Num/Day/Month? Or calendar? Both?
 
-CAL-?: Generate Solutions
+## Epic - Solutions and hints - needs to be able to detect win
+
+CAL-?: Create function that trial-and-error builds grid for a specific date
 
 CAL-?: Adds hints: clicking hint & selecting a piece correctly places it
 
-CAL-FAR: Add keyboard controls: 1 to 0 for piece selection
+## Epic - Progress saving - blocked by Detecting Win
 
-CAL-FAR?: Add 2 choices of controls: Dragging or Clicking
+CAL-?: Create backend that saves when you win, mb saves your solution?
+
+## Epic - Controls
+
+CAL-?: Icons for flipping/rotating according to what's happening next, (along top-left to bottom-right diagonal)
+
+CAL-?
+
+# Story - Dragging Controls
+
 -> Drag start is selection, and then previewing happens when dragging over
 
----
+# Story - Keyboard Controls
 
-### Story - Increase Coverage
+CAL-FAR: Add keyboard controls:
+
+- 1,2,3...,9,0 for piece selection
+- arrow keys/WASD for moving
+- R / F for rotating/flipping?
+- Add context for if keyboard's being used, and then toggle some NUMBERS on the pieces
+
+## Epic-less
+
+CAL-?: Accessibility: Colours currently determining a lot of the stuff
+
+CAL-?: See panels with multiple pieces placed
+? not sure what this means
+
+### Epic - Increase Coverage
 
 Reducer, mb just one big snapshot with specific state
 
 ---
 
-### Story - Date selection and completion
-
----
-
----
-
 # DONE
+
+## CAL-11: Adapt layout for mobile
+
+Board, piece list, menu (w/ small with bin icon)
+
+Defines sizing.md sizes (large 1140px+, medium 832px+, small 584px+, compact underneath that)
+
+lays out sizings & tweaks styles appropriately: panel, padding, and font sizes
+
+Bin icon: in bottom right of screen on the "wall" cell
 
 ## CAL-10: Layout for desktop: board, menu, piece list
 
