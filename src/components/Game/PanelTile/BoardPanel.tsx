@@ -9,6 +9,7 @@ import { Actions } from "../../../context/Game/types";
 import PiecePreview from "../PuzzlePiece/PiecePreview";
 import PlacedCell from "../Cell/PlacedCell";
 import CellBorder from "../CellBorder/CellBorder";
+import BinButton from "../../UI/Buttons/BinButton/BinButton";
 
 export interface PanelProps {
   panel: Panel;
@@ -28,8 +29,37 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
 
   const dispatch = useGameDispatch();
 
-  if (panel.type === "wall")
-    return <div className={cx(styles.panel, styles.wall)} />;
+  if (panel.type === "wall") {
+    // Bin button
+    const inactive = !(
+      selectedPiece && gamePieces[selectedPiece?.pieceId].position
+    );
+
+    const removePiece = inactive
+      ? undefined
+      : () => {
+          dispatch({
+            type: Actions.REMOVE_PIECE,
+            payload: { piece: selectedPiece },
+          });
+        };
+
+    return (
+      <button
+        className={cx(styles.panelWrapper, styles.binButton)}
+        onClick={removePiece}
+      >
+        <div
+          className={cx(
+            styles.panel,
+            styles.wall,
+            inactive && styles.inactiveBinPanel
+          )}
+        />
+        <BinButton inactive={inactive} />
+      </button>
+    );
+  }
 
   const { coveringCells } = board[panel.panelY][panel.panelX];
   const coveringSlugs = coveringCells.map(({ cellSlug }) => cellSlug);

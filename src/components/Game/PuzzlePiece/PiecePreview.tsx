@@ -2,10 +2,11 @@ import styles from "./PuzzlePiece.module.css";
 import EmptyCell from "../Cell/EmptyCell";
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import PreviewedCell from "../Cell/PreviewedCell";
-import { panelSizeGlobal } from "../../../global/globalVariables";
 import useGameState from "../../../context/Game/state";
 import getRotatedPiece from "../../../puzzle/rotations/getRotatedPiece";
 import { getRotatedCellCoords } from "../../../puzzle/rotations/getRotatedCellCoords";
+import { getGlobalSizeVariables } from "../../../global/globalVariables";
+import { useViewport } from "../../../utils/useWindowSize/windowSizeContext";
 
 export interface PiecePreviewProps {
   _: never;
@@ -15,6 +16,7 @@ const PiecePreview: React.FC = () => {
   const {
     userSelection: { selectedCell, selectedPiece, rotation, flipped },
   } = useGameState();
+  const viewport = useViewport();
 
   if (!selectedPiece) return null;
 
@@ -26,12 +28,14 @@ const PiecePreview: React.FC = () => {
     flipped,
   });
 
+  const { panelSize } = getGlobalSizeVariables(viewport);
+
   return (
     <div
       className={cx(styles.piecePreview)}
       style={{
-        left: `-${rotatedCellX * panelSizeGlobal}px`,
-        top: `-${rotatedCellY * panelSizeGlobal}px`,
+        left: `-${rotatedCellX * panelSize}px`,
+        top: `-${rotatedCellY * panelSize}px`,
       }}
     >
       <div
