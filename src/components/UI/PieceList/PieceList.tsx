@@ -28,7 +28,12 @@ const PieceList: React.FC = () => {
       )}
     >
       {processedGamePieces.map(({ piece, position }) => (
-        <PuzzlePiece piece={piece} key={piece.pieceId} isPlaced={!!position} />
+        <PuzzlePiece
+          piece={piece}
+          key={piece.pieceId}
+          isPlaced={!!position}
+          rotateNonSquare={trackDirection === "horizontal"}
+        />
       ))}
     </div>
   );
