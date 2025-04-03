@@ -4,6 +4,7 @@
   justify-content: center;
   position: relative;
   padding: 0;
+  font-size: var(--panel-font-size);
 }
 
 .panel {
@@ -14,8 +15,11 @@
   aspect-ratio: 1/1;
   background-color: var(--panel-color);
   box-sizing: border-box;
-  border: 4px var(--wall-color) solid;
+  border: var(--panel-border) var(--wall-color) solid;
   border-radius: 12px;
+}
+.numberPanel {
+  font-size: 1.25em;
 }
 .previewedPanel {
   background-color: var(--panel-color-previewed);

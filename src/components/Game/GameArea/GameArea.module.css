@@ -20,6 +20,11 @@
   place-items: center;
 }
 .smallLayout {
+  grid-template-areas: "board pieces" "controls controls";
+  grid-template-columns: auto;
+  grid-template-rows: calc(6 * var(--panel-size) + 32px) auto;
+  gap: 40px;
+  place-items: center;
 }
 .compactLayout {
 }
@@ -38,7 +43,15 @@
   border-radius: 20px;
 
   justify-self: center;
-  outline: red solid 2px; /* temp */
+  border: red solid 2px; /* temp */ /* ? */
+}
+
+.largeLayout > .piecesContainer {
+  /* Vertical Band */
+  width: calc(3 * var(--panel-size));
+  max-width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 .mediumLayout > .piecesContainer {
@@ -50,11 +63,12 @@
   overflow-x: auto;
 }
 
-.largeLayout > .piecesContainer {
+.smallLayout > .piecesContainer {
   /* Vertical Band */
   width: calc(3 * var(--panel-size));
   max-width: 100%;
-  max-height: 100%;
+  padding: 12px;
+  max-height: calc(100% - 2 * 12px);
   overflow-y: auto;
 }
 

@@ -1,10 +1,9 @@
 .pieceListContainer {
   display: flex;
-  gap: 60px;
+  gap: calc(0.75 * var(--panel-size));
   flex-wrap: wrap;
   justify-content: safe center;
   align-items: safe center;
-  outline: green solid 2px; /* temp */
 }
 
 .horizontalScroll {

@@ -1,10 +1,6 @@
-import { createContext, ReactNode, useContext } from "react";
-import { WindowSize } from "./types";
+import { ReactNode } from "react";
 import useWindowSize from "./useWindowSize";
-
-export const ViewportContext = createContext<WindowSize>("large");
-
-export const useViewport = () => useContext(ViewportContext);
+import { ViewportContext } from "./windowSizeContext";
 
 export const ViewportProvider: React.FC<{ children: ReactNode }> = ({
   children,

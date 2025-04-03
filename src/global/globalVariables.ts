@@ -1,16 +1,26 @@
 import { CSSProperties } from "react";
 import { WindowSize } from "../utils/useWindowSize/types";
-import { panelSizeLookup } from "../utils/useWindowSize/values";
+import {
+  panelFontSizeByViewport,
+  panelBorderByViewport,
+  panelSizeByViewport,
+} from "./sizesByViewport";
 
 export const getGlobalSizeVariables = (viewport: WindowSize) => {
-  return { panelSize: panelSizeLookup[viewport] };
+  return {
+    panelSize: panelSizeByViewport[viewport],
+    panelBorder: panelBorderByViewport[viewport],
+    fontSize: panelFontSizeByViewport[viewport],
+  };
 };
 
 const globalSizeVariables = (sizeKey: WindowSize) => {
-  const { panelSize } = getGlobalSizeVariables(sizeKey);
+  const { panelSize, panelBorder, fontSize } = getGlobalSizeVariables(sizeKey);
 
   return {
     "--panel-size": `${panelSize}px`,
+    "--panel-border": `${panelBorder}px`,
+    "--panel-font-size": `${fontSize}em`,
   };
 };
 
