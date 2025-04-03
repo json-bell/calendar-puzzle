@@ -1,6 +1,6 @@
 # IN DEV
 
-CAL-9: Reorganise window for mobile: board, menu (possibly v small with bin icon), piece list
+CAL-11: Reorganise window for mobile: board, menu (possibly v small with bin icon), piece list
 
 Bin icon: in bottom right of screen on the "wall" cell
 
