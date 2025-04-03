@@ -1,9 +1,18 @@
 .pieceListContainer {
   display: flex;
-  gap: 80px;
-  width: calc(3 * var(--panel-size));
-  height: auto;
+  gap: 60px;
   flex-wrap: wrap;
   justify-content: safe center;
   align-items: safe center;
+  border: green solid 2px; /* temp */
+}
+
+.horizontalScroll {
+  height: calc(3 * var(--panel-size));
+  width: max-content;
+  flex-direction: column;
+}
+.verticalScroll {
+  width: calc(3 * var(--panel-size));
+  height: max-content;
 }
