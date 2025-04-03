@@ -1,6 +1,9 @@
 import useGameState from "../../../context/Game/state";
+import cx from "../../../utils/concatClassNames/concatClassNames";
+import { useViewport } from "../../../utils/useWindowSize/windowSizeContext";
 import PuzzlePiece from "../../Game/PuzzlePiece/PuzzlePiece";
 import styles from "./PieceList.module.css";
+import { pieceListLayoutLookup } from "./utils";
 
 const PieceList: React.FC = () => {
   const { gamePieces } = useGameState();
@@ -14,10 +17,23 @@ const PieceList: React.FC = () => {
     }
   );
 
+  const viewport = useViewport();
+  const trackDirection = pieceListLayoutLookup[viewport];
+
   return (
-    <div className={styles.pieceListContainer}>
+    <div
+      className={cx(
+        styles.pieceListContainer,
+        styles[`${trackDirection}Scroll`]
+      )}
+    >
       {processedGamePieces.map(({ piece, position }) => (
-        <PuzzlePiece piece={piece} key={piece.pieceId} isPlaced={!!position} />
+        <PuzzlePiece
+          piece={piece}
+          key={piece.pieceId}
+          isPlaced={!!position}
+          rotateNonSquare={trackDirection === "horizontal"}
+        />
       ))}
     </div>
   );
