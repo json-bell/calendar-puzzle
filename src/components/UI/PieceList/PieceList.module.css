@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   justify-content: safe center;
   align-items: safe center;
-  border: green solid 2px; /* temp */
+  outline: green solid 2px; /* temp */
 }
 
 .horizontalScroll {
