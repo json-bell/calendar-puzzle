@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+# Daily Calendar Puzzle
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React web app, where the user solves a puzzle based on the current date.
 
-Currently, two official plugins are available:
+It is still in the development stage, so visuals and colour choices may still be angled towards more easily knowing myself when elements are interacted with, as opposed to appropriate colour and responsive interaction choices for a project further into production.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The puzzle is hosted on GitHub pages, with the live version here: https://json-bell.github.io/calendar-puzzle/
 
-## Expanding the ESLint configuration
+It replicates a physical puzzle designed by @the_puzzle_guy (Instagram). I take no credit for the original design of the puzzle and no copyright infringement is intend - this project is a portfolio piece only.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Local Hosting
 
-- Configure the top-level `parserOptions` property like this:
+The project can also be hosted locally:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+# Clone the repo
+git clone https://github.com/json-bell/calendar-puzzle
+
+# Navigate into the project folder
+cd calendar-puzzle
+
+# Install dependencies
+yarn install
+
+# Start the development server
+yarn dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+# Features
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Intuitive User Interaction
+- Detailed game logic
+- Responsive layout
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+# Tech stack
+
+The main technologies used are Typescript, React and CSS modules.
+
+One of the goals of this project was to see what I could complete from only a basic framework. I decided to limit the production dependencies where possible, so as seen in the `package.json` these are limited to `react` and `react-dom`, and used Vite to set up the skeleton of the project.
+
+On the testing side, I primarily used `jest` and tested user interactions with `@testing-library/user-event`.
+
+Hosting is through GitHub pages, with CI/CD via GitHub Workflows along with checks using `husky`.
+
+With ESLint and `lint-staged` called in Husky hooks, I keep the code clean and maintainable. I also ensure to separate concerns by keeping the game logic distinct from the user interactions, through thought out utils and a React Reducer controlling reloads of state efficiently.
