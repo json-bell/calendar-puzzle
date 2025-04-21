@@ -1,5 +1,9 @@
 # IN DEV
 
+## CAL-12 - add icon indicating flipping or rotating a piece
+
+When a piece is placed and selected, you can rotate / flip it - make this visible on the selected cell.
+
 # Backlog
 
 ## Epic - good vs bad win
