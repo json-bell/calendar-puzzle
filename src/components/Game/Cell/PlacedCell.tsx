@@ -1,5 +1,5 @@
 import cx from "../../../utils/concatClassNames/concatClassNames";
-import RotateIcon from "../../Icons/RotateIcon";
+import OrientationActionIcon from "../../Icons/SelectedCellControlIcon";
 import styles from "./Cell.module.css";
 import getPlacedPieceColour from "./getPlacedPieceColour";
 
@@ -19,13 +19,11 @@ const PlacedCell: React.FC<PlacedCellProps> = ({
     return getPlacedPieceColour(pieceId);
   })();
 
-  const getInnerIconElement = () => {
-    if (isCellSelected) return <RotateIcon />;
-  };
-
-  const innerIconElement = (
-    <div className={cx(styles.cellControlIcon)}>{getInnerIconElement()}</div>
-  );
+  const innerIconElement = isCellSelected ? (
+    <div className={cx(styles.cellControlIcon)}>
+      <OrientationActionIcon pieceId={pieceId} />
+    </div>
+  ) : null;
 
   return (
     <>
