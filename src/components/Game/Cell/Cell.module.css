@@ -45,3 +45,17 @@
   /* TODO THIS IS WHAT IS REPLACED WITH THE ICON */
   background-color: var(--cell-color-selected-placed);
 }
+
+.cellControlIcon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  opacity: 0.8;
+  scale: 0.84;
+  transition: scale 0.3s ease;
+}
+
+:hover > .cellControlIcon {
+  scale: 1;
+}
