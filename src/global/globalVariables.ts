@@ -4,6 +4,7 @@ import {
   panelFontSizeByViewport,
   panelBorderByViewport,
   panelSizeByViewport,
+  boardWrapperByViewport,
 } from "./sizesByViewport";
 
 export const getGlobalSizeVariables = (viewport: WindowSize) => {
@@ -11,16 +12,19 @@ export const getGlobalSizeVariables = (viewport: WindowSize) => {
     panelSize: panelSizeByViewport[viewport],
     panelBorder: panelBorderByViewport[viewport],
     fontSize: panelFontSizeByViewport[viewport],
+    boardWrapper: boardWrapperByViewport[viewport],
   };
 };
 
 const globalSizeVariables = (sizeKey: WindowSize) => {
-  const { panelSize, panelBorder, fontSize } = getGlobalSizeVariables(sizeKey);
+  const { panelSize, panelBorder, fontSize, boardWrapper } =
+    getGlobalSizeVariables(sizeKey);
 
   return {
     "--panel-size": `${panelSize}px`,
     "--panel-border": `${panelBorder}px`,
     "--panel-font-size": `${fontSize}em`,
+    "--board-wrapper-thickness": `${boardWrapper}`,
   };
 };
 

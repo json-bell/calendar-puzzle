@@ -16,7 +16,7 @@
   background-color: var(--panel-color);
   box-sizing: border-box;
   border: var(--panel-border) var(--wall-color) solid;
-  border-radius: 12px;
+  border-radius: 15%;
 }
 .numberPanel {
   font-size: 1.25em;

@@ -17,7 +17,7 @@ const BinButton: React.FC<BinButtonProps> = ({ inactive }) => {
       className={cx(styles.binWrapper, inactive && styles.inactiveWrapper)}
       style={{ zIndex: 1 }}
     >
-      <BinIcon width={0.75 * panelSize} />
+      <BinIcon width={0.8 * panelSize - 4} />
     </div>
   );
 };

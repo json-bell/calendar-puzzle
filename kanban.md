@@ -1,8 +1,8 @@
 # IN DEV
 
-## CAL-12 - add icon indicating flipping or rotating a piece
+## CAL-14: Display a specific target date
 
-When a piece is placed and selected, you can rotate / flip it - make this visible on the selected cell.
+Visually display a specific date, and set up before / after buttons to change the date visually
 
 # Backlog
 
@@ -59,6 +59,14 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-13: compact layout and style other layouts
+
+Adds layout for compact (smallest size) and adjusts other layouts
+
+## CAL-12: add icon indicating flipping or rotating a piece
+
+When a piece is placed and selected, you can rotate / flip it - make this visible on the selected cell.
 
 ## CAL-11: Adapt layout for mobile
 

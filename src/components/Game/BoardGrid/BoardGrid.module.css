@@ -1,6 +1,6 @@
 .boardWrapper {
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: calc(var(--board-wrapper-thickness) * 0.5px);
+  padding: calc(var(--board-wrapper-thickness) * 1px);
   background-color: var(--wall-color);
   width: fit-content;
 }
