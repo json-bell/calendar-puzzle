@@ -1,13 +1,14 @@
 interface FlipIconProps {
   diagonal: "main" | "anti";
+  width: number;
 }
 
-const FlipIcon: React.FC<FlipIconProps> = ({ diagonal }) => {
+const FlipIcon: React.FC<FlipIconProps> = ({ diagonal, width }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="80px"
-      height="80px"
+      width={`${width}px`}
+      height={`${width}px`}
       viewBox="0 0 24 24"
       fill="none"
       style={{ rotate: diagonal === "anti" ? "225deg" : "-45deg" }}

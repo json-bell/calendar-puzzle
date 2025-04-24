@@ -7,11 +7,15 @@
 
   cursor: pointer;
 
-  width: 240px;
-  height: 60px;
-  border-radius: 16px;
+  min-width: calc(2 * var(--panel-size));
+  width: fit-content;
+  max-width: calc(3 * var(--panel-size));
+
+  height: var(--panel-size);
+  border-radius: calc(1 / 5 * var(--panel-size));
   padding: 8px;
   border: 4px solid sandybrown;
+  font-size: var(--panel-font-size);
   box-sizing: border-box;
 }
 

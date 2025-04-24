@@ -9,7 +9,7 @@ const PreviewedCell: React.FC<PreviewedCellProps> = ({ pieceId }) => (
     className={cx(styles.generalCell, styles.previewedCell)}
     style={{
       backgroundColor: getPlacedPieceColour(pieceId),
-      border: "white dashed 2px",
+      border: "white dotted calc(1 / 2 * var(--panel-border))",
     }}
   />
 );

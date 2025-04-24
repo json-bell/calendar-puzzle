@@ -6,5 +6,5 @@ export const lowerBreakpoints: Record<
 > = {
   large: 1140,
   medium: 832,
-  small: 584,
+  small: 660,
 };

@@ -1,8 +1,10 @@
 .gameControlsContainer {
-  height: 100%;
   width: 100%;
+  padding: calc(1 / 5 * var(--panel-size)) 8px calc(1 / 4 * var(--panel-size));
+  box-sizing: border-box;
+
   background-color: rgb(94, 0, 94);
-  border-radius: 20px;
+  border-radius: calc(1 / 4 * var(--panel-size));
 }
 
 .buttonList {
