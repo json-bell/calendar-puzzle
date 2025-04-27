@@ -24,6 +24,11 @@
 .previewedPanel {
   background-color: var(--panel-color-previewed);
 }
+.challengePanel {
+  background: var(--panel-challenge-background);
+  color: var(--font-challenge-color);
+  text-shadow: 2px 2px 4px var(--font-challenge-color);
+}
 
 .wall {
   background-color: var(--wall-color);
