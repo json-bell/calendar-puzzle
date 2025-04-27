@@ -2,6 +2,9 @@ import {
   useChallengeDate,
   useChallengeDateDispatch,
 } from "../../../context/ChosenDate/ChallengeDateContext";
+import useGameDispatch from "../../../context/Game/dispatch";
+import useGameState from "../../../context/Game/state";
+import { Actions } from "../../../context/Game/types";
 import { useViewport } from "../../../utils/useWindowSize/windowSizeContext";
 import ControlButton from "../ControlButtons/ControlButton";
 import DeletePieceButton from "../ControlButtons/SpecificButtons/DeletePieceButton";
@@ -11,6 +14,8 @@ const GameControls: React.FC = () => {
   const viewport = useViewport();
   const { date } = useChallengeDate();
   const { incrementChallengeDate } = useChallengeDateDispatch();
+  const { gamePieces } = useGameState();
+  const dispatch = useGameDispatch();
 
   return (
     <div className={styles.gameControlsContainer}>
@@ -28,7 +33,11 @@ const GameControls: React.FC = () => {
           onClick={() => incrementChallengeDate(-1)}
         />
         <ControlButton text="Hint" onClick={undefined} inactive />
-        <ControlButton text="Clear All" onClick={undefined} inactive />
+        <ControlButton
+          text="Clear All"
+          onClick={() => dispatch({ type: Actions.REMOVE_ALL_PIECES })}
+          inactive={gamePieces.filter(({ position }) => position).length === 0}
+        />
       </div>
     </div>
   );

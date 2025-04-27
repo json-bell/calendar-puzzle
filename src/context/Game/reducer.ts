@@ -7,7 +7,7 @@ import {
   getRotatedUserSelection,
   shiftPieceToSelectedCell,
 } from "./utils/reducerUtils";
-import { initialGameState } from "./state";
+import { initialGameState, noUserSelection } from "./state";
 
 const gameReducer: Reducer<Game, GameAction> = (state, action) => {
   switch (action.type) {
@@ -56,7 +56,16 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
         ...state,
         gamePieces,
         board,
-        userSelection: initialGameState.userSelection,
+        userSelection: noUserSelection,
+      };
+    }
+    case Actions.REMOVE_ALL_PIECES: {
+      const { gamePieces, board, userSelection } = initialGameState;
+      return {
+        ...state,
+        gamePieces,
+        board,
+        userSelection,
       };
     }
     case Actions.PLACE_PIECE: {
