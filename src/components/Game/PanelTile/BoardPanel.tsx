@@ -10,6 +10,7 @@ import PiecePreview from "../PuzzlePiece/PiecePreview";
 import PlacedCell from "../Cell/PlacedCell";
 import CellBorder from "../CellBorder/CellBorder";
 import BinButton from "../../UI/Buttons/BinButton/BinButton";
+import { useChallengeDate } from "../../../context/ChosenDate/ChallengeDateContext";
 
 export interface PanelProps {
   panel: Panel;
@@ -26,6 +27,8 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
   const { userSelection, board, gamePieces } = useGameState();
   const { selectedCell, selectedPiece } = userSelection;
   const [isPreviewing, setIsPreviewing] = useState(false);
+  const { getIsChallengeValue } = useChallengeDate();
+  const isChallengeValue = getIsChallengeValue(panel.content);
 
   const dispatch = useGameDispatch();
 
@@ -138,6 +141,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
           styles.panel,
           panel.type === "dayNumber" && styles.numberPanel,
           isPreviewing && selectedPiece && styles.previewedPanel,
+          isChallengeValue && styles.challengePanel,
           isCovered && styles.coveredPanel
         )}
       >

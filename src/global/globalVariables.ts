@@ -38,7 +38,10 @@ const colourVariables = {
   "--piece-color-preview": "yellow",
   "--piece-color-placed": "white",
   "--piece-color-selected-placed": "black",
-  "--panel-color": "#321",
+  "--panel-color": "#222",
+  "--panel-challenge-background":
+    "radial-gradient(ellipse 60% 50% at 50% 50%, #aaa 0%, #999 50%, var(--panel-color) 110%)",
+  "--font-challenge-color": "#222",
   "--panel-color-previewed": "grey",
 };
 
