@@ -1,9 +1,9 @@
-interface FlipIconProps {
-  diagonal: "main" | "anti";
+export interface FlipIconProps {
+  mirror: "vertically" | "horizontally";
   width: number;
 }
 
-const FlipIcon: React.FC<FlipIconProps> = ({ diagonal, width }) => {
+const FlipIcon: React.FC<FlipIconProps> = ({ mirror, width }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +11,7 @@ const FlipIcon: React.FC<FlipIconProps> = ({ diagonal, width }) => {
       height={`${width}px`}
       viewBox="0 0 24 24"
       fill="none"
-      style={{ rotate: diagonal === "anti" ? "225deg" : "-45deg" }}
+      style={{ rotate: mirror === "vertically" ? "0deg" : "90deg" }}
     >
       <path
         d="M12 3H11C7.22876 3 5.34315 3 4.17157 4.17157C3 5.34315 3 7.22876 3 11V13C3 16.7712 3 18.6569 4.17157 19.8284C5.34315 21 7.22876 21 11 21H12"

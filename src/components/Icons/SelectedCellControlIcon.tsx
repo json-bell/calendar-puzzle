@@ -2,7 +2,7 @@ import useGameState from "../../context/Game/state";
 import { panelSizeByViewport } from "../../global/sizesByViewport";
 import uniqueOrientations from "../../puzzle/rotations/uniqueOrientations";
 import { useViewport } from "../../utils/useWindowSize/windowSizeContext";
-import FlipIcon from "./FlipIcon";
+import FlipIcon, { FlipIconProps } from "./FlipIcon";
 import RotateIcon from "./RotateIcon";
 
 type OrientationActionIconProps = {
@@ -22,14 +22,15 @@ const OrientationActionIcon: React.FC<OrientationActionIconProps> = ({
 
   if (uniqueFlips === 1 || !currentPiece.position)
     return <RotateIcon width={panelSize} />;
-  if (currentPiece.position.rotation + 1 === uniqueRotations) {
-    const diagonal =
-      uniqueRotations === 4
-        ? "main"
-        : currentPiece.position.flipped === 1
-        ? "anti"
-        : "main";
-    return <FlipIcon diagonal={diagonal} width={panelSize} />;
+
+  const { rotation, flipped } = currentPiece.position;
+  if (
+    (rotation + 1 === uniqueRotations && flipped === 0) ||
+    (rotation === 0 && flipped === 1)
+  ) {
+    const mirror: FlipIconProps["mirror"] =
+      uniqueRotations === 2 && flipped === 1 ? "horizontally" : "vertically";
+    return <FlipIcon mirror={mirror} width={panelSize} />;
   }
   return <RotateIcon width={panelSize} />;
 };
