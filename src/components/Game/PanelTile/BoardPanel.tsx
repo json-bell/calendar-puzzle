@@ -27,8 +27,8 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
   const { userSelection, board, gamePieces } = useGameState();
   const { selectedCell, selectedPiece } = userSelection;
   const [isPreviewing, setIsPreviewing] = useState(false);
-  const { getIsChallengeValue } = useChallengeDate();
-  const isChallengeValue = getIsChallengeValue(panel.content);
+  const { checkIsChallengeValue } = useChallengeDate();
+  const isChallengeValue = checkIsChallengeValue(panel.content);
 
   const dispatch = useGameDispatch();
 

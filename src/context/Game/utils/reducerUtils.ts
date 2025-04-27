@@ -1,33 +1,12 @@
-import uniqueOrientations from "../../../puzzle/rotations/uniqueOrientations";
-import {
-  GamePiece,
-  PieceFlipped,
-  PieceRotation,
-  UserSelection,
-} from "../../../puzzle/types";
-
-const increaseRotation = (
-  input: { rotation: PieceRotation; flipped: PieceFlipped },
-  pieceId: number
-) => {
-  const { uniqueFlips, uniqueRotations } = uniqueOrientations[pieceId];
-  const rotation = ((input.rotation + 1) % uniqueRotations) as PieceRotation;
-  const didRotationRollOver = rotation === 0;
-  const flipped =
-    uniqueFlips === 1
-      ? 0
-      : ((didRotationRollOver
-          ? (input.flipped + 1) % 2
-          : input.flipped) as PieceFlipped);
-  return { rotation, flipped };
-};
+import { GamePiece, UserSelection } from "../../../puzzle/types";
+import increaseOrientation from "./increaseOrientation";
 
 export const getRotatedUserSelection = (
   userSelection: UserSelection,
   pieceId: number
 ): UserSelection => {
   if (!userSelection.selectedCell) return userSelection;
-  const { rotation, flipped } = increaseRotation(userSelection, pieceId);
+  const { rotation, flipped } = increaseOrientation(userSelection, pieceId);
 
   return { ...userSelection, rotation, flipped };
 };
@@ -35,7 +14,7 @@ export const getRotatedUserSelection = (
 export const getRotatedPlacedPiece = (gamePiece: GamePiece): GamePiece => {
   const { position } = gamePiece;
   if (!position) return gamePiece;
-  const { rotation, flipped } = increaseRotation(
+  const { rotation, flipped } = increaseOrientation(
     position,
     gamePiece.piece.pieceId
   );

@@ -22,14 +22,13 @@ const OrientationActionIcon: React.FC<OrientationActionIconProps> = ({
 
   if (uniqueFlips === 1 || !currentPiece.position)
     return <RotateIcon width={panelSize} />;
-  if (currentPiece.position.rotation + 1 === uniqueRotations) {
-    const diagonal =
-      uniqueRotations === 4
-        ? "main"
-        : currentPiece.position.flipped === 1
-        ? "anti"
-        : "main";
-    return <FlipIcon diagonal={diagonal} width={panelSize} />;
+
+  const { rotation, flipped } = currentPiece.position;
+  if (
+    (rotation + 1 === uniqueRotations && flipped === 0) ||
+    (rotation === 0 && flipped === 1)
+  ) {
+    return <FlipIcon width={panelSize} />;
   }
   return <RotateIcon width={panelSize} />;
 };

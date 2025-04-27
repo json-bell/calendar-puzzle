@@ -1,8 +1,10 @@
 # IN DEV
 
-## CAL-14: Display a specific target date
+## CAL-15: Modify rotation order
 
-Visually display a specific date, and set up before / after buttons to change the date visually
+Right now the rotations look odd, with flipping along an odd choice of diagonal.
+
+Modify the rotation/flipping cycle to be less intuitive
 
 # Backlog
 
@@ -59,6 +61,10 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-14: Display a specific target date
+
+Visually display a specific date, and set up before / after buttons to change the date visually
 
 ## CAL-13: compact layout and style other layouts
 

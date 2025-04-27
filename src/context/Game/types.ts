@@ -9,6 +9,7 @@ export enum Actions {
   ROTATE_PIECE = "ROTATE_PIECE",
   ROTATE_SELECTED_PIECE = "ROTATE_SELECTED_PIECE",
   REMOVE_PIECE = "REMOVE_PIECE",
+  REMOVE_ALL_PIECES = "REMOVE_ALL_PIECES",
 }
 
 type Payload = {
@@ -32,4 +33,5 @@ export type GameAction = { type: Actions; payload?: Partial<Payload> } & (
   | { type: Actions.ROTATE_PIECE /* ,...Details */ }
   | { type: Actions.ROTATE_SELECTED_PIECE; payload: Pick<Payload, "cell"> }
   | { type: Actions.REMOVE_PIECE; payload: Pick<Payload, "piece"> }
+  | { type: Actions.REMOVE_ALL_PIECES; payload?: never }
 );
