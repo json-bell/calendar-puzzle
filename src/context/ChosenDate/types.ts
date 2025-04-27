@@ -6,5 +6,5 @@ export type ChallengeDate = {
   dayName: DayName;
   dayNumber: DayNumber;
   month: Month;
-  getIsChallengeValue: (value: PanelContent) => boolean;
+  checkIsChallengeValue: (value: PanelContent) => boolean;
 };

@@ -11,7 +11,7 @@ const getChallengeDate = (date: Date): ChallengeDate => {
   const dayNumber = date.getDate() as DayNumber;
   const month = months[date.getMonth()];
 
-  const getIsChallengeValue = (value: PanelContent) => {
+  const checkIsChallengeValue = (value: PanelContent) => {
     if (value === dayName || value === dayNumber || value === month)
       return true;
     return false;
@@ -22,7 +22,7 @@ const getChallengeDate = (date: Date): ChallengeDate => {
     dayName,
     dayNumber,
     month,
-    getIsChallengeValue,
+    checkIsChallengeValue,
   };
 };
 

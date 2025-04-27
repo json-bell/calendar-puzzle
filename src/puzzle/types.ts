@@ -10,6 +10,11 @@ export type Board = BoardShape<PanelDetails>;
 export type PieceRotation = 0 | 1 | 2 | 3;
 export type PieceFlipped = 0 | 1;
 
+export type PieceOrientation = {
+  rotation: PieceRotation;
+  flipped: PieceFlipped;
+};
+
 export type PiecePosition = {
   cell: CellType;
   rotation: PieceRotation;
