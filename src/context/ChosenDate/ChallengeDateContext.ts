@@ -8,8 +8,20 @@ export const ChallengeDateContext = createContext<ChallengeDate>(
 
 export const useChallengeDate = () => useContext(ChallengeDateContext);
 
-export const ChallengeDateDispatchContext = createContext<
-  Dispatch<SetStateAction<ChallengeDate>>
->(() => {
-  console.info("Dispatch was used without initialising a value");
-});
+type ChallengeDateDispatch = {
+  setChallengeDate: Dispatch<SetStateAction<Date>>;
+  incrementChallengeDate: (increment: number) => void;
+};
+
+export const ChallengeDateDispatchContext =
+  createContext<ChallengeDateDispatch>({
+    incrementChallengeDate: () => {
+      console.info("incrementChallengeDate was used with default value");
+    },
+    setChallengeDate: () => {
+      console.info("setChallengeDate was used with default value");
+    },
+  });
+
+export const useChallengeDateDispatch = () =>
+  useContext(ChallengeDateDispatchContext);

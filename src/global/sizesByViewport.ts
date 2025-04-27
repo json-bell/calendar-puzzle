@@ -26,5 +26,5 @@ export const panelFontSizeByViewport: ViewportLookup<number> = {
   large: 1.6,
   medium: 1.6,
   small: 0.8,
-  compact: 0.75,
+  compact: 0.64,
 };
