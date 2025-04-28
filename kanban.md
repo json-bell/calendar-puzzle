@@ -1,10 +1,6 @@
 # IN DEV
 
-## CAL-15: Modify rotation order
-
-Right now the rotations look odd, with flipping along an odd choice of diagonal.
-
-Modify the rotation/flipping cycle to be less intuitive
+CAL-16: Create function that checks for a win for a specific date
 
 # Backlog
 
@@ -13,8 +9,6 @@ Modify the rotation/flipping cycle to be less intuitive
 Render when a piece has been flipped over, and mark win accordingly
 
 ## Epic - Detecting Win and choosing date
-
-CAL-?: Create function that checks for a win for a specific date
 
 CAL-?: Date selection - 3 fields Num/Day/Month? Or calendar? Both?
 
@@ -61,6 +55,12 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-15: Modify rotation order
+
+Right now the rotations look odd, with flipping along an odd choice of diagonal.
+
+Modify the rotation/flipping cycle to be less intuitive
 
 ## CAL-14: Display a specific target date
 
