@@ -4,6 +4,10 @@ CAL-16: Create function that checks for a win for a specific date
 
 # Backlog
 
+CAL-?: Deselect all pieces - button & dispatch
+
+CAL-?: Style controls menu
+
 ## Epic - good vs bad win
 
 Render when a piece has been flipped over, and mark win accordingly
