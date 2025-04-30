@@ -1,9 +1,17 @@
-import { ReactNode, useReducer } from "react";
+import { ActionDispatch, ReactNode, useReducer } from "react";
 import { GameStateContext, initialGameState } from "./state";
 import { GameDispatchContext } from "./dispatch";
 import gameReducer from "./reducer";
-import { GameAction } from "./types";
+import { Actions, GameAction } from "./types";
 import { Game } from "../../puzzle/types";
+import { useChallengeDate } from "../ChosenDate/ChallengeDateContext";
+
+const actionsUpdatingBoard = [
+  Actions.PLACE_PIECE,
+  Actions.REMOVE_PIECE,
+  Actions.ROTATE_PIECE,
+  Actions.ROTATE_SELECTED_PIECE,
+];
 
 const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [gameState, gameDispatch] = useReducer<Game, [action: GameAction]>(
@@ -11,9 +19,20 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     initialGameState
   );
 
+  const { checkIsChallengeValue } = useChallengeDate();
+
+  const wrappedDispatch: ActionDispatch<[action: GameAction]> = (action) => {
+    if (actionsUpdatingBoard.includes(action.type)) {
+      gameDispatch({
+        ...action,
+        meta: { checkIsChallengeValue },
+      });
+    } else gameDispatch(action);
+  };
+
   return (
-    <GameStateContext.Provider value={gameState}>
-      <GameDispatchContext.Provider value={gameDispatch}>
+    <GameStateContext.Provider value={{ ...gameState, checkIsChallengeValue }}>
+      <GameDispatchContext.Provider value={wrappedDispatch}>
         {children}
       </GameDispatchContext.Provider>
     </GameStateContext.Provider>

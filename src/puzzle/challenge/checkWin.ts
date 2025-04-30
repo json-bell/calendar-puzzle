@@ -3,10 +3,18 @@ import { Board } from "../types";
 
 type CheckWinParams = {
   board: Board;
-  checkIsChallengeValue: (value: PanelContent) => boolean;
+  checkIsChallengeValue?: (value: PanelContent) => boolean;
 };
 
-const checkWin = ({ board, checkIsChallengeValue }: CheckWinParams) => {
+const checkWin = ({
+  board,
+  checkIsChallengeValue,
+}: CheckWinParams): boolean => {
+  if (!checkIsChallengeValue) {
+    console.error("checked for win without checkIsChallengeValue");
+    return false;
+  }
+
   const failsChallenge = board.flat().some(({ coveringCells, panel }) => {
     // should satisfy one of:
     if (coveringCells.length > 0) return false; // being covered

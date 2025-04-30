@@ -7,14 +7,22 @@ import Modal from "../Modal/Modal";
 type WinCheckerProps = { _?: never };
 
 const WinChecker: React.FC<WinCheckerProps> = () => {
-  const { board } = useGameState();
+  const { board, gamePieces } = useGameState();
   const { checkIsChallengeValue } = useChallengeDate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const isWin = checkWin({ checkIsChallengeValue, board });
+  const placedPieceCount = gamePieces.filter(({ position }) => position).length;
   useEffect(() => {
-    if (isWin) setIsModalOpen(true);
-  }, [isWin]);
+    if (placedPieceCount === gamePieces.length) {
+      const isWin = checkWin({ checkIsChallengeValue, board });
+      if (isWin) {
+        setIsModalOpen(true);
+        return;
+      }
+    }
+    setIsModalOpen(false);
+  }, []);
+
   return (
     <div>
       <Modal isOpen={isModalOpen} onClose={() => {}}>
