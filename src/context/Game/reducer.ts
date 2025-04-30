@@ -1,5 +1,5 @@
 import { Reducer } from "react";
-import { Game, GamePiece, UserSelection } from "../../puzzle/types";
+import { Board, Game, GamePiece, UserSelection } from "../../puzzle/types";
 import { GameAction, Actions } from "./types";
 import getBoardFromPositions from "../../puzzle/game/getBoardFromPositions";
 import {
@@ -8,8 +8,26 @@ import {
   shiftPieceToSelectedCell,
 } from "./utils/reducerUtils";
 import { initialGameState, noUserSelection } from "./state";
+import checkWin from "../../puzzle/challenge/checkWin";
 
 const gameReducer: Reducer<Game, GameAction> = (state, action) => {
+  const updateBoardAndCheckWin = ({
+    gamePieces,
+  }: {
+    gamePieces: GamePiece[];
+  }): {
+    board: Board;
+    isWin: boolean;
+  } => {
+    const board: Board = getBoardFromPositions(gamePieces);
+
+    const isWin = checkWin({
+      checkIsChallengeValue: action.meta?.checkIsChallengeValue,
+      board,
+    });
+    return { board, isWin };
+  };
+
   switch (action.type) {
     case Actions.SELECT_PLAYED_PIECE: {
       const { panel, cell } = action.payload;
@@ -50,12 +68,13 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
           : { ...gamePiece, position: null }
       );
 
-      const board = getBoardFromPositions(gamePieces);
+      const { board, isWin } = updateBoardAndCheckWin({ gamePieces });
 
       return {
         ...state,
         gamePieces,
         board,
+        isWin,
         userSelection: noUserSelection,
       };
     }
@@ -65,6 +84,7 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
         ...state,
         gamePieces,
         board,
+        isWin: false,
         userSelection,
       };
     }
@@ -90,8 +110,8 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
             }
           : gamePiece;
       });
-      const board = getBoardFromPositions(gamePieces);
-      return { ...state, board, gamePieces };
+      const { board, isWin } = updateBoardAndCheckWin({ gamePieces });
+      return { ...state, board, isWin, gamePieces };
     }
     case Actions.ROTATE_SELECTED_PIECE: {
       if (!state.userSelection.selectedCell) return state;
@@ -103,13 +123,14 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
 
       const gamePieces = [...state.gamePieces];
       gamePieces[pieceId] = getRotatedPlacedPiece(gamePieces[pieceId]);
-      const board = getBoardFromPositions(gamePieces);
+      const { board, isWin } = updateBoardAndCheckWin({ gamePieces });
 
       return {
         ...state,
         userSelection,
         gamePieces,
         board,
+        isWin,
       };
     }
     case Actions.ROTATE_PIECE: {

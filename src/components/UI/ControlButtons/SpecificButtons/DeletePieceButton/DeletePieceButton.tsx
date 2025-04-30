@@ -1,7 +1,7 @@
-import useGameDispatch from "../../../../context/Game/dispatch";
-import useGameState from "../../../../context/Game/state";
-import { Actions } from "../../../../context/Game/types";
-import ControlButton from "../ControlButton";
+import useGameDispatch from "../../../../../context/Game/dispatch";
+import useGameState from "../../../../../context/Game/state";
+import { Actions } from "../../../../../context/Game/types";
+import ControlButton from "../../ControlButton";
 
 const DeletePieceButton = () => {
   const {
