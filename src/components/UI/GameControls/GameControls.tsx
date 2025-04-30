@@ -14,7 +14,7 @@ const GameControls: React.FC = () => {
   const viewport = useViewport();
   const { date } = useChallengeDate();
   const { incrementChallengeDate } = useChallengeDateDispatch();
-  const { gamePieces } = useGameState();
+  const { gamePieces, isWin } = useGameState();
   const dispatch = useGameDispatch();
 
   return (
@@ -37,6 +37,11 @@ const GameControls: React.FC = () => {
           text="Clear All"
           onClick={() => dispatch({ type: Actions.REMOVE_ALL_PIECES })}
           inactive={gamePieces.filter(({ position }) => position).length === 0}
+        />
+        <ControlButton
+          text={isWin ? "Won!" : "In Progress"}
+          inactive={!isWin}
+          onClick={() => {}}
         />
       </div>
     </div>

@@ -14,8 +14,8 @@ const GameArea = () => {
   const layoutStyle = styles[`${viewport}Layout`];
 
   return (
-    <GameProvider>
-      <ChallengeDateProvider>
+    <ChallengeDateProvider>
+      <GameProvider>
         <section className={cx(styles.gameArea, layoutStyle)}>
           <div className={styles.boardArea}>
             <BoardGrid />
@@ -28,8 +28,8 @@ const GameArea = () => {
           </div>
           <WinChecker />
         </section>
-      </ChallengeDateProvider>
-    </GameProvider>
+      </GameProvider>
+    </ChallengeDateProvider>
   );
 };
 
