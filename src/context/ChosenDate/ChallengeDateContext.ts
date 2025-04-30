@@ -16,10 +16,12 @@ type ChallengeDateDispatch = {
 export const ChallengeDateDispatchContext =
   createContext<ChallengeDateDispatch>({
     incrementChallengeDate: () => {
-      console.info("incrementChallengeDate was used with default value");
+      console.error(
+        "incrementChallengeDate was used with default context value"
+      );
     },
     setChallengeDate: () => {
-      console.info("setChallengeDate was used with default value");
+      console.error("setChallengeDate was used with default context value");
     },
   });
 

@@ -1,6 +1,7 @@
 import { Panel } from "../../puzzle/panelTypes";
 import { CellType, Piece } from "../../puzzle/pieceTypes";
 import { PieceRotation } from "../../puzzle/types";
+import { ChallengeDate } from "../ChosenDate/types";
 
 export enum Actions {
   SELECT_PLAYED_PIECE = "SELECT_PLAYED_PIECE",
@@ -20,7 +21,13 @@ type Payload = {
   panel: Panel;
 };
 
-export type GameAction = { type: Actions; payload?: Partial<Payload> } & (
+type WithMeta<A extends { type: Actions }> = A & {
+  meta?: {
+    checkIsChallengeValue?: ChallengeDate["checkIsChallengeValue"];
+  };
+};
+
+export type GameActionBase = { type: Actions; payload?: Partial<Payload> } & (
   | {
       type: Actions.SELECT_PLAYED_PIECE;
       payload: Pick<Payload, "panel" | "cell">;
@@ -35,3 +42,5 @@ export type GameAction = { type: Actions; payload?: Partial<Payload> } & (
   | { type: Actions.REMOVE_PIECE; payload: Pick<Payload, "piece"> }
   | { type: Actions.REMOVE_ALL_PIECES; payload?: never }
 );
+
+export type GameAction = WithMeta<GameActionBase>;

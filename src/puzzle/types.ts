@@ -46,7 +46,8 @@ export type GamePiece = {
 };
 
 export type Game = {
-  gamePieces: GamePiece[]; // Source of Truth of Placement
+  gamePieces: GamePiece[]; // Source of Truth for gamePieces.positions
   userSelection: UserSelection;
-  board: Board; // deduced from piecePositions
+  board: Board; // see updateBoardAndCheckWin in dispatch
+  isWin: boolean; // see updateBoardAndCheckWin in dispatch
 };

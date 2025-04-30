@@ -6,6 +6,7 @@ import PieceList from "../../UI/PieceList/PieceList";
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import { useViewport } from "../../../utils/useWindowSize/windowSizeContext";
 import { ChallengeDateProvider } from "../../../context/ChosenDate/ChosenDateProvider";
+import WinChecker from "../../UI/Menu/WinChecker";
 
 const GameArea = () => {
   const viewport = useViewport();
@@ -13,8 +14,8 @@ const GameArea = () => {
   const layoutStyle = styles[`${viewport}Layout`];
 
   return (
-    <GameProvider>
-      <ChallengeDateProvider>
+    <ChallengeDateProvider>
+      <GameProvider>
         <section className={cx(styles.gameArea, layoutStyle)}>
           <div className={styles.boardArea}>
             <BoardGrid />
@@ -25,9 +26,10 @@ const GameArea = () => {
           <div className={styles.piecesContainer}>
             <PieceList />
           </div>
+          <WinChecker />
         </section>
-      </ChallengeDateProvider>
-    </GameProvider>
+      </GameProvider>
+    </ChallengeDateProvider>
   );
 };
 

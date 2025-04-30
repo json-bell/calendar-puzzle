@@ -1,20 +1,16 @@
 # IN DEV
 
-## CAL-15: Modify rotation order
-
-Right now the rotations look odd, with flipping along an odd choice of diagonal.
-
-Modify the rotation/flipping cycle to be less intuitive
-
 # Backlog
+
+CAL-?: Deselect all pieces - button & dispatch
+
+CAL-?: Style controls menu
 
 ## Epic - good vs bad win
 
 Render when a piece has been flipped over, and mark win accordingly
 
 ## Epic - Detecting Win and choosing date
-
-CAL-?: Create function that checks for a win for a specific date
 
 CAL-?: Date selection - 3 fields Num/Day/Month? Or calendar? Both?
 
@@ -24,15 +20,18 @@ CAL-?: Create function that trial-and-error builds grid for a specific date
 
 CAL-?: Adds hints: clicking hint & selecting a piece correctly places it
 
-## Epic - Progress saving - blocked by Detecting Win
+## Epic - Progress saving
 
-CAL-?: Create backend that saves when you win, mb saves your solution?
+CAL-?: Very basic login - enough to then integrate a backend storing what solutions are done
+-> NoSQL seems very promising - Obj with Keys corresponding to dates, no relation between users, no relation between dates, no relation between pieces rly except mb dates, but storing solutions as a date-user-piecePosition join or smth seems like hell (esp if date is day / month / date)
+
+CAL-?: Create backend that saves when you win, mb saves your solution
+
+CAL-?: Login? Solution backend would seem v much like a NoSQL
 
 ## Epic - Controls
 
 CAL-?: Icons for flipping/rotating according to what's happening next, (along top-left to bottom-right diagonal)
-
-CAL-?
 
 # Story - Dragging Controls
 
@@ -61,6 +60,16 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-16: Check for a win for a specific date
+
+Implements checkWin function to check for wins, and integrates this into the reducer updates and state.
+
+## CAL-15: Modify rotation order
+
+Right now the rotations look odd, with flipping along an odd choice of diagonal.
+
+Modify the rotation/flipping cycle to be less intuitive
 
 ## CAL-14: Display a specific target date
 
