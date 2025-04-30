@@ -7,14 +7,15 @@ import useGameState from "../../../context/Game/state";
 import { Actions } from "../../../context/Game/types";
 import { useViewport } from "../../../utils/useWindowSize/windowSizeContext";
 import ControlButton from "../ControlButtons/ControlButton";
-import DeletePieceButton from "../ControlButtons/SpecificButtons/DeletePieceButton";
+import DeletePieceButton from "../ControlButtons/SpecificButtons/DeletePieceButton/DeletePieceButton";
+import WinDetailsButton from "../ControlButtons/SpecificButtons/WinDetailsButton/WinDetailsButtons";
 import styles from "./GameControls.module.css";
 
 const GameControls: React.FC = () => {
   const viewport = useViewport();
   const { date } = useChallengeDate();
   const { incrementChallengeDate } = useChallengeDateDispatch();
-  const { gamePieces, isWin } = useGameState();
+  const { gamePieces } = useGameState();
   const dispatch = useGameDispatch();
 
   return (
@@ -38,11 +39,7 @@ const GameControls: React.FC = () => {
           onClick={() => dispatch({ type: Actions.REMOVE_ALL_PIECES })}
           inactive={gamePieces.filter(({ position }) => position).length === 0}
         />
-        <ControlButton
-          text={isWin ? "Won!" : "In Progress"}
-          inactive={!isWin}
-          onClick={() => {}}
-        />
+        <WinDetailsButton />
       </div>
     </div>
   );
