@@ -5,13 +5,13 @@ export const dayNumbers = [
 export type DayNumber = (typeof dayNumbers)[number];
 
 export const dayNames = [
+  "sun",
   "mon",
   "tue",
   "wed",
   "thu",
   "fri",
   "sat",
-  "sun",
 ] as const;
 export type DayName = (typeof dayNames)[number];
 

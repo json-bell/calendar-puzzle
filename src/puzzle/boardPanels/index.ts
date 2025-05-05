@@ -12,8 +12,8 @@ const boardPanels: BoardShape<Panel> = [
     { "content": 1, "panelX": 4, "panelY": 0, "type": "dayNumber", "contentIndex": 0 },
     { "content": 2, "panelX": 5, "panelY": 0, "type": "dayNumber", "contentIndex": 1 },
     { "content": 3, "panelX": 6, "panelY": 0, "type": "dayNumber", "contentIndex": 2 },
-    { "content": "mon", "panelX": 7, "panelY": 0, "type": "dayName", "contentIndex": 0 },
-    { "content": "tue", "panelX": 8, "panelY": 0, "type": "dayName", "contentIndex": 1 }
+    { "content": "mon", "panelX": 7, "panelY": 0, "type": "dayName", "contentIndex": 1 },
+    { "content": "tue", "panelX": 8, "panelY": 0, "type": "dayName", "contentIndex": 2 }
   ],
   [
     { "content": "may", "panelX": 0, "panelY": 1, "type": "month", "contentIndex": 4 },
@@ -23,7 +23,7 @@ const boardPanels: BoardShape<Panel> = [
     { "content": 7, "panelX": 4, "panelY": 1, "type": "dayNumber", "contentIndex": 6 },
     { "content": 8, "panelX": 5, "panelY": 1, "type": "dayNumber", "contentIndex": 7 },
     { "content": 9, "panelX": 6, "panelY": 1, "type": "dayNumber", "contentIndex": 8 },
-    { "content": "wed", "panelX": 7, "panelY": 1, "type": "dayName", "contentIndex": 2 },
+    { "content": "wed", "panelX": 7, "panelY": 1, "type": "dayName", "contentIndex": 3 },
     { "content": "empty", "panelX": 8, "panelY": 1, "type": "empty", "contentIndex": 0 }
   ],
   [
@@ -34,7 +34,7 @@ const boardPanels: BoardShape<Panel> = [
     { "content": 13, "panelX": 4, "panelY": 2, "type": "dayNumber", "contentIndex": 12 },
     { "content": 31, "panelX": 5, "panelY": 2, "type": "dayNumber", "contentIndex": 30 },
     { "content": 15, "panelX": 6, "panelY": 2, "type": "dayNumber", "contentIndex": 14 },
-    { "content": "thu", "panelX": 7, "panelY": 2, "type": "dayName", "contentIndex": 3 },
+    { "content": "thu", "panelX": 7, "panelY": 2, "type": "dayName", "contentIndex": 4 },
     { "content": "empty", "panelX": 8, "panelY": 2, "type": "empty", "contentIndex": 0 }
   ],
   [
@@ -45,8 +45,8 @@ const boardPanels: BoardShape<Panel> = [
     { "content": 19, "panelX": 4, "panelY": 3, "type": "dayNumber", "contentIndex": 18 },
     { "content": 20, "panelX": 5, "panelY": 3, "type": "dayNumber", "contentIndex": 19 },
     { "content": 21, "panelX": 6, "panelY": 3, "type": "dayNumber", "contentIndex": 20 },
-    { "content": "fri", "panelX": 7, "panelY": 3, "type": "dayName", "contentIndex": 4 },
-    { "content": "sat", "panelX": 8, "panelY": 3, "type": "dayName", "contentIndex": 5 }
+    { "content": "fri", "panelX": 7, "panelY": 3, "type": "dayName", "contentIndex": 5 },
+    { "content": "sat", "panelX": 8, "panelY": 3, "type": "dayName", "contentIndex": 6 }
   ],
   [
     { "content": "aug", "panelX": 0, "panelY": 4, "type": "month", "contentIndex": 7 },
@@ -57,7 +57,7 @@ const boardPanels: BoardShape<Panel> = [
     { "content": 26, "panelX": 5, "panelY": 4, "type": "dayNumber", "contentIndex": 25 },
     { "content": 27, "panelX": 6, "panelY": 4, "type": "dayNumber", "contentIndex": 26 },
     { "content": "empty", "panelX": 7, "panelY": 4, "type": "empty", "contentIndex": 0 },
-    { "content": "sun", "panelX": 8, "panelY": 4, "type": "dayName", "contentIndex": 6 }
+    { "content": "sun", "panelX": 8, "panelY": 4, "type": "dayName", "contentIndex": 0 }
   ],
   [
     { "content": "sep", "panelX": 0, "panelY": 5, "type": "month", "contentIndex": 8 },

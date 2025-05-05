@@ -20,8 +20,14 @@ const panelTypeLookup: Record<PanelDateType, readonly PanelContent[]> = {
   wall: ["wall"],
 };
 
+type ObjectEntries<T> = [keyof T, T[keyof T]][];
+
+const panelTypes: [PanelDateType, readonly PanelContent[]][] = Object.entries(
+  panelTypeLookup
+) as ObjectEntries<typeof panelTypeLookup>;
+
 const getPanelTypeFromContent = (content: PanelContent): PanelDateType => {
-  for (const [panelType, array] of Object.entries(panelTypeLookup)) {
+  for (const [panelType, array] of panelTypes) {
     if (array.includes(content)) return panelType as PanelDateType;
   }
   throw new Error(
