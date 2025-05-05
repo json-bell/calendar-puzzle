@@ -1,8 +1,10 @@
 import { PanelContent } from "../panelTypes";
-import { Board } from "../types";
+import { Board, GamePiece } from "../types";
+import { WinDetails } from "./types";
 
 type CheckWinParams = {
   board: Board;
+  gamePieces: GamePiece[];
   checkIsChallengeValue?: (value: PanelContent) => boolean;
 };
 
@@ -14,11 +16,12 @@ type CheckWinParams = {
 
 const checkWin = ({
   board,
+  gamePieces,
   checkIsChallengeValue,
-}: CheckWinParams): boolean => {
+}: CheckWinParams): WinDetails => {
   if (!checkIsChallengeValue) {
     console.error("checked for win without checkIsChallengeValue");
-    return false;
+    return { isWin: false };
   }
 
   const failsChallenge = board.flat().some(({ coveringCells, panel }) => {
@@ -29,8 +32,16 @@ const checkWin = ({
     // else fails
     return true;
   });
+  if (failsChallenge) return { isWin: false };
 
-  return !failsChallenge;
+  const flippedPieceCount = gamePieces.filter(
+    ({ position }) => position?.flipped
+  ).length;
+
+  return {
+    isWin: true,
+    flippedPieceCount,
+  };
 };
 
 export default checkWin;

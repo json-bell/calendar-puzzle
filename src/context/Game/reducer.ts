@@ -21,9 +21,10 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
   } => {
     const board: Board = getBoardFromPositions(gamePieces);
 
-    const isWin = checkWin({
+    const { isWin } = checkWin({
       checkIsChallengeValue: action.meta?.checkIsChallengeValue,
       board,
+      gamePieces,
     });
     return { board, isWin };
   };
