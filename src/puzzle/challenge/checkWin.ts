@@ -6,6 +6,12 @@ type CheckWinParams = {
   checkIsChallengeValue?: (value: PanelContent) => boolean;
 };
 
+// we have several things to affect this:
+// - all pieces are upright
+// - solves without hints
+// - could have a 'check' function? If the solution is flexible enough to solve from partial solutions,
+// which I imagine it will be (since it'll probably be implemented recursively anyway)
+
 const checkWin = ({
   board,
   checkIsChallengeValue,
