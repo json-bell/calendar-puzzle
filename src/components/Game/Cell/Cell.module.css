@@ -8,6 +8,26 @@
   border: 0.5px black solid;
 }
 
+@property --gradient-percent {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+.cell {
+  --gradient-percent: 0%;
+  transition: --gradient-percent 0.5s ease-out;
+
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--cell-color), white var(--gradient-percent)),
+    var(--cell-color)
+  );
+}
+
+.cell:hover {
+  --gradient-percent: 40%;
+}
 .cell {
   cursor: pointer;
 }
@@ -39,11 +59,6 @@
 
 .placedSelectedPanel {
   background-color: var(--piece-color-selected-placed);
-}
-
-.placedSelectedCell {
-  /* TODO THIS IS WHAT IS REPLACED WITH THE ICON */
-  background-color: var(--cell-color-selected-placed);
 }
 
 .cellControlIcon {
