@@ -20,9 +20,14 @@ const WinDetailsButton = () => {
     <>
       <ControlButton text={"Win details"} inactive={!isWin} onClick={onOpen} />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        You completed the puzzle! <br />
-        Today's date: {date.toDateString()} <br />
-        Styling and details to come in future version
+        <br />
+        Well done on completing the puzzle for: <br />
+        {date.toDateString()} <br />
+        If you want to return this screen, click the <br />
+        'Win Details' button in the Menu <br />
+        <br />
+        Further styling and details to come in future version
+        <ControlButton text="Close" onClick={() => setIsModalOpen(false)} />
       </Modal>
     </>
   );
