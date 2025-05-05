@@ -11,14 +11,6 @@
   width: min-content;
 }
 
-.selectedPiece {
-  --cell-color: var(--cell-color-selected-piece);
-}
-
-.placedPiece {
-  --cell-color: grey;
-}
-
 .piecePreview {
   position: absolute;
   pointer-events: none;

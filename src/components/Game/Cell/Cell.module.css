@@ -20,13 +20,15 @@
 
   background: radial-gradient(
     circle,
-    color-mix(in srgb, var(--cell-color), white var(--gradient-percent)),
-    var(--cell-color)
+    var(--cell-color),
+    color-mix(in srgb, var(--cell-color), white var(--gradient-percent))
   );
 }
 
 .cell:hover {
-  --gradient-percent: 40%;
+  --gradient-percent: 50%;
+  box-shadow: color-mix(in srgb, var(--cell-color), white 50%) 0px 0px 20px;
+  z-index: 1;
 }
 .cell {
   cursor: pointer;
@@ -47,8 +49,14 @@
   background-color: var(--piece-color-preview);
 }
 
+.selectedPiece {
+  box-shadow: white 0px 0px 10px;
+}
+
 .selectedCell {
-  background-color: var(--cell-color-selected);
+  outline: white 2px solid;
+  outline-offset: 2px;
+  z-index: 1;
 }
 
 .placedCell {

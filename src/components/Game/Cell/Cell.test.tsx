@@ -29,19 +29,19 @@ describe("Cell", () => {
         <PuzzlePiece piece={{ pieceId: 2, shape: [], slug: "1" }} />
         <PuzzlePiece piece={{ pieceId: 4, shape: [], slug: "4" }} />
         <Cell cell={{ cellSlug: "test", pieceId: 2, cellX: 0, cellY: 0 }} />
+        <Cell cell={{ cellSlug: "test-4", pieceId: 4, cellX: 0, cellY: 0 }} />
       </>
     );
 
-    const cellComp = getByTestId("cell-test");
-    const pieceComp = getByTestId("puzzle-piece-2");
-    const unselectedPieceComp = getByTestId("puzzle-piece-4");
+    const cellComp2 = getByTestId("cell-test");
+    const cellComp4 = getByTestId("cell-test-4");
     const selectedRegex = /selectedPiece/;
 
-    expect(pieceComp.className).not.toMatch(selectedRegex);
+    expect(cellComp2.className).not.toMatch(selectedRegex);
 
-    await user.click(cellComp);
+    await user.click(cellComp2);
 
-    expect(pieceComp.className).toMatch(selectedRegex);
-    expect(unselectedPieceComp.className).not.toMatch(selectedRegex);
+    expect(cellComp2.className).toMatch(selectedRegex);
+    expect(cellComp4.className).not.toMatch(selectedRegex);
   });
 });
