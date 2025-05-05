@@ -39,8 +39,8 @@
 }
 
 .emptyCell {
-  opacity: 0.1;
-  background-color: grey;
+  opacity: 0;
+  background-color: transparent;
   pointer-events: none;
 }
 
