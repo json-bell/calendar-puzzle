@@ -1,5 +1,13 @@
 # IN DEV
 
+## CAL-17: Colours, styling and hover effects and consistency
+
+Improve the colour consistency (e.g. have the tile be the same colour in the selection as when played)
+
+And so sync hovers (e.g. light fading to white as opposed to red -> orange etc)
+
+And maybe make the other colours neutral / consistent e.g make the menu background from a linear gradient or pattern in the greys and not a random purple, same with the red border of the playable pieces & brown action buttons (although a bit of colour there is also fun/useful to see what buttons are active)
+
 # Backlog
 
 CAL-?: Deselect all pieces - button & dispatch
