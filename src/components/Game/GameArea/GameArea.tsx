@@ -6,7 +6,6 @@ import PieceList from "../../UI/PieceList/PieceList";
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import { useViewport } from "../../../utils/useWindowSize/windowSizeContext";
 import { ChallengeDateProvider } from "../../../context/ChosenDate/ChosenDateProvider";
-import WinChecker from "../../UI/Menu/WinChecker";
 
 const GameArea = () => {
   const viewport = useViewport();
@@ -26,7 +25,6 @@ const GameArea = () => {
           <div className={styles.piecesContainer}>
             <PieceList />
           </div>
-          <WinChecker />
         </section>
       </GameProvider>
     </ChallengeDateProvider>

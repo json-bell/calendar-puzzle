@@ -5,6 +5,7 @@ import type { Piece } from "../../../puzzle/pieceTypes";
 import cx from "../../../utils/concatClassNames/concatClassNames";
 import useGameState from "../../../context/Game/state";
 import getRotatedPiece from "../../../puzzle/rotations/getRotatedPiece";
+import getPlacedPieceColour from "../Cell/getPlacedPieceColour";
 
 export interface PuzzlePieceProps {
   piece: Piece;
@@ -34,14 +35,29 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
 
   const pieceShape = getPieceShape();
 
+  const style: { [K in string]?: string } = (() => {
+    const pieceColor = getPlacedPieceColour(piece.pieceId);
+    if (isPlaced)
+      return {
+        "--cell-color": "grey",
+      };
+    if (isSelected) {
+      return {
+        "--cell-color": pieceColor,
+      };
+    }
+
+    // unselected pieces in track:
+    return {
+      "--cell-color": pieceColor,
+    };
+  })();
+
   return (
     <div
       data-testid={`puzzle-piece-${piece.pieceId}`}
-      className={cx(
-        styles.puzzlePiece,
-        isSelected && styles.selectedPiece,
-        isPlaced && styles.placedPiece
-      )}
+      className={cx(styles.puzzlePiece)}
+      style={style}
     >
       {pieceShape.map((row, cellY) => (
         <div className={styles.pieceRow} key={cellY}>
