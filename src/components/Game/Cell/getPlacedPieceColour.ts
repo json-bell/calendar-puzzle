@@ -1,4 +1,9 @@
-const getPlacedPieceColour = (pieceId: number): string =>
-  `hsl(${36 * pieceId}, 100%, 50%)`;
+const getPlacedPieceColour = (
+  pieceId: number,
+  {
+    saturation = 100,
+    lightness = 50,
+  }: { saturation?: number; lightness?: number } = {}
+): string => `hsl(${36 * pieceId}, ${saturation}%, ${lightness}%)`;
 
 export default getPlacedPieceColour;
