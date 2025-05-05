@@ -16,6 +16,7 @@ const Cell: React.FC<CellProps> = ({ cell }) => {
   const { userSelection } = useGameState();
   const dispatch = useGameDispatch();
   const isSelected = userSelection.selectedCell?.cellSlug === cell.cellSlug;
+  const isPieceSelected = userSelection.selectedPiece?.pieceId === cell.pieceId;
   const setSelectedPiece = (cell: CellType) => {
     dispatch({
       type: Actions.SELECT_SIDE_PIECE,
@@ -37,7 +38,8 @@ const Cell: React.FC<CellProps> = ({ cell }) => {
         styles.cell,
         styles.generalCell,
         hovered && styles.hoveredCell,
-        isSelected && styles.selectedCell
+        isSelected && styles.selectedCell,
+        isPieceSelected && styles.selectedPiece
       )}
     />
   );

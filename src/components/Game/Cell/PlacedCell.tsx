@@ -15,8 +15,9 @@ const PlacedCell: React.FC<PlacedCellProps> = ({
   pieceId,
 }) => {
   const backgroundColor = ((): string => {
-    if (isCellSelected) return "var(--cell-color-selected-placed)";
-    return getPlacedPieceColour(pieceId);
+    const options = isCellSelected ? { lightness: 20 } : undefined;
+    const pieceColour = getPlacedPieceColour(pieceId, options);
+    return pieceColour;
   })();
 
   const innerIconElement = isCellSelected ? (

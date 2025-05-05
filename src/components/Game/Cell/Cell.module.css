@@ -8,6 +8,28 @@
   border: 0.5px black solid;
 }
 
+@property --gradient-percent {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+.cell {
+  --gradient-percent: 0%;
+  transition: --gradient-percent 0.5s ease-out;
+
+  background: radial-gradient(
+    circle,
+    var(--cell-color),
+    color-mix(in srgb, var(--cell-color), white var(--gradient-percent))
+  );
+}
+
+.cell:hover {
+  --gradient-percent: 50%;
+  box-shadow: color-mix(in srgb, var(--cell-color), white 50%) 0px 0px 20px;
+  z-index: 1;
+}
 .cell {
   cursor: pointer;
 }
@@ -17,8 +39,8 @@
 }
 
 .emptyCell {
-  opacity: 0.1;
-  background-color: grey;
+  opacity: 0;
+  background-color: transparent;
   pointer-events: none;
 }
 
@@ -27,8 +49,14 @@
   background-color: var(--piece-color-preview);
 }
 
+.selectedPiece {
+  box-shadow: white 0px 0px 10px;
+}
+
 .selectedCell {
-  background-color: var(--cell-color-selected);
+  outline: white 2px solid;
+  outline-offset: 2px;
+  z-index: 1;
 }
 
 .placedCell {
@@ -39,11 +67,6 @@
 
 .placedSelectedPanel {
   background-color: var(--piece-color-selected-placed);
-}
-
-.placedSelectedCell {
-  /* TODO THIS IS WHAT IS REPLACED WITH THE ICON */
-  background-color: var(--cell-color-selected-placed);
 }
 
 .cellControlIcon {
