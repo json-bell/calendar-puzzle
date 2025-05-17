@@ -157,6 +157,9 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
           isCellSelected={!!isCellSelected}
           isPanelSelected={!!isPieceSelected}
           pieceId={coveringCells[0].pieceId}
+          isFlipped={
+            gamePieces[coveringCells[0].pieceId].position?.flipped === 1
+          }
         />
       )}
 
