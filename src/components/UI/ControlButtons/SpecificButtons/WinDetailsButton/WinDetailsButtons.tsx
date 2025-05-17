@@ -5,24 +5,33 @@ import ControlButton from "../../ControlButton";
 import { useChallengeDate } from "../../../../../context/ChosenDate/ChallengeDateContext";
 
 const WinDetailsButton = () => {
-  const { isWin } = useGameState();
+  const {
+    winDetails: { isWin, flippedPieceCount },
+  } = useGameState();
   const { date } = useChallengeDate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const onOpen = () => {
+  const handleOpen = () => {
     if (isWin) setIsModalOpen(true);
   };
 
-  useEffect(onOpen, [isWin]);
+  useEffect(handleOpen, [isWin]);
 
   return (
     <>
-      <ControlButton text={"Win details"} inactive={!isWin} onClick={onOpen} />
+      <ControlButton
+        text={"Win details"}
+        inactive={!isWin}
+        onClick={handleOpen}
+      />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <br />
         Well done on completing the puzzle for: <br />
         {date.toDateString()} <br />
+        with {flippedPieceCount} flipped pieces
+        <br />
+        <br />
         If you want to return this screen, click the <br />
         'Win Details' button in the Menu <br />
         <br />

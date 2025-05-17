@@ -1,5 +1,6 @@
 import { PanelContent } from "../panelTypes";
 import { Board, GamePiece } from "../types";
+import countFlips from "./countFlips";
 import { WinDetails } from "./types";
 
 type CheckWinParams = {
@@ -34,9 +35,7 @@ const checkWin = ({
   });
   if (failsChallenge) return { isWin: false };
 
-  const flippedPieceCount = gamePieces.filter(
-    ({ position }) => position?.flipped
-  ).length;
+  const flippedPieceCount = countFlips(gamePieces);
 
   return {
     isWin: true,

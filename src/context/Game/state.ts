@@ -16,7 +16,7 @@ export const initialGameState: Game = {
   gamePieces: puzzlePieces.map((piece) => ({ piece, position: null })),
   userSelection: noUserSelection,
   board: getBoardFromPositions([]),
-  isWin: false,
+  winDetails: { isWin: false },
 };
 
 export const GameStateContext = createContext<

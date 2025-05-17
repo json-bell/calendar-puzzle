@@ -1,3 +1,4 @@
+import { WinDetails } from "./challenge/types";
 import { Panel, PanelDetails } from "./panelTypes";
 import { CellType, Piece } from "./pieceTypes";
 
@@ -49,5 +50,5 @@ export type Game = {
   gamePieces: GamePiece[]; // Source of Truth for gamePieces.positions
   userSelection: UserSelection;
   board: Board; // see updateBoardAndCheckWin in dispatch
-  isWin: boolean; // see updateBoardAndCheckWin in dispatch
+  winDetails: WinDetails; // see updateBoardAndCheckWin in dispatch
 };
