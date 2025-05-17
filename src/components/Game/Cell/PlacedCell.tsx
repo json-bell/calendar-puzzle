@@ -6,17 +6,24 @@ import getPlacedPieceColour from "./getPlacedPieceColour";
 interface PlacedCellProps {
   isPanelSelected: boolean;
   isCellSelected: boolean;
+  isFlipped: boolean;
   pieceId: number;
 }
 
 const PlacedCell: React.FC<PlacedCellProps> = ({
   isCellSelected,
   isPanelSelected,
+  isFlipped,
   pieceId,
 }) => {
-  const backgroundColor = ((): string => {
+  const background = ((): string => {
     const options = isCellSelected ? { lightness: 20 } : undefined;
     const pieceColour = getPlacedPieceColour(pieceId, options);
+
+    if (isFlipped) {
+      return `linear-gradient(120deg, ${pieceColour} 10%, white 40%, ${pieceColour} 70%)`;
+    }
+
     return pieceColour;
   })();
 
@@ -35,7 +42,7 @@ const PlacedCell: React.FC<PlacedCellProps> = ({
           isPanelSelected && styles.placedSelectedPanel,
           isCellSelected && styles.placedSelectedCell
         )}
-        style={{ backgroundColor }}
+        style={{ background }}
       />
       {innerIconElement}
     </>
