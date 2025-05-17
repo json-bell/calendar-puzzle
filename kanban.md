@@ -1,14 +1,12 @@
 # IN DEV
 
-CAL-18: Good vs Bad win
-
-Render when a piece has been flipped over, and mark win accordingly
-
 # Backlog
 
 ## Epic - Detecting Win and choosing date
 
 CAL-?: Date selection - 3 fields Num/Day/Month? Or calendar? Both?
+
+Add date to querystring too
 
 ## Epic - Solutions and hints - needs to be able to detect win
 
@@ -64,6 +62,10 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-18: Good vs Bad win
+
+Render when a piece has been flipped over, and count flipped pieces in WinDetails in game state
 
 ## CAL-17: Colours, styling and hover effects and consistency
 
