@@ -1,4 +1,3 @@
-import getBoardFromPositions from "../../../../game/getBoardFromPositions";
 import { PanelContent } from "../../../../panelTypes";
 import puzzlePieces from "../../../../puzzlePieces";
 import { GamePiece } from "../../../../types";
