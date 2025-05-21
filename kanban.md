@@ -1,5 +1,11 @@
 # IN DEV
 
+## CAL-19: Create function that trial-and-error builds grid for a specific date
+
+Takes a date / checkIsWin & current gamePiece positions, and builds a solution according to that
+
+--> might need a nice way of storing gamePiecePositions?
+
 # Backlog
 
 ## Epic - Detecting Win and choosing date
@@ -9,8 +15,6 @@ CAL-?: Date selection - 3 fields Num/Day/Month? Or calendar? Both?
 Add date to querystring too
 
 ## Epic - Solutions and hints - needs to be able to detect win
-
-CAL-?: Create function that trial-and-error builds grid for a specific date
 
 CAL-?: Adds hints: clicking hint & selecting a piece correctly places it
 
