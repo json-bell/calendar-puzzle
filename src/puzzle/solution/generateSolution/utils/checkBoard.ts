@@ -3,12 +3,15 @@ import { PanelContent } from "../../../panelTypes";
 import { pieceIds } from "../../../puzzlePieces/pieceIds";
 import { GamePiece } from "../../../types";
 
-type CheckOutput =
+export type CheckOutput =
   | { impossible: string; possible?: never; fails?: never; success?: never }
   | { impossible?: never; possible: string; fails?: never; success?: never }
   | { impossible?: never; possible?: never; fails: string; success?: never }
   | { impossible?: never; possible?: never; fails?: never; success: string };
 
+/**
+ * Confirms piece placement isn't against a solution layout
+ */
 const checkBoard = ({
   checkIsChallengeValue,
   gamePieces,
@@ -24,7 +27,7 @@ const checkBoard = ({
     if (panel.content === "wall" && coverCount >= 1)
       return { impossible: "covered-wall" };
     if (coverCount >= 1 && checkIsChallengeValue(panel.content))
-      return { impossible: "covered-challenge" };
+      return { impossible: `covered-challenge-${panel.content}` };
   }
 
   for (const pieceId of pieceIds) {
