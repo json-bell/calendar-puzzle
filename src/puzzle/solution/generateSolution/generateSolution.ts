@@ -36,7 +36,7 @@ const generateSolution = async (
     allowFlipped = true,
     runsAsync = true,
     stepsPerYield = 1000,
-  }: Options = options || {};
+  }: Options = options;
 
   if (runsAsync) {
     steps++;
