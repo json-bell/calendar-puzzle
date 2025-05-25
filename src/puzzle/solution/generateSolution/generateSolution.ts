@@ -13,7 +13,7 @@ import checkGaps from "./utils/checkGaps";
 let steps = 0;
 
 type Options = {
-  currentlyPlacedPieces: GamePiece[];
+  gamePieces: GamePiece[];
   allowFlipped?: boolean;
   runsAsync?: boolean;
   stepsPerYield?: number;
@@ -32,7 +32,7 @@ const generateSolution = async (
 ): Promise<Solution | null> => {
   const { dayName, dayNumber, month, checkIsChallengeValue } = challengeDate;
   const {
-    currentlyPlacedPieces = [],
+    gamePieces, // needs to be full for e.g. filtering, adding next piece, etc
     allowFlipped = true,
     runsAsync = true,
     stepsPerYield = 1000,
@@ -45,11 +45,11 @@ const generateSolution = async (
 
   const { success, fails, impossible } = {
     ...checkBoard({
-      gamePieces: currentlyPlacedPieces,
+      gamePieces,
       checkIsChallengeValue,
     }),
     ...checkGaps({
-      gamePieces: currentlyPlacedPieces,
+      gamePieces,
       checkIsChallengeValue,
     }),
   };
@@ -72,7 +72,7 @@ const generateSolution = async (
   // GAP STORAGE -> KEEP TRACK OF TOP-LEFT-MOST cell
   // -> instead of `id++`, have a push to an array with {id: 1, firstVisit: {x: 1, y: 3}} or summat
 
-  const nextPieceToPlace = currentlyPlacedPieces?.find(
+  const nextPieceToPlace = gamePieces?.find(
     ({ position = null }) => position === null
   );
 
@@ -82,17 +82,15 @@ const generateSolution = async (
           dayName,
           dayNumber,
           month,
-          pieces: currentlyPlacedPieces,
+          pieces: gamePieces,
         }
       : null;
   }
 
   /*  -------- LOGS --------  */
-  const placedPieceCount = currentlyPlacedPieces.filter(
-    ({ position }) => position
-  ).length;
+  const placedPieceCount = gamePieces.filter(({ position }) => position).length;
   if (placedPieceCount <= 3) {
-    const board = getBoardFromPositions(currentlyPlacedPieces);
+    const board = getBoardFromPositions(gamePieces);
     visualiseBoard(board);
   }
   /*  -------- LOGS END --------  */
@@ -122,13 +120,13 @@ const generateSolution = async (
           ]);
 
           const newPlacedPieces: GamePiece[] = addExtraPiecePositions({
-            gamePieces: currentlyPlacedPieces,
+            gamePieces,
             positionMap,
           });
 
           const possiblySolution = await generateSolution(challengeDate, {
             allowFlipped,
-            currentlyPlacedPieces: newPlacedPieces,
+            gamePieces: newPlacedPieces,
           });
 
           if (possiblySolution) return possiblySolution;

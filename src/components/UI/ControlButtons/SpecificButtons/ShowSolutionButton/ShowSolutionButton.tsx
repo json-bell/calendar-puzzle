@@ -27,7 +27,7 @@ const ShowSolutionButton = () => {
               month,
             },
             {
-              currentlyPlacedPieces: gamePieces,
+              gamePieces,
               allowFlipped: false,
               runsAsync: true,
             }
