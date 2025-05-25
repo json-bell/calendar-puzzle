@@ -79,4 +79,6 @@ describe("generateSolution", () => {
   //   if (solution) visualiseBoard(getBoardFromPositions(solution.pieces));
   //   throw new Error("WIP");
   // }, 60000);
+
+  it.todo("sad path - failing build for various reasons");
 });
