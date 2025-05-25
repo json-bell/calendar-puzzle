@@ -24,4 +24,8 @@ describe("getPositionMapFromPieces", () => {
       3: `position-3`,
     });
   });
+
+  it("returns an empty object for an empty array", () => {
+    expect(getPositionMapFromPieces([])).toEqual({});
+  });
 });
