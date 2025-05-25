@@ -89,7 +89,7 @@ const BoardPanel: React.FC<PanelProps> = ({ panel }) => {
     switch (panelStatus) {
       case "placeable": {
         dispatch({
-          type: Actions.PLACE_PIECE,
+          type: Actions.PLACE_SELECTED_PIECE,
           payload: { panel },
         });
         break;

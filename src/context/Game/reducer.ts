@@ -89,7 +89,7 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
         userSelection,
       };
     }
-    case Actions.PLACE_PIECE: {
+    case Actions.PLACE_SELECTED_PIECE: {
       const {
         panel: { panelX, panelY },
       } = action.payload;
