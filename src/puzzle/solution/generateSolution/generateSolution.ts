@@ -5,7 +5,7 @@ import expandPiecePositions, {
 import getBoardFromPositions from "../../game/getBoardFromPositions";
 import uniqueOrientations from "../../rotations/uniqueOrientations";
 import { GamePiece, PositionMap } from "../../types";
-import logBoard from "../../utils/logBoard";
+import visualiseBoard from "../../utils/visualiseBoard";
 import { Solution } from "./types";
 import checkBoard from "./utils/checkBoard";
 import checkGaps from "./utils/checkGaps";
@@ -93,7 +93,7 @@ const generateSolution = async (
   ).length;
   if (placedPieceCount <= 3) {
     const board = getBoardFromPositions(currentlyPlacedPieces);
-    logBoard(board);
+    visualiseBoard(board);
   }
   /*  -------- LOGS END --------  */
 

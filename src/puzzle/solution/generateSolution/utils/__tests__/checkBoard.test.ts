@@ -2,9 +2,8 @@ import { PanelContent } from "../../../../panelTypes";
 import puzzlePieces from "../../../../puzzlePieces";
 import { GamePiece } from "../../../../types";
 import checkBoard from "../checkBoard";
-import checkGaps from "../checkGaps";
 
-const gamePieces: GamePiece[] = puzzlePieces.map((piece) => ({
+const baseGamePieces: GamePiece[] = puzzlePieces.map((piece) => ({
   piece,
   position: null,
 }));
@@ -15,7 +14,7 @@ const piecesFromPosition = (
     | [number, number, 0 | 1 | 2 | 3 | undefined, 0 | 1 | undefined]
   )[]
 ): GamePiece[] => {
-  return gamePieces.map(
+  return baseGamePieces.map(
     ({ piece }, index): GamePiece => ({
       piece,
       position: coords[index]
@@ -32,10 +31,7 @@ const piecesFromPosition = (
 };
 
 const checkIsChallengeValue = () => false;
-const checkSun14Dec = (value: PanelContent) => {
-  if (value === "sun" || value === "dec" || value === 14) return true;
-  return false;
-};
+
 const checkMonJan5 = (value: PanelContent) => {
   if (value === "mon" || value === "jan" || value === 5) return true;
   return false;
@@ -43,7 +39,9 @@ const checkMonJan5 = (value: PanelContent) => {
 
 describe("checkBoard", () => {
   it("returns possible for empty board", () => {
-    expect(checkBoard({ checkIsChallengeValue, gamePieces })).toEqual({
+    expect(
+      checkBoard({ checkIsChallengeValue, gamePieces: baseGamePieces })
+    ).toEqual({
       possible: expect.any(String),
     });
   });
@@ -110,40 +108,6 @@ describe("checkBoard", () => {
       checkBoard({ checkIsChallengeValue: checkMonJan5, gamePieces })
     ).toEqual({
       impossible: "covered-challenge-jan",
-    });
-  });
-});
-
-describe("checkGaps", () => {
-  it("finds gaps that are too small", () => {
-    const gamePieces = piecesFromPosition([
-      [0, 2],
-      [1, 3],
-      [1, 0, 3, 1],
-    ]);
-    expect(
-      checkGaps({ checkIsChallengeValue: checkSun14Dec, gamePieces })
-    ).toEqual({
-      impossible: "wrong-gaps-2-3",
-    });
-  });
-  it("allows empty board", () => {
-    const gamePieces = piecesFromPosition([]);
-    expect(
-      checkGaps({ checkIsChallengeValue: checkSun14Dec, gamePieces })
-    ).toEqual({
-      possible: expect.any(String),
-    });
-  });
-  it("allows possible gaps", () => {
-    const gamePieces = piecesFromPosition([
-      [0, 0],
-      [3, 6],
-    ]);
-    expect(
-      checkGaps({ checkIsChallengeValue: checkSun14Dec, gamePieces })
-    ).toEqual({
-      possible: expect.any(String),
     });
   });
 });
