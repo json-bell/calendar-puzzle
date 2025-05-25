@@ -10,9 +10,7 @@ import {
 import { initialGameState, noUserSelection } from "./state";
 import checkWin from "../../puzzle/challenge/checkWin";
 import countFlips from "../../puzzle/challenge/countFlips";
-import expandPiecePositions, {
-  addExtraPiecePositions,
-} from "../../puzzle/game/expandPositions";
+import { addExtraPiecePositions } from "../../puzzle/game/expandPositions";
 
 const gameReducer: Reducer<Game, GameAction> = (state, action) => {
   const updateBoardAndCheckWin = ({

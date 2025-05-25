@@ -1,10 +1,10 @@
 import { ChallengeDate } from "../../../context/ChosenDate/types";
-import getCellSlug from "../../cell/getCellSlug";
+import expandPiecePositions, {
+  addExtraPiecePositions,
+} from "../../game/expandPositions";
 import getBoardFromPositions from "../../game/getBoardFromPositions";
-import { CellType } from "../../pieceTypes";
-import puzzlePieces from "../../puzzlePieces";
 import uniqueOrientations from "../../rotations/uniqueOrientations";
-import { GamePiece } from "../../types";
+import { GamePiece, PositionMap } from "../../types";
 import logBoard from "../../utils/logBoard";
 import { Solution } from "./types";
 import checkBoard from "./utils/checkBoard";
@@ -66,7 +66,7 @@ const generateSolution = (
           dayName,
           dayNumber,
           month,
-          piecePositions: currentlyPlacedPieces,
+          pieces: currentlyPlacedPieces,
         }
       : null;
   }
@@ -91,34 +91,30 @@ const generateSolution = (
   const flips =
     allowFlipped && uniqueFlips === 2 ? ([0, 1] as const) : ([0] as const);
 
-  const cell: CellType = {
-    cellX: 0,
-    cellY: 0,
-    pieceId,
-    cellSlug: getCellSlug({ cellX: 0, cellY: 0, pieceId }),
-  };
-
   for (let panelX = 0; panelX < 9; panelX++) {
     for (let panelY = 0; panelY < 6; panelY++) {
       for (const rotation of rotations) {
         for (const flipped of flips) {
-          const nextPosition: GamePiece["position"] = {
-            panelX,
-            panelY,
-            rotation,
-            flipped,
-            cell,
-          };
+          const positionMap: PositionMap = expandPiecePositions([
+            {
+              pieceId,
+              panelX,
+              panelY,
+              rotation,
+              flipped,
+            },
+          ]);
 
-          const newPlacedPieces: GamePiece[] = [...currentlyPlacedPieces];
-          newPlacedPieces[pieceId] = {
-            position: nextPosition,
-            piece: puzzlePieces[pieceId],
-          };
+          const newPlacedPieces: GamePiece[] = addExtraPiecePositions({
+            gamePieces: currentlyPlacedPieces,
+            positionMap,
+          });
+
           const possiblySolution = generateSolution(challengeDate, {
             allowFlipped,
             currentlyPlacedPieces: newPlacedPieces,
           });
+
           if (possiblySolution) return possiblySolution;
         }
       }

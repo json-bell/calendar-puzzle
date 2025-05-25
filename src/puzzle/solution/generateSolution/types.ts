@@ -5,5 +5,5 @@ export type Solution = {
   dayName: DayName;
   dayNumber: DayNumber;
   month: Month;
-  piecePositions: GamePiece[];
+  pieces: GamePiece[];
 };
