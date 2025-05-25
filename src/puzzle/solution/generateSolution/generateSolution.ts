@@ -10,22 +10,38 @@ import { Solution } from "./types";
 import checkBoard from "./utils/checkBoard";
 import checkGaps from "./utils/checkGaps";
 
+let steps = 0;
+
+type Options = {
+  currentlyPlacedPieces: GamePiece[];
+  allowFlipped?: boolean;
+  runsAsync?: boolean;
+  stepsPerYield?: number;
+};
+
 /**
  * Generates a solution for a given date with a given current state of the board
  *
  */
-const generateSolution = (
+const generateSolution = async (
   challengeDate: Pick<
     ChallengeDate,
     "checkIsChallengeValue" | "dayName" | "month" | "dayNumber"
   >,
-  options: {
-    currentlyPlacedPieces: GamePiece[];
-    allowFlipped?: boolean;
-  }
-): Solution | null => {
+  options: Options
+): Promise<Solution | null> => {
   const { dayName, dayNumber, month, checkIsChallengeValue } = challengeDate;
-  const { currentlyPlacedPieces = [], allowFlipped = true } = options || {};
+  const {
+    currentlyPlacedPieces = [],
+    allowFlipped = true,
+    runsAsync = true,
+    stepsPerYield = 1000,
+  }: Options = options || {};
+
+  if (runsAsync) {
+    steps++;
+    if (steps % stepsPerYield === 0) await new Promise(requestAnimationFrame);
+  }
 
   const { success, fails, impossible } = {
     ...checkBoard({
@@ -110,7 +126,7 @@ const generateSolution = (
             positionMap,
           });
 
-          const possiblySolution = generateSolution(challengeDate, {
+          const possiblySolution = await generateSolution(challengeDate, {
             allowFlipped,
             currentlyPlacedPieces: newPlacedPieces,
           });
