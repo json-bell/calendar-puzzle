@@ -2,21 +2,24 @@ import { ChallengeDate } from "../../../context/ChosenDate/types";
 import expandPiecePositions, {
   addExtraPiecePositions,
 } from "../../game/expandPositions";
-import getBoardFromPositions from "../../game/getBoardFromPositions";
 import uniqueOrientations from "../../rotations/uniqueOrientations";
 import { GamePiece, PositionMap } from "../../types";
-import visualiseBoard from "../../utils/visualiseBoard";
 import { Solution } from "./types";
 import checkBoard from "./utils/checkBoard";
 import checkGaps from "./utils/checkGaps";
 
 let steps = 0;
+const yieldFunctionDefault =
+  typeof window === "undefined"
+    ? (resolve: (value: unknown) => void) => setTimeout(resolve, 1000)
+    : requestAnimationFrame;
 
 type Options = {
   gamePieces: GamePiece[];
   allowFlipped?: boolean;
   runsAsync?: boolean;
   stepsPerYield?: number;
+  yieldFunction?: (callback: (value: unknown) => void) => void;
 };
 
 /**
@@ -36,11 +39,12 @@ const generateSolution = async (
     allowFlipped = true,
     runsAsync = true,
     stepsPerYield = 1000,
+    yieldFunction = yieldFunctionDefault,
   }: Options = options;
 
   if (runsAsync) {
     steps++;
-    if (steps % stepsPerYield === 0) await new Promise(requestAnimationFrame);
+    if (steps % stepsPerYield === 0) await new Promise(yieldFunction);
   }
 
   const { success, fails, impossible } = {
@@ -88,11 +92,11 @@ const generateSolution = async (
   }
 
   /*  -------- LOGS --------  */
-  const placedPieceCount = gamePieces.filter(({ position }) => position).length;
-  if (placedPieceCount <= 3) {
-    const board = getBoardFromPositions(gamePieces);
-    visualiseBoard(board);
-  }
+  // const placedPieceCount = gamePieces.filter(({ position }) => position).length;
+  // if (placedPieceCount <= 3) {
+  //   const board = getBoardFromPositions(gamePieces);
+  //   visualiseBoard(board);
+  // }
   /*  -------- LOGS END --------  */
 
   // else: we place the nextIdToPlace
@@ -139,27 +143,3 @@ const generateSolution = async (
 };
 
 export default generateSolution;
-
-// logic:
-// for i in 0 to 9
-// if piece(i) placed, continue to i + 1
-// else: for every possible position of piece i, attempt solution for remaining pieces
-// -> if successful, return solution
-// -> if unsuccessful, attempt next place of piece i
-
-// ---->
-// find (first unplaced piece: piece N)
-// if (there exists unplaced N) {
-// for (every X)
-// for (every Y)
-// for (every rotation)
-// for (every flip) {
-// check no overlap with new position
-// const solution = generateSolution({ ...placedPieces, N: newPosition })
-// if (solution) return solution
-// }
-// return null
-// }
-// else
-// // all pieces placed
-// checkWin(Position) & return it

@@ -6,7 +6,7 @@ import { piecesFromPositions } from "../../puzzlePieces/piecesFromPositions";
 import visualiseBoard from "../../utils/visualiseBoard";
 import generateSolution from "./generateSolution";
 
-const getChallengeDate = (
+const createChallengeDate = (
   dayName: ChallengeDate["dayName"],
   dayNumber: ChallengeDate["dayNumber"],
   month: ChallengeDate["month"]
@@ -36,10 +36,9 @@ describe("generateSolution", () => {
       { pieceId: 9, rotation: 1, flipped: 0, panelX: 1, panelY: 0 },
     ];
     const gamePieces = piecesFromPositions(minimalPositions);
-    visualiseBoard(getBoardFromPositions(gamePieces));
 
     const solution = await generateSolution(
-      getChallengeDate("sun", 25, "may"),
+      createChallengeDate("sun", 25, "may"),
       {
         runsAsync: false,
         gamePieces,
@@ -63,22 +62,24 @@ describe("generateSolution", () => {
     expect(visualiseBoard(board, "array")).toEqual(expectedBoard);
   });
 
-  // it.skip("generates a solution for", async () => {
-  //   const dayName = "sun";
-  //   const dayNumber = 25;
-  //   const month = "may";
-  //   const solution = await generateSolution(
-  //     getChallengeDate(dayName, dayNumber, month),
-  //     {
-  //       gamePieces: piecesFromPositions([]),
-  //       allowFlipped: false,
-  //     }
-  //   );
+  it("generates a full solution", async () => {
+    // Day is picked specifically for speed - if this test starts breaking the count,
+    // then change the test date to be a faster one by following the For Loop
+    // (& not extending the timeout bc that will get annoying)
+    const gamePieces = piecesFromPositions([]);
+    const solution = await generateSolution(
+      createChallengeDate("sun", 22, "aug"),
+      {
+        runsAsync: false,
+        gamePieces,
+      }
+    );
 
-  //   console.dir(solution?.pieces.map(({ position }) => position));
-  //   if (solution) visualiseBoard(getBoardFromPositions(solution.pieces));
-  //   throw new Error("WIP");
-  // }, 60000);
+    expect(solution).not.toBeNull();
+  }, 50000);
+
+  it.todo("finds solutions with Flipped pieces if this is specified");
+  it.todo("rejects solutions with Flipped pieces if this is specified");
 
   it.todo("sad path - failing build for various reasons");
 });
