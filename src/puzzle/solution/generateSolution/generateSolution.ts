@@ -40,6 +40,22 @@ const generateSolution = (
 
   if (fails || impossible) return null;
 
+  // ADD CHECK: IF SPACE SIZE === 5, check specifically for pieces that fill that space
+  // OR more generally, choose SMALLEST GAP,
+  // FIX A CELL IN THAT GAP
+  // and only CHOOSE CELLS THAT FILL THAT GAP
+  // -> Maybe needs a different structure than for x in 0 to 9, y in 0 to 6
+  // like we can have a delta-x & delta-y or summat depending on the piece
+  // Ooo which actually we can get directly from `pieceShape`!
+
+  // OOOOOOOR
+  // TRY TO FILL THE SMALLEST GAPS FIRST!
+  // So if e.g. there's 10 20 25 or summat
+  // it FIRST only proceeds when the gap of 10 is shrunk!!!!
+
+  // GAP STORAGE -> KEEP TRACK OF TOP-LEFT-MOST cell
+  // -> instead of `id++`, have a push to an array with {id: 1, firstVisit: {x: 1, y: 3}} or summat
+
   const nextPieceToPlace = currentlyPlacedPieces?.find(
     ({ position = null }) => position === null
   );
@@ -59,19 +75,7 @@ const generateSolution = (
   const placedPieceCount = currentlyPlacedPieces.filter(
     ({ position }) => position
   ).length;
-  if (placedPieceCount <= 7) {
-    console.log(`looking to place ${nextPieceToPlace.piece.pieceId}`);
-    console.log(
-      "most recent placed piece position:",
-      JSON.stringify(
-        currentlyPlacedPieces.map(({ piece, position }) => ({
-          pieceId: piece.pieceId,
-          position,
-        })),
-        null,
-        2
-      )
-    );
+  if (placedPieceCount <= 3) {
     const board = getBoardFromPositions(currentlyPlacedPieces);
     logBoard(board);
   }
