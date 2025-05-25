@@ -10,6 +10,9 @@ import {
 import { initialGameState, noUserSelection } from "./state";
 import checkWin from "../../puzzle/challenge/checkWin";
 import countFlips from "../../puzzle/challenge/countFlips";
+import expandPiecePositions, {
+  addExtraPiecePositions,
+} from "../../puzzle/game/expandPositions";
 
 const gameReducer: Reducer<Game, GameAction> = (state, action) => {
   const updateBoardAndCheckWin = ({
@@ -112,6 +115,18 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
           : gamePiece;
       });
       const { board, winDetails } = updateBoardAndCheckWin({ gamePieces });
+      return { ...state, board, winDetails, gamePieces };
+    }
+    case Actions.PLACE_PIECES: {
+      const { positionMap } = action.payload;
+
+      const gamePieces: GamePiece[] = addExtraPiecePositions({
+        gamePieces: state.gamePieces,
+        positionMap,
+      });
+
+      const { board, winDetails } = updateBoardAndCheckWin({ gamePieces });
+
       return { ...state, board, winDetails, gamePieces };
     }
     case Actions.ROTATE_SELECTED_PIECE: {
