@@ -15,6 +15,7 @@
     "generate-pieces": "tsx ./scripts/generatePuzzlePieces",
     "generate-borders": "tsx ./scripts/generatePieceBorderLookup",
     "generate-orientations": "tsx ./scripts/generateUniqueOrientations",
+    "find-quickest-date": "tsx ./scripts/findQuickestSolution",
     "test": "jest",
     "test-coverage": "jest --coverage",
     "open-coverage": "open coverage/lcov-report/index.html"

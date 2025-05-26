@@ -24,6 +24,8 @@ export type PiecePosition = {
   panelY: number;
 };
 
+export type PositionMap = { [K in number]?: PiecePosition };
+
 type SelectionRestrictions =
   | {
       selectedPiece: Piece;
