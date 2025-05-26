@@ -2,8 +2,8 @@ import { BoardShape } from "../../types";
 
 export type BoardMapperFn<Input, Output> = (
   input: Input,
-  rowIndex: number,
-  colIndex: number
+  colIndex: number,
+  rowIndex: number
 ) => Output;
 
 const mapBoard = <Input, Output>(

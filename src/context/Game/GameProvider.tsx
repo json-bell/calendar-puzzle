@@ -7,7 +7,7 @@ import { Game } from "../../puzzle/types";
 import { useChallengeDate } from "../ChosenDate/ChallengeDateContext";
 
 const actionsUpdatingBoard = [
-  Actions.PLACE_PIECE,
+  Actions.PLACE_SELECTED_PIECE,
   Actions.REMOVE_PIECE,
   Actions.ROTATE_PIECE,
   Actions.ROTATE_SELECTED_PIECE,

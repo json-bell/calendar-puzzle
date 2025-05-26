@@ -8,6 +8,7 @@ import { Actions } from "../../../context/Game/types";
 import { useViewport } from "../../../utils/useWindowSize/windowSizeContext";
 import ControlButton from "../ControlButtons/ControlButton";
 import DeletePieceButton from "../ControlButtons/SpecificButtons/DeletePieceButton/DeletePieceButton";
+import ShowSolutionButton from "../ControlButtons/SpecificButtons/ShowSolutionButton/ShowSolutionButton";
 import WinDetailsButton from "../ControlButtons/SpecificButtons/WinDetailsButton/WinDetailsButtons";
 import styles from "./GameControls.module.css";
 
@@ -39,6 +40,7 @@ const GameControls: React.FC = () => {
           onClick={() => dispatch({ type: Actions.REMOVE_ALL_PIECES })}
           inactive={gamePieces.filter(({ position }) => position).length === 0}
         />
+        <ShowSolutionButton />
         <WinDetailsButton />
       </div>
     </div>
