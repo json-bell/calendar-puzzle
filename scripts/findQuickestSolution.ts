@@ -1,7 +1,6 @@
 import { ChallengeDate } from "../src/context/ChosenDate/types";
 import { PanelContent } from "../src/puzzle/panelTypes";
 import { piecesFromPositions } from "../src/puzzle/puzzlePieces/piecesFromPositions";
-import generateSolution from "../src/puzzle/solution/generateSolution/generateSolution";
 import visualiseBoard from "../src/puzzle/utils/visualiseBoard";
 import getBoardFromPositions from "../src/puzzle/game/getBoardFromPositions";
 import { PiecePosition } from "../src/puzzle/types";
@@ -10,6 +9,7 @@ import {
   dayNumbers,
   months,
 } from "../src/puzzle/boardPanels/dateData";
+import buildSolution from "../src/puzzle/solution/buildSolution/buildSolution";
 // import fs, { promises } from "fs";
 // import path from "path";
 
@@ -18,7 +18,7 @@ const createChallengeDate = (
   dayName: ChallengeDate["dayName"],
   dayNumber: ChallengeDate["dayNumber"],
   month: ChallengeDate["month"]
-): Parameters<typeof generateSolution>[0] => {
+): Parameters<typeof buildSolution>[0] => {
   const checkIsChallengeValue = (value: PanelContent) => {
     if (value === dayName || value === dayNumber || value === month)
       return true;
@@ -72,7 +72,7 @@ let solvedNumber = 0;
 // );
 
 const promisesArr = allChallengeDates.map(({ dayName, dayNumber, month }) => {
-  const promise = generateSolution(
+  const promise = buildSolution(
     createChallengeDate(dayName, dayNumber, month),
     {
       gamePieces,
