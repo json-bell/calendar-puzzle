@@ -29,20 +29,23 @@ const createChallengeDate = (
 describe("buildSolution", () => {
   it("builds a full solution", async () => {
     const gamePieces = piecesFromPositions([]);
-    const solution = await buildSolution(createChallengeDate("wed", 9, "jan"), {
-      runsAsync: false,
-      gamePieces,
-      allowFlipped: false,
-    });
+    const solution = await buildSolution(
+      createChallengeDate("wed", 22, "jan"),
+      {
+        runsAsync: false,
+        gamePieces,
+        allowFlipped: false,
+      }
+    );
     expect(solution).not.toBeNull();
 
     const expectedSolution = [
-      [" ", "0", "0", "0", "3", "3", "3", "3", "3"],
-      ["5", "0", "7", "7", "7", "7", " ", " ", "1"],
-      ["5", "0", "9", "9", "7", "8", "1", "1", "1"],
-      ["5", "5", "9", "4", "4", "8", "8", "6", "1"],
-      ["2", "5", "9", "9", "4", "8", "8", "6", "6"],
-      ["2", "2", "2", "2", "4", "4", "6", "6", "W"],
+      [" ", "3", "3", "3", "3", "3", "5", "5", "5"],
+      ["0", "0", "0", "4", "4", "5", "5", " ", "7"],
+      ["0", "8", "8", "8", "4", "1", "1", "1", "7"],
+      ["0", "8", "8", "6", "4", "4", "1", "7", "7"],
+      ["2", " ", "6", "6", "6", "9", "1", "9", "7"],
+      ["2", "2", "2", "2", "6", "9", "9", "9", "W"],
     ];
     const board = getBoardFromPositions(solution?.pieces || []);
     expect(visualiseBoard(board, "array")).toEqual(expectedSolution);
