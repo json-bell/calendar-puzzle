@@ -1,14 +1,26 @@
 # IN DEV
 
-## CAL-19: Create function that trial-and-error builds grid for a specific date
+## CAL-20 Generate Solution from a filling-panels approach (as opposed to a placing-pieces)
 
-Takes a date / checkIsWin & current gamePiece positions, and builds a solution according to that
+- This should be more efficient: while deving piece-first, realised gaps of size 5 are very hard to fill
+- needing to search the whole tree before realising that the gap-5 can't actually be filled
+- could possibly do a mix where small gaps are targetted first
+- that involves rewriting the whole thing entirely for those cases
 
---> might need a nice way of storing gamePiecePositions?
+From this, I realised it's easier to just take a panel-first approach anyway:
+
+- try to fill a panel first
+- can possibly suggest which panel to fill from previous iteration (e.g. start with a piece from a small gap)
+- And then go over each panel
+- It may initially seem like this is more iterations: to the scale of n^50 as opposed to n^10 (piece count vs panel count)
+- but for every panel filled appropriately, 4 others are filled
+- -> each iteration places a piece, so you get to the same thing
+- -> but it'll be easier to immediately say "use one of these 6 unplaced pieces" instead of like before where we test every panel
+- feeling good abt this one tbh, I think it could really speed things up
 
 # Backlog
 
-## CAL-20: Make Grid solution solving more efficient
+## CAL-?: Make Grid solution solving more efficient
 
 See comments in `generateSolution.ts`: plans how to target the smallest spaces first, so that solution spaces are more quickly eliminated (checks e.g. if a 5-panel gap CAN be filled, before trying all the different ways of filling the 35 panel gap)
 
@@ -70,6 +82,12 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-19: Create function that trial-and-error builds grid for a specific date
+
+Takes a date / checkIsWin & current gamePiece positions, and builds a solution according to that
+
+--> might need a nice way of storing gamePiecePositions?
 
 ## CAL-18: Good vs Bad win
 

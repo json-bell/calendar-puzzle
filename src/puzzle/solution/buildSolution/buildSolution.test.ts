@@ -4,7 +4,8 @@ import getBoardFromPositions from "../../game/getBoardFromPositions";
 import { PanelContent } from "../../panelTypes";
 import { piecesFromPositions } from "../../puzzlePieces/piecesFromPositions";
 import visualiseBoard from "../../utils/visualiseBoard";
-import generateSolution from "./generateSolution";
+import generateSolution from "../generateSolution/generateSolution";
+import buildSolution from "./buildSolution";
 
 const createChallengeDate = (
   dayName: ChallengeDate["dayName"],
@@ -25,7 +26,27 @@ const createChallengeDate = (
   };
 };
 
-describe("generateSolution", () => {
+describe("buildSolution", () => {
+  it("builds a full solution", async () => {
+    const gamePieces = piecesFromPositions([]);
+    const solution = await buildSolution(createChallengeDate("wed", 9, "jan"), {
+      runsAsync: false,
+      gamePieces,
+      allowFlipped: false,
+    });
+    expect(solution).not.toBeNull();
+
+    const expectedSolution = [
+      [" ", "0", "0", "0", "3", "3", "3", "3", "3"],
+      ["5", "0", "7", "7", "7", "7", " ", " ", "1"],
+      ["5", "0", "9", "9", "7", "8", "1", "1", "1"],
+      ["5", "5", "9", "4", "4", "8", "8", "6", "1"],
+      ["2", "5", "9", "9", "4", "8", "8", "6", "6"],
+      ["2", "2", "2", "2", "4", "4", "6", "6", "W"],
+    ];
+    const board = getBoardFromPositions(solution?.pieces || []);
+    expect(visualiseBoard(board, "array")).toEqual(expectedSolution);
+  }, 10000);
   it("finishes a partial solution", async () => {
     const minimalPositions: MinimalPosition[] = [
       { pieceId: 0, rotation: 0, flipped: 0, panelX: 2, panelY: 0 },
@@ -61,25 +82,4 @@ describe("generateSolution", () => {
 
     expect(visualiseBoard(board, "array")).toEqual(expectedBoard);
   });
-
-  it("generates a full solution", async () => {
-    // Day is picked specifically for speed - if this test starts breaking the count,
-    // then change the test date to be a faster one by following the For Loop
-    // (& not extending the timeout bc that will get annoying)
-    const gamePieces = piecesFromPositions([]);
-    const solution = await generateSolution(
-      createChallengeDate("sun", 22, "aug"),
-      {
-        runsAsync: false,
-        gamePieces,
-      }
-    );
-
-    expect(solution).not.toBeNull();
-  }, 10000);
-
-  it.todo("finds solutions with Flipped pieces if this is specified");
-  it.todo("rejects solutions with Flipped pieces if this is specified");
-
-  it.todo("sad path - failing build for various reasons");
 });
