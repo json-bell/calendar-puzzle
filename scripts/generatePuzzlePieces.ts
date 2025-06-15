@@ -19,7 +19,7 @@ const puzzlePieces: Piece[] = ${puzzlePieceString};
   (err) => {
     if (err) console.error("Error generating Board Panels:", err);
     else {
-      console.log("Successfully generated Board Panels to", filePath);
+      console.info("Successfully generated Board Panels to", filePath);
     }
   }
 );

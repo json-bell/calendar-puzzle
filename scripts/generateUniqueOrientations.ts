@@ -19,7 +19,7 @@ const uniqueOrientations: UniqueOrientation[] = ${orientationString};
   (err) => {
     if (err) console.error("Error generating Piece Orientations:", err);
     else {
-      console.log("Successfully generated Piece Orientations to", filePath);
+      console.info("Successfully generated Piece Orientations to", filePath);
     }
   }
 );
