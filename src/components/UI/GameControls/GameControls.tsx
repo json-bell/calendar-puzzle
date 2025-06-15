@@ -10,6 +10,7 @@ import ControlButton from "../ControlButtons/ControlButton";
 import DeletePieceButton from "../ControlButtons/SpecificButtons/DeletePieceButton/DeletePieceButton";
 import ShowSolutionButton from "../ControlButtons/SpecificButtons/ShowSolutionButton/ShowSolutionButton";
 import WinDetailsButton from "../ControlButtons/SpecificButtons/WinDetailsButton/WinDetailsButtons";
+import { WinButtonTest } from "../Toaster/utils/useToast";
 import styles from "./GameControls.module.css";
 
 const GameControls: React.FC = () => {
@@ -42,6 +43,7 @@ const GameControls: React.FC = () => {
         />
         <ShowSolutionButton />
         <WinDetailsButton />
+        <WinButtonTest />
       </div>
     </div>
   );

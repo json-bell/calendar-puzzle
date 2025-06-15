@@ -13,15 +13,15 @@ I want the "show solution" to be quicker
 
 # Backlog
 
-## CAL-?: Make Grid solution solving more efficient
-
-See comments in `generateSolution.ts`: plans how to target the smallest spaces first, so that solution spaces are more quickly eliminated (checks e.g. if a 5-panel gap CAN be filled, before trying all the different ways of filling the 35 panel gap)
-
 ## Epic - Detecting Win and choosing date
 
 CAL-?: Date selection - 3 fields Num/Day/Month? Or calendar? Both?
 
-Add date to querystring too
+Add date to querystring too?
+
+## CAL-?: Make Grid solution solving more efficient
+
+See comments in `generateSolution.ts`: plans how to target the smallest spaces first, so that solution spaces are more quickly eliminated (checks e.g. if a 5-panel gap CAN be filled, before trying all the different ways of filling the 35 panel gap)
 
 ## Epic - Solutions and hints - needs to be able to detect win
 
