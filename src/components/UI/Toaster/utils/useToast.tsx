@@ -1,57 +1,58 @@
 import { useMemo } from "react";
 import { useToasterQueue } from "./useToasterQueue";
 import { ToastControls } from "./types";
-import ControlButton from "../../ControlButtons/ControlButton";
-import { createToastLifecycle, ToastLifecycle } from "./toastLifecycle";
+// import { ToastLifecycle, ToastLifecycleInstance } from "./toastLifecycle";
+
+// type Options = {
+// lifeOnUpdate: InstanceType<typeof ToastLifecycle> | null;
+// };
 
 const useToast = (
-  id: string,
-  options?: { lifeOnUpdate?: InstanceType<typeof ToastLifecycle> | null }
+  id: string
+  // options?: {
+  //   lifeOnUpdate?: ToastLifecycleInstance | null;
+  // }
 ): ToastControls => {
-  const { toasts, updateToast, fadeToast } = useToasterQueue();
-  const { lifeOnUpdate = createToastLifecycle() } = options || {};
+  const { toasts, updateToast, fadeToast, defineToast } = useToasterQueue();
+  // const {}: Options = { ...options };
 
-  return useMemo(() => {
-    const set: ToastControls["set"] = (updates) => {
-      const updateLifeObj = lifeOnUpdate
-        ? { pendingLifecycles: [lifeOnUpdate] }
-        : null;
+  const specifiedToast = toasts[id];
+  const toastExists = !!specifiedToast;
 
-      updateToast(id, { ...updateLifeObj, ...updates });
+  return useMemo((): ToastControls => {
+    const define: ToastControls["define"] = (toast) => {
+      defineToast(id, toast);
+    };
+
+    const update: ToastControls["update"] = (updates) => {
+      updateToast(id, { ...updates });
+    };
+
+    const close: ToastControls["close"] = (eatingOptions) => {
+      console.log("closing...");
+      update({ hoverPauses: false });
+      fadeToast(id, { fadeMs: 500, ...eatingOptions });
     };
 
     const fade: ToastControls["fade"] = (eatingOptions) => {
-      set({ hoverPauses: true });
+      update({ hoverPauses: true });
       fadeToast(id, { ...eatingOptions });
     };
-    const close: ToastControls["close"] = (eatingOptions) => {
-      console.log("closing...");
-      set({ hoverPauses: false });
-      fadeToast(id, { fadeMs: 500, ...eatingOptions });
-    };
+
     const forceClose: ToastControls["forceClose"] = (eatingOptions) => {
-      set({ hoverPauses: false });
+      update({ hoverPauses: false });
       fadeToast(id, { fadeMs: 0, ...eatingOptions });
     };
 
     const get: ToastControls["get"] = () => toasts[id];
 
-    return { set, close, get, fade, forceClose };
-  }, [id, updateToast, fadeToast]);
+    return { define, update, get, close, fade, forceClose };
+  }, [id, updateToast, fadeToast, toastExists, specifiedToast, defineToast]);
 };
 
 export default useToast;
 
 // USAGE EXAMPLES
-
-export const WinButtonTest = () => {
-  const buttonToast = useToast("win");
-
-  const onClick = () => {
-    buttonToast.set({ contents: <>You won! Congrats!</> });
-  };
-  return <ControlButton onClick={onClick}>Test Win button</ControlButton>;
-};
 
 // export const SolutionButton = () => {
 //   const solutionToast = useToast("solution");

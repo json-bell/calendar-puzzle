@@ -10,7 +10,6 @@ import ControlButton from "../ControlButtons/ControlButton";
 import DeletePieceButton from "../ControlButtons/SpecificButtons/DeletePieceButton/DeletePieceButton";
 import ShowSolutionButton from "../ControlButtons/SpecificButtons/ShowSolutionButton/ShowSolutionButton";
 import WinDetailsButton from "../ControlButtons/SpecificButtons/WinDetailsButton/WinDetailsButtons";
-import { WinButtonTest } from "../Toaster/utils/useToast";
 import styles from "./GameControls.module.css";
 
 const GameControls: React.FC = () => {
@@ -50,3 +49,23 @@ const GameControls: React.FC = () => {
 };
 
 export default GameControls;
+
+/** TEMPORARY TESTING OF THE TOASTER - REMOVE ONCE DONE */
+
+import { newToastDefaults } from "../../../context/ToasterProvider/newToastDefaults";
+import { createToastLifecycle } from "../Toaster/utils/toastLifecycle";
+import useToast from "../Toaster/utils/useToast";
+export const WinButtonTest = () => {
+  const buttonToast = useToast("win");
+
+  const onClick = () => {
+    buttonToast.define({
+      contents: <>You won! Congrats!</>,
+      opacity: newToastDefaults.opacity,
+      pendingLifecycles: [
+        createToastLifecycle({ updateToast: buttonToast.update }),
+      ],
+    });
+  };
+  return <ControlButton onClick={onClick}>Test Win button</ControlButton>;
+};

@@ -9,6 +9,9 @@ const ToasterContext = createContext<ToasterQueue>({
   updateToast: () => {
     console.log("Toaster used without Context :(");
   },
+  defineToast: () => {
+    console.log("Toaster used without Context :(");
+  },
 });
 
 export default ToasterContext;

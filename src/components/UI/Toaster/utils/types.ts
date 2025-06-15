@@ -20,14 +20,15 @@ export type ToastInfo = {
     fadeMs: number;
     ease: Easing;
   };
+  pendingLifecycles: InstanceType<typeof ToastLifecycle>[];
 
   eaten?: boolean; // if true, should remove/not display Toast
-  pendingLifecycles?: InstanceType<typeof ToastLifecycle>[];
   hoverPauses?: boolean;
 };
 export type ToastList = { [k in string]?: ToastInfo };
 export type ToasterQueue = {
   toasts: ToastList;
+  defineToast: (id: string, toastInfo: Omit<ToastInfo, "id">) => void;
   updateToast: (id: string, updates: Partial<Omit<ToastInfo, "id">>) => void;
   fadeToast: (id: string, options?: EatToastOptions) => void;
 };
@@ -37,7 +38,8 @@ export type EatToastOptions = {
   ease?: Easing;
 };
 export type ToastControls = {
-  set: (updates: Partial<Omit<ToastInfo, "id">>) => void;
+  define: (toast: Omit<ToastInfo, "id">) => void;
+  update: (updates: Partial<Omit<ToastInfo, "id">>) => void;
 
   // We have a few closing options:
   fade: (options?: EatToastOptions) => void; // auto-fade from timer expiring, cancellable
@@ -46,3 +48,8 @@ export type ToastControls = {
 
   get: () => ToastInfo | undefined;
 };
+
+export type ToastResult = null | "eat" | "keep";
+export type ToastLifecycleFn = (toastParams: {
+  stopped: boolean;
+}) => Promise<ToastResult>;

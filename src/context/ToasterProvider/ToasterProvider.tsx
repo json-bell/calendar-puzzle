@@ -1,67 +1,77 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import ToasterContext from "../../components/UI/Toaster/utils/toasterContext";
 import {
   ToasterQueue,
-  ToastInfo,
   ToastList,
 } from "../../components/UI/Toaster/utils/types";
 import {
   delay,
   ToastLifecycle,
 } from "../../components/UI/Toaster/utils/toastLifecycle";
-
-const newToastDefaults: Omit<ToastInfo, "id"> = {
-  contents: null,
-  opacity: {
-    value: 1,
-    ease: "linear",
-    fadeMs: 1000,
-  },
-};
+import { newToastDefaults } from "./newToastDefaults";
 
 const ToasterProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<ToasterQueue["toasts"]>({});
 
-  const updateToast: ToasterQueue["updateToast"] = (id, updates) => {
-    setToasts((currToasts): ToastList => {
-      const specifiedToast = currToasts[id];
-      return {
-        ...currToasts,
-        [id]: { ...newToastDefaults, ...specifiedToast, ...updates, id },
-      };
-    });
-  };
+  const { defineToast, updateToast, fadeToast } = useMemo(() => {
+    console.log("reloading provider");
+    const defineToast: ToasterQueue["defineToast"] = (id, toast) => {
+      setToasts((currToasts): ToastList => {
+        return {
+          ...currToasts,
+          [id]: { ...toast, id },
+        };
+      });
+    };
 
-  const fadeToast: ToasterQueue["fadeToast"] = (id, options) => {
-    const { fadeMs = 1000, ease = "linear" } = options || {};
+    const updateToast: ToasterQueue["updateToast"] = (id, updates) => {
+      setToasts((currToasts): ToastList => {
+        const specifiedToast = currToasts[id];
+        if (!specifiedToast)
+          console.warn(
+            "Updating unset toast, you may wish to use `toast.set` instead"
+          );
+        return {
+          ...currToasts,
+          [id]: { ...newToastDefaults, ...specifiedToast, ...updates, id },
+        };
+      });
+    };
 
-    const closingLifecycle = new ToastLifecycle(async ({ stopped }) => {
-      if (fadeMs) {
-        updateToast(id, { opacity: { value: 0, fadeMs, ease } });
-        await delay(fadeMs);
-      }
-      if (stopped) return null;
+    const fadeToast: ToasterQueue["fadeToast"] = (id, options) => {
+      const { fadeMs = 1000, ease = "linear" } = options || {};
 
-      return "eat";
-    });
+      const closingLifecycle = new ToastLifecycle(async ({ stopped }) => {
+        if (fadeMs) {
+          updateToast(id, { opacity: { value: 0, fadeMs, ease } });
+          await delay(fadeMs);
+        }
+        if (stopped) return null;
 
-    setToasts((currToasts) => {
-      const specifiedToast = currToasts[id];
-      if (!specifiedToast) return currToasts;
+        return "eat";
+      });
 
-      return {
-        ...currToasts,
-        [id]: {
-          ...specifiedToast,
-          opacity: { value: 0, fadeMs, ease },
-          pendingLifecycles: [closingLifecycle],
-        },
-      };
-    });
-  };
+      setToasts((currToasts) => {
+        const specifiedToast = currToasts[id];
+        if (!specifiedToast) return currToasts;
+
+        return {
+          ...currToasts,
+          [id]: {
+            ...specifiedToast,
+            opacity: { value: 0, fadeMs, ease },
+            pendingLifecycles: [closingLifecycle],
+          },
+        };
+      });
+    };
+    return { defineToast, updateToast, fadeToast };
+  }, [setToasts]);
 
   return (
-    <ToasterContext.Provider value={{ toasts, fadeToast, updateToast }}>
+    <ToasterContext.Provider
+      value={{ toasts, fadeToast, defineToast, updateToast }}
+    >
       {children}
     </ToasterContext.Provider>
   );

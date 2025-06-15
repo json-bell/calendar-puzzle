@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import ControlButton from "../ControlButtons/ControlButton";
 import styles from "./Toaster.module.css";
 import parseToasterOpacity from "./utils/parseToasterOpacity";
-import { ToastInfo } from "./utils/types";
+import type { ToastInfo } from "./utils/types";
 import useToast from "./utils/useToast";
 
 type ToastProps = {
@@ -12,31 +12,31 @@ type ToastProps = {
 const Toast: React.FC<ToastProps> = ({ toast }) => {
   const {
     close: handleClose,
-    // set: handleSet,
+    update: handleUpdate,
     // fade: handleFade,
     // forceClose: handleForceClose,
   } = useToast(toast.id);
 
   const { pendingLifecycles } = toast;
 
-  const promises = pendingLifecycles?.map((lifecycle) => lifecycle.promise);
-  console.log(promises?.length);
   useEffect(() => {
-    console.log("new promises");
-    promises?.[0].then(() => {
-      console.log("done");
-    });
-  }, [promises]);
+    const promises = pendingLifecycles.map((lifecycle) => lifecycle.promise);
+    const allSettled = Promise.allSettled(promises);
 
-  if (!promises?.length) return null;
-  const lifecycleResolutions = Promise.all(promises);
+    allSettled
+      .then((resolutions) =>
+        resolutions
+          .filter((resolution) => resolution.status === "fulfilled")
+          .map(({ value }) => value)
+      )
+      .then((results) => {
+        if (results.every((result) => result === "eat" || result === null)) {
+          handleUpdate({ eaten: true });
+        }
+      });
+  }, [pendingLifecycles]);
 
-  lifecycleResolutions.then((results) => {
-    console.log("SUCCESS - checking if all eaten");
-    if (results.every((result) => result === "eat" || result === null)) {
-      console.log("dead");
-    }
-  });
+  if (toast.eaten === true) return null;
 
   const onClose = () => {
     handleClose();

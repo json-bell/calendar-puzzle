@@ -1,12 +1,12 @@
-import { ToastInfo, VisibleDuration } from "./types";
+import {
+  ToastInfo,
+  ToastLifecycleFn,
+  ToastResult,
+  VisibleDuration,
+} from "./types";
 
 export const delay = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(() => resolve(), ms));
-
-type ToastResult = null | "eat" | "keep";
-type ToastLifecycleFn = (toastParams: {
-  stopped: boolean;
-}) => Promise<ToastResult>;
 
 export const createToastLifecycle = (options?: {
   visibleTime?: VisibleDuration;
@@ -20,7 +20,8 @@ export const createToastLifecycle = (options?: {
   return new ToastLifecycle(async ({ stopped }) => {
     await delay(visibleTime);
     if (stopped) return null;
-    updateToast?.({ opacity: { value: 0, fadeMs: fadeMs, ease: "linear" } });
+    console.log("reducing opacity");
+    updateToast?.({ opacity: { value: 0, fadeMs: fadeMs, ease: "ease-in" } });
     await delay(fadeMs);
     return "eat";
   });
@@ -42,3 +43,5 @@ export class ToastLifecycle {
 
   promise: Promise<ToastResult>;
 }
+
+export type ToastLifecycleInstance = InstanceType<typeof ToastLifecycle>;
