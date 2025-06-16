@@ -2,6 +2,7 @@ import { ReactNode, useMemo, useState } from "react";
 import ToasterContext from "../../components/UI/Toaster/utils/toasterContext";
 import {
   ToasterQueue,
+  ToastInfo,
   ToastList,
 } from "../../components/UI/Toaster/utils/types";
 import {
@@ -10,13 +11,22 @@ import {
 } from "../../components/UI/Toaster/utils/toastLifecycle";
 import { newToastDefaults } from "./newToastDefaults";
 
+const stopLifecycles = (toastInfo?: ToastInfo) => {
+  if (!toastInfo) return;
+
+  toastInfo.pendingLifecycles.forEach((lifecycle) => {
+    lifecycle.stop();
+  });
+};
+
 const ToasterProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<ToasterQueue["toasts"]>({});
 
   const { defineToast, updateToast, fadeToast } = useMemo(() => {
-    console.log("reloading provider");
     const defineToast: ToasterQueue["defineToast"] = (id, toast) => {
       setToasts((currToasts): ToastList => {
+        stopLifecycles(currToasts[id]);
+
         return {
           ...currToasts,
           [id]: { ...toast, id },
@@ -27,6 +37,8 @@ const ToasterProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const updateToast: ToasterQueue["updateToast"] = (id, updates) => {
       setToasts((currToasts): ToastList => {
         const specifiedToast = currToasts[id];
+        stopLifecycles(specifiedToast);
+
         if (!specifiedToast)
           console.warn(
             "Updating unset toast, you may wish to use `toast.set` instead"
@@ -41,12 +53,12 @@ const ToasterProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const fadeToast: ToasterQueue["fadeToast"] = (id, options) => {
       const { fadeMs = 1000, ease = "linear" } = options || {};
 
-      const closingLifecycle = new ToastLifecycle(async ({ stopped }) => {
+      const closingLifecycle = new ToastLifecycle(async ({ checkStopped }) => {
         if (fadeMs) {
           updateToast(id, { opacity: { value: 0, fadeMs, ease } });
           await delay(fadeMs);
         }
-        if (stopped) return null;
+        if (checkStopped()) return null;
 
         return "eat";
       });
@@ -54,6 +66,7 @@ const ToasterProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       setToasts((currToasts) => {
         const specifiedToast = currToasts[id];
         if (!specifiedToast) return currToasts;
+        stopLifecycles(specifiedToast);
 
         return {
           ...currToasts,

@@ -29,7 +29,6 @@ const useToast = (
     };
 
     const close: ToastControls["close"] = (eatingOptions) => {
-      console.log("closing...");
       update({ hoverPauses: false });
       fadeToast(id, { fadeMs: 500, ...eatingOptions });
     };

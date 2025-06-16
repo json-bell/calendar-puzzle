@@ -26,15 +26,19 @@ const Toast: React.FC<ToastProps> = ({ toast }) => {
     allSettled
       .then((resolutions) =>
         resolutions
-          .filter((resolution) => resolution.status === "fulfilled")
+          .filter((resolution) => {
+            if (resolution.status === "rejected")
+              console.error(resolution.reason);
+            return resolution.status === "fulfilled";
+          })
           .map(({ value }) => value)
       )
       .then((results) => {
-        if (results.every((result) => result === "eat" || result === null)) {
+        if (results.every((result) => result === "eat")) {
           handleUpdate({ eaten: true });
         }
       });
-  }, [pendingLifecycles]);
+  }, [pendingLifecycles, handleUpdate]);
 
   if (toast.eaten === true) return null;
 
@@ -49,11 +53,7 @@ const Toast: React.FC<ToastProps> = ({ toast }) => {
   const opacityStyles = parseToasterOpacity(toast);
 
   return (
-    <div
-      className={styles.toastWrapper}
-      // onMouseOver={onHover}
-      style={opacityStyles}
-    >
+    <div className={styles.toastWrapper} style={opacityStyles}>
       {toast.contents}
       <button className={styles.closeButton} onClick={onClose}>
         <svg width="24" height="24" viewBox="0 0 24 24">

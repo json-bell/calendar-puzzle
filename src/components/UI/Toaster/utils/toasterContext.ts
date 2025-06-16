@@ -4,13 +4,13 @@ import { ToasterQueue } from "./types";
 const ToasterContext = createContext<ToasterQueue>({
   toasts: {},
   fadeToast: () => {
-    console.log("Toaster used without Context :(");
+    console.error("Toaster used without Context :(");
   },
   updateToast: () => {
-    console.log("Toaster used without Context :(");
+    console.error("Toaster used without Context :(");
   },
   defineToast: () => {
-    console.log("Toaster used without Context :(");
+    console.error("Toaster used without Context :(");
   },
 });
 

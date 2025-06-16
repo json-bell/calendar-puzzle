@@ -8,6 +8,8 @@ import {
 export const delay = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(() => resolve(), ms));
 
+export const delayInfinite = (): Promise<void> => new Promise(() => {});
+
 export const createToastLifecycle = (options?: {
   visibleTime?: VisibleDuration;
   fadeMs?: number;
@@ -17,10 +19,9 @@ export const createToastLifecycle = (options?: {
 
   if (visibleTime === "infinity") return new ToastLifecycle(async () => "keep");
 
-  return new ToastLifecycle(async ({ stopped }) => {
+  return new ToastLifecycle(async ({ checkStopped }) => {
     await delay(visibleTime);
-    if (stopped) return null;
-    console.log("reducing opacity");
+    if (checkStopped()) return null;
     updateToast?.({ opacity: { value: 0, fadeMs: fadeMs, ease: "ease-in" } });
     await delay(fadeMs);
     return "eat";
@@ -29,17 +30,16 @@ export const createToastLifecycle = (options?: {
 
 export class ToastLifecycle {
   constructor(lifecycleFn: ToastLifecycleFn) {
-    this.promise = lifecycleFn({ stopped: this.stopped }).then((result) => {
-      if (this.stopped) return null;
-      return result;
-    });
+    this.promise = lifecycleFn({ checkStopped: this.checkStopped });
   }
 
   private stopped = false;
 
-  stop() {
+  stop = () => {
     this.stopped = true;
-  }
+  };
+
+  checkStopped = () => this.stopped;
 
   promise: Promise<ToastResult>;
 }

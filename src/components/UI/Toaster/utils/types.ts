@@ -49,7 +49,7 @@ export type ToastControls = {
   get: () => ToastInfo | undefined;
 };
 
-export type ToastResult = null | "eat" | "keep";
+export type ToastResult = null | "eat" | "keep" | "stopped";
 export type ToastLifecycleFn = (toastParams: {
-  stopped: boolean;
+  checkStopped: () => boolean;
 }) => Promise<ToastResult>;
