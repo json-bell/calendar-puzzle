@@ -16,8 +16,7 @@ const useToast = (
   const { toasts, updateToast, fadeToast, defineToast } = useToasterQueue();
   // const {}: Options = { ...options };
 
-  const specifiedToast = toasts[id];
-  const toastExists = !!specifiedToast;
+  const toastExists = !!toasts[id];
 
   return useMemo((): ToastControls => {
     const define: ToastControls["define"] = (toast) => {
@@ -46,40 +45,7 @@ const useToast = (
     const get: ToastControls["get"] = () => toasts[id];
 
     return { define, update, get, close, fade, forceClose };
-  }, [id, updateToast, fadeToast, toastExists, specifiedToast, defineToast]);
+  }, [id, updateToast, fadeToast, toastExists, defineToast]);
 };
 
 export default useToast;
-
-// USAGE EXAMPLES
-
-// export const SolutionButton = () => {
-//   const solutionToast = useToast("solution");
-
-//   const onClick = async () => {
-//     solutionToast.set({
-//       contents: "searching for a solution...",
-//       duration: "Infinity",
-//     });
-//     const sol = await generateSolution(
-//       {
-//         checkIsChallengeValue: () => false,
-//         dayName: "fri",
-//         dayNumber: 1,
-//         month: "apr",
-//       },
-//       { gamePieces: [] }
-//     );
-//     if (sol) {
-//       solutionToast.set({ duration: 1000, contents: "Here's the solution" });
-//     } else {
-//       solutionToast.set({
-//         duration: 2000,
-//         contents:
-//           "Can't find a solution with current pieces and these options: ${options}",
-//       });
-//     }
-//   };
-
-//   return <button onClick={onClick}></button>;
-// };
