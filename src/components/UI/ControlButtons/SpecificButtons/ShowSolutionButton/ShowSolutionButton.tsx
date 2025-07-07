@@ -8,12 +8,17 @@ import buildSolution from "../../../../../puzzle/solution/buildSolution/buildSol
 import useToast from "../../../Toaster/utils/useToast";
 import { newToastDefaults } from "../../../../../context/ToasterProvider/newToastDefaults";
 import { createToastLifecycle } from "../../../Toaster/utils/toastLifecycle";
-import { useState } from "react";
+import { useRef } from "react";
 
 const ShowSolutionButton = () => {
   const toast = useToast("solution");
 
-  const [solutionAttempt, setSolutionAttempt] = useState(0);
+  const attemptRef = useRef(0);
+
+  const { checkIsChallengeValue, dayName, dayNumber, month } =
+    useChallengeDate();
+  const { gamePieces } = useGameState();
+  const dispatch = useGameDispatch();
 
   const handleToastDefinition = () => {
     toast.define({
@@ -34,7 +39,7 @@ const ShowSolutionButton = () => {
   };
 
   const buildAndPlace = async () => {
-    const solutionId = solutionAttempt;
+    const solutionId = attemptRef.current;
     const solution = await buildSolution(
       {
         checkIsChallengeValue,
@@ -50,7 +55,8 @@ const ShowSolutionButton = () => {
     );
 
     // early return if we've started a new solution
-    if (solutionAttempt !== solutionId) return;
+    console.log({ attemptRef, solutionId });
+    if (attemptRef.current !== solutionId) return;
 
     if (solution) {
       toast.update({
@@ -63,15 +69,16 @@ const ShowSolutionButton = () => {
         pendingLifecycles: [
           createToastLifecycle({
             updateToast: toast.update,
-            visibleTime: 1000,
+            visibleTime: 500,
             fadeMs: 3000,
+            opacityEase: "ease-in-out",
           }),
         ],
       });
       dispatch({
         type: Actions.PLACE_PIECES,
         payload: {
-          positionMap: getPositionMapFromPieces(solution?.pieces || []),
+          positionMap: getPositionMapFromPieces(solution.pieces),
         },
       });
     }
@@ -81,8 +88,8 @@ const ShowSolutionButton = () => {
           <>
             <p style={{ textAlign: "left" }}>UNSOLVABLE :'(</p>
             <p>
-              The pieces are placed in a way that cannot be solved, try removing
-              some pieces then finding a new solution
+              The currently placed pieces can't be expanded to a full solution -
+              try removing some pieces :)
             </p>
           </>
         ),
@@ -97,21 +104,24 @@ const ShowSolutionButton = () => {
   };
 
   const onCancel = () => {
-    toast.close();
-    setSolutionAttempt((curr) => curr + 1);
+    attemptRef.current++;
+    toast.update({
+      contents: <>Cancelled Solution</>,
+      pendingLifecycles: [
+        createToastLifecycle({
+          updateToast: toast.update,
+          visibleTime: 500,
+          fadeMs: 500,
+          opacityEase: "ease-in-out",
+        }),
+      ],
+    });
   };
 
   const onClick = async () => {
     handleToastDefinition();
     await buildAndPlace();
   };
-
-  const { checkIsChallengeValue, dayName, dayNumber, month } =
-    useChallengeDate();
-
-  const { gamePieces } = useGameState();
-
-  const dispatch = useGameDispatch();
 
   return (
     <>

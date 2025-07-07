@@ -14,15 +14,21 @@ export const createToastLifecycle = (options?: {
   visibleTime?: VisibleDuration;
   fadeMs?: number;
   updateToast?: (updates: Partial<ToastInfo>) => void;
+  opacityEase?: ToastInfo["opacity"]["ease"];
 }): ToastLifecycle => {
-  const { visibleTime = 1000, fadeMs = 1000, updateToast } = options || {};
+  const {
+    visibleTime = 1000,
+    fadeMs = 1000,
+    opacityEase = "ease-in",
+    updateToast,
+  } = options || {};
 
   if (visibleTime === "infinity") return new ToastLifecycle(async () => "keep");
 
   return new ToastLifecycle(async ({ checkStopped }) => {
     await delay(visibleTime);
     if (checkStopped()) return null;
-    updateToast?.({ opacity: { value: 0, fadeMs: fadeMs, ease: "ease-in" } });
+    updateToast?.({ opacity: { value: 0, fadeMs: fadeMs, ease: opacityEase } });
     await delay(fadeMs);
     if (checkStopped()) return null;
     return "eat";
