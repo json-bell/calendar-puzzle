@@ -37,7 +37,9 @@ const ToasterProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const updateToast: ToasterQueue["updateToast"] = (id, updates) => {
       setToasts((currToasts): ToastList => {
         const specifiedToast = currToasts[id];
-        stopLifecycles(specifiedToast);
+        if (updates.pendingLifecycles) {
+          stopLifecycles(specifiedToast);
+        }
 
         if (!specifiedToast)
           console.warn(
