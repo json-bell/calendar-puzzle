@@ -17,7 +17,7 @@ I want the "show solution" to be quicker
 
 # Backlog
 
-## Epic - Detecting Win and choosing date
+## Epic - Choosing date
 
 CAL-?: Date selection - 3 fields Num/Day/Month? Or calendar? Both?
 
@@ -40,13 +40,13 @@ CAL-?: Create backend that saves when you win, mb saves your solution
 
 CAL-?: Login? Solution backend would seem v much like a NoSQL
 
-## Epic - Controls
+## Epic - Controls & Accessibility
 
 CAL-?: Icons for flipping/rotating according to what's happening next, (along top-left to bottom-right diagonal)
 
-## Epic - Styling
+CAL-?: e.g. Toaster never fading
 
-CAL-?: Style controls menu
+## Epic - Styling
 
 CAL-?:
 
@@ -68,9 +68,6 @@ CAL-FAR: Add keyboard controls:
 ## Epic-less
 
 CAL-?: Accessibility: Colours currently determining a lot of the stuff
-
-CAL-?: See panels with multiple pieces placed
-? not sure what this means
 
 ### Epic - Increase Coverage
 

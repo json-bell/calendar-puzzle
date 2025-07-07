@@ -42,30 +42,9 @@ const GameControls: React.FC = () => {
         />
         <ShowSolutionButton />
         <WinDetailsButton />
-        <WinButtonTest />
       </div>
     </div>
   );
 };
 
 export default GameControls;
-
-/** TEMPORARY TESTING OF THE TOASTER - REMOVE ONCE DONE */
-
-import { newToastDefaults } from "../../../context/ToasterProvider/newToastDefaults";
-import { createToastLifecycle } from "../Toaster/utils/toastLifecycle";
-import useToast from "../Toaster/utils/useToast";
-export const WinButtonTest = () => {
-  const buttonToast = useToast("win");
-
-  const onClick = () => {
-    buttonToast.define({
-      contents: <>You won! Congrats!</>,
-      opacity: newToastDefaults.opacity,
-      pendingLifecycles: [
-        createToastLifecycle({ updateToast: buttonToast.update }),
-      ],
-    });
-  };
-  return <ControlButton onClick={onClick}>Test Win button</ControlButton>;
-};

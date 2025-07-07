@@ -63,8 +63,8 @@ const ShowSolutionButton = () => {
         pendingLifecycles: [
           createToastLifecycle({
             updateToast: toast.update,
-            visibleTime: 2000,
-            fadeMs: 2000,
+            visibleTime: 1000,
+            fadeMs: 3000,
           }),
         ],
       });
