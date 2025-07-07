@@ -12,6 +12,7 @@ const config: Config = {
     // Map CSS/less/scss to jest-css-modules
     "\\.(css|less|scss|sss|styl)$": "jest-css-modules",
   },
+  setupFilesAfterEnv: ["./jestSetup.ts"],
 
   coveragePathIgnorePatterns: [
     "/node_modules/",

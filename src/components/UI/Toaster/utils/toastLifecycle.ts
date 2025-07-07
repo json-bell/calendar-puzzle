@@ -24,6 +24,7 @@ export const createToastLifecycle = (options?: {
     if (checkStopped()) return null;
     updateToast?.({ opacity: { value: 0, fadeMs: fadeMs, ease: "ease-in" } });
     await delay(fadeMs);
+    if (checkStopped()) return null;
     return "eat";
   });
 };

@@ -1,5 +1,9 @@
 # IN DEV
 
+NOTE TO SELF AS POSSIBLE ROUTE: Start from corners / where the days are? So that if there's a tight squeeze it gets delt with first, since that's the strength of this search method
+
+instead of e.g. Thurs 26th June where there's a zigzag in the bottom right, and it's rly hard to fill, but it's gonna deal with that with literally the last piece, instead of right at the start as a human would tbh
+
 ## CAL-21: Solution building: UI, Early Loading of solution after any placement, "enable cheats" menu or smth
 
 I want the "show solution" to be quicker
