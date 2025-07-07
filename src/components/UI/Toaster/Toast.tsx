@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import ControlButton from "../ControlButtons/ControlButton";
 import styles from "./Toaster.module.css";
 import parseToasterOpacity from "./utils/parseToasterOpacity";
 import type { ToastInfo } from "./utils/types";
@@ -65,7 +64,6 @@ const Toast: React.FC<ToastProps> = ({ toast }) => {
           />
         </svg>
       </button>
-      <ControlButton onClick={onClose}>Eat Toast</ControlButton>
     </div>
   );
 };
