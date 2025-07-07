@@ -87,7 +87,7 @@ promisesArr.forEach(async ({ dayName, dayNumber, month, promise }) => {
   solvedNumber++;
   if (!solution) return;
   // stream.write
-  console.log(
+  console.info(
     `Solution #${solvedNumber} for ${dayName}-${dayNumber}-${month}\n`
   );
 
@@ -96,7 +96,7 @@ promisesArr.forEach(async ({ dayName, dayNumber, month, promise }) => {
     "string"
   );
   // stream.write
-  console.log(boardStr + "\n");
+  console.info(boardStr + "\n");
 
   const positions = solution.pieces
     .map(({ position }) => position as PiecePosition)
@@ -107,5 +107,5 @@ promisesArr.forEach(async ({ dayName, dayNumber, month, promise }) => {
       flipped,
     }));
   // stream.write
-  console.log(JSON.stringify(positions) + "\n\n");
+  console.info(JSON.stringify(positions) + "\n\n");
 });

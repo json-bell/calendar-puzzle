@@ -21,7 +21,7 @@ function visualiseBoard(
   if (outputType === "array") return simplifiedArray;
   const boardString = simplifiedArray.map((row) => row.join(" | ")).join("\n");
   if (outputType === "string") return boardString;
-  return console.log(boardString);
+  return console.info(boardString);
 }
 
 export default visualiseBoard;

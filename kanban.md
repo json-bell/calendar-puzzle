@@ -1,34 +1,31 @@
 # IN DEV
 
-## CAL-20 Generate Solution from a filling-panels approach (as opposed to a placing-pieces)
+NOTE TO SELF AS POSSIBLE ROUTE: Start from corners / where the days are? So that if there's a tight squeeze it gets delt with first, since that's the strength of this search method
 
-- This should be more efficient: while deving piece-first, realised gaps of size 5 are very hard to fill
-- needing to search the whole tree before realising that the gap-5 can't actually be filled
-- could possibly do a mix where small gaps are targetted first
-- that involves rewriting the whole thing entirely for those cases
+instead of e.g. Thurs 26th June where there's a zigzag in the bottom right, and it's rly hard to fill, but it's gonna deal with that with literally the last piece, instead of right at the start as a human would tbh
 
-From this, I realised it's easier to just take a panel-first approach anyway:
+## CAL-21: Solution building: UI, Early Loading of solution after any placement, "enable cheats" menu or smth
 
-- try to fill a panel first
-- can possibly suggest which panel to fill from previous iteration (e.g. start with a piece from a small gap)
-- And then go over each panel
-- It may initially seem like this is more iterations: to the scale of n^50 as opposed to n^10 (piece count vs panel count)
-- but for every panel filled appropriately, 4 others are filled
-- -> each iteration places a piece, so you get to the same thing
-- -> but it'll be easier to immediately say "use one of these 6 unplaced pieces" instead of like before where we test every panel
-- feeling good abt this one tbh, I think it could really speed things up
+I want the "show solution" to be quicker
+
+- This could in part be done with: Allowing easier solutions (e.g. with several buttons: "generate 3 star sol", "generate 2 star sol" etc.)
+
+- Early Loading: whenever a new piece is placed, start a new process finding the current solution
+  -> create a `solver` class, with a `stop` method, so that we don't have a bunch of processes all running in the background for no reason :D
+
+- Sad path: Asking to be shown a solution without one being available
 
 # Backlog
+
+## Epic - Choosing date
+
+CAL-?: Date selection - 3 fields Num/Day/Month? Or calendar? Both?
+
+Add date to querystring too?
 
 ## CAL-?: Make Grid solution solving more efficient
 
 See comments in `generateSolution.ts`: plans how to target the smallest spaces first, so that solution spaces are more quickly eliminated (checks e.g. if a 5-panel gap CAN be filled, before trying all the different ways of filling the 35 panel gap)
-
-## Epic - Detecting Win and choosing date
-
-CAL-?: Date selection - 3 fields Num/Day/Month? Or calendar? Both?
-
-Add date to querystring too
 
 ## Epic - Solutions and hints - needs to be able to detect win
 
@@ -43,13 +40,13 @@ CAL-?: Create backend that saves when you win, mb saves your solution
 
 CAL-?: Login? Solution backend would seem v much like a NoSQL
 
-## Epic - Controls
+## Epic - Controls & Accessibility
 
 CAL-?: Icons for flipping/rotating according to what's happening next, (along top-left to bottom-right diagonal)
 
-## Epic - Styling
+CAL-?: e.g. Toaster never fading
 
-CAL-?: Style controls menu
+## Epic - Styling
 
 CAL-?:
 
@@ -72,9 +69,6 @@ CAL-FAR: Add keyboard controls:
 
 CAL-?: Accessibility: Colours currently determining a lot of the stuff
 
-CAL-?: See panels with multiple pieces placed
-? not sure what this means
-
 ### Epic - Increase Coverage
 
 Reducer, mb just one big snapshot with specific state
@@ -82,6 +76,24 @@ Reducer, mb just one big snapshot with specific state
 ---
 
 # DONE
+
+## CAL-20 Generate Solution from a filling-panels approach (as opposed to a placing-pieces)
+
+- This should be more efficient: while deving piece-first, realised gaps of size 5 are very hard to fill
+- needing to search the whole tree before realising that the gap-5 can't actually be filled
+- could possibly do a mix where small gaps are targetted first
+- that involves rewriting the whole thing entirely for those cases
+
+From this, I realised it's easier to just take a panel-first approach anyway:
+
+- try to fill a panel first
+- can possibly suggest which panel to fill from previous iteration (e.g. start with a piece from a small gap)
+- And then go over each panel
+- It may initially seem like this is more iterations: to the scale of n^50 as opposed to n^10 (piece count vs panel count)
+- but for every panel filled appropriately, 4 others are filled
+- -> each iteration places a piece, so you get to the same thing
+- -> but it'll be easier to immediately say "use one of these 6 unplaced pieces" instead of like before where we test every panel
+- feeling good abt this one tbh, I think it could really speed things up
 
 ## CAL-19: Create function that trial-and-error builds grid for a specific date
 
