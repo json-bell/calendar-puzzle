@@ -10,7 +10,9 @@ import { newToastDefaults } from "../../../../../context/ToasterProvider/newToas
 import { createToastLifecycle } from "../../../Toaster/utils/toastLifecycle";
 import { useRef } from "react";
 
-const ShowSolutionButton = () => {
+type SolutionButtonProps = { partialSol?: boolean };
+
+const ShowSolutionButton = ({ partialSol = false }: SolutionButtonProps) => {
   const toast = useToast("solution");
 
   const attemptRef = useRef(0);
@@ -49,7 +51,7 @@ const ShowSolutionButton = () => {
       },
       {
         gamePieces,
-        allowFlipped: false,
+        allowFlipped: partialSol,
         runsAsync: true,
       }
     );
@@ -125,7 +127,10 @@ const ShowSolutionButton = () => {
 
   return (
     <>
-      <ControlButton text="Complete Solution" onClick={onClick} />
+      <ControlButton
+        text={partialSol ? "Solve (Easy)" : "Solve (Hard)"}
+        onClick={onClick}
+      />
     </>
   );
 };

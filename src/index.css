@@ -16,6 +16,8 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  background-color: #121212;
+  color: white;
   min-width: 320px;
   min-height: 100vh;
 }
