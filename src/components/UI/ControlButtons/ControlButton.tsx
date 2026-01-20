@@ -8,6 +8,7 @@ export type ControlButtonProps = {
   //   icon?: ?
   onClick: (() => void) | undefined;
   inactive?: boolean;
+  style?: React.CSSProperties;
 };
 
 const ControlButton: React.FC<ControlButtonProps> = ({
@@ -15,11 +16,13 @@ const ControlButton: React.FC<ControlButtonProps> = ({
   inactive,
   text,
   children,
+  style,
 }) => {
   return (
     <button
       onClick={inactive ? undefined : onClick}
       className={cx(styles.controlButton, inactive && styles.inactiveButton)}
+      style={style}
     >
       {text || children}
     </button>

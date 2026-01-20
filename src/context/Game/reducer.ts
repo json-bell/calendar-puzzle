@@ -20,8 +20,18 @@ const gameReducer: Reducer<Game, GameAction> = (state, action) => {
   }): Pick<Game, "board" | "winDetails"> => {
     const board: Board = getBoardFromPositions(gamePieces);
 
+    if (!action.meta?.checkIsChallengeValue) {
+      return {
+        board,
+        winDetails: {
+          isWin: false,
+          flippedPieceCount: countFlips(gamePieces),
+        },
+      };
+    }
+
     const { isWin } = checkWin({
-      checkIsChallengeValue: action.meta?.checkIsChallengeValue,
+      checkIsChallengeValue: action.meta.checkIsChallengeValue,
       board,
       gamePieces,
     });

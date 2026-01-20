@@ -9,10 +9,26 @@ import useToast from "../../../Toaster/utils/useToast";
 import { newToastDefaults } from "../../../../../context/ToasterProvider/newToastDefaults";
 import { createToastLifecycle } from "../../../Toaster/utils/toastLifecycle";
 import { useRef } from "react";
+import { Solution } from "../../../../../puzzle/solution/buildSolution/types";
 
-type SolutionButtonProps = { partialSol?: boolean };
+type SolutionButtonProps = {
+  partialSol?: boolean;
+  onComplete?:
+    | "placeSolution"
+    | "placeSinglePiece"
+    | ((solution: Solution | null) => void);
+  successText?: string;
+  onClickEffect?: () => void;
+  style: React.CSSProperties;
+};
 
-const ShowSolutionButton = ({ partialSol = false }: SolutionButtonProps) => {
+const SolutionButton = ({
+  partialSol = false,
+  onComplete = "placeSolution",
+  successText = "Found solution and applied it to the board",
+  onClickEffect,
+  style,
+}: SolutionButtonProps) => {
   const toast = useToast("solution");
 
   const attemptRef = useRef(0);
@@ -57,7 +73,6 @@ const ShowSolutionButton = ({ partialSol = false }: SolutionButtonProps) => {
     );
 
     // early return if we've started a new solution
-    console.log({ attemptRef, solutionId });
     if (attemptRef.current !== solutionId) return;
 
     if (solution) {
@@ -65,7 +80,7 @@ const ShowSolutionButton = ({ partialSol = false }: SolutionButtonProps) => {
         contents: (
           <>
             <p style={{ textAlign: "left" }}>SOLVED!</p>
-            <p>Found solution and applied it to the board</p>
+            <p>{successText}</p>
           </>
         ),
         pendingLifecycles: [
@@ -77,14 +92,43 @@ const ShowSolutionButton = ({ partialSol = false }: SolutionButtonProps) => {
           }),
         ],
       });
-      dispatch({
-        type: Actions.PLACE_PIECES,
-        payload: {
-          positionMap: getPositionMapFromPieces(solution.pieces),
-        },
-      });
+
+      if (onComplete === "placeSolution") {
+        dispatch({
+          type: Actions.PLACE_PIECES,
+          payload: {
+            positionMap: getPositionMapFromPieces(solution.pieces),
+          },
+        });
+        return;
+      } else if (onComplete === "placeSinglePiece") {
+        const placedPieceIds = gamePieces
+          .filter(({ position }) => !!position)
+          .map(({ piece }) => piece.pieceId);
+        const placeablePieces = solution.pieces.filter(({ piece }) => {
+          const alreadyPlaced = placedPieceIds.includes(piece.pieceId);
+          return !alreadyPlaced;
+        });
+
+        if (placeablePieces.length === 0) return;
+
+        dispatch({
+          type: Actions.PLACE_PIECES,
+          payload: {
+            positionMap: getPositionMapFromPieces([placeablePieces[0]]),
+          },
+        });
+        return;
+      }
+      // typeof onComplete = function
+      else {
+        onComplete?.(solution);
+        return;
+      }
     }
     if (!solution) {
+      if (typeof onComplete === "function") onComplete(null);
+
       toast.update({
         contents: (
           <>
@@ -122,6 +166,7 @@ const ShowSolutionButton = ({ partialSol = false }: SolutionButtonProps) => {
 
   const onClick = async () => {
     handleToastDefinition();
+    onClickEffect?.();
     await buildAndPlace();
   };
 
@@ -130,9 +175,10 @@ const ShowSolutionButton = ({ partialSol = false }: SolutionButtonProps) => {
       <ControlButton
         text={partialSol ? "Solve (Easy)" : "Solve (Hard)"}
         onClick={onClick}
+        style={style}
       />
     </>
   );
 };
 
-export default ShowSolutionButton;
+export default SolutionButton;

@@ -8,8 +8,8 @@ import { Actions } from "../../../context/Game/types";
 import { useViewport } from "../../../utils/useWindowSize/windowSizeContext";
 import ControlButton from "../ControlButtons/ControlButton";
 import DeletePieceButton from "../ControlButtons/SpecificButtons/DeletePieceButton/DeletePieceButton";
+import HintMenuButton from "../ControlButtons/SpecificButtons/HintMenuButton/HintMenuButton";
 import HowToPlayButton from "../ControlButtons/SpecificButtons/HowToPlayButton/HowToPlayButton";
-import ShowSolutionButton from "../ControlButtons/SpecificButtons/ShowSolutionButton/ShowSolutionButton";
 import styles from "./GameControls.module.css";
 
 const GameControls: React.FC = () => {
@@ -34,14 +34,12 @@ const GameControls: React.FC = () => {
           text="Previous day"
           onClick={() => incrementChallengeDate(-1)}
         />
-        {/* <ControlButton text="Hint" onClick={undefined} inactive /> */}
         <ControlButton
           text="Clear All"
           onClick={() => dispatch({ type: Actions.REMOVE_ALL_PIECES })}
           inactive={gamePieces.filter(({ position }) => position).length === 0}
         />
-        <ShowSolutionButton />
-        <ShowSolutionButton partialSol={true} />
+        <HintMenuButton />
         <HowToPlayButton />
       </div>
     </div>

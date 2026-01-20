@@ -6,7 +6,7 @@ import { WinDetails } from "./types";
 type CheckWinParams = {
   board: Board;
   gamePieces: GamePiece[];
-  checkIsChallengeValue?: (value: PanelContent) => boolean;
+  checkIsChallengeValue: (value: PanelContent) => boolean;
 };
 
 // we have several things to affect this:

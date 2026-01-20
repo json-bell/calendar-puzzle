@@ -27,6 +27,7 @@ type Options = {
  *
  * Generates a solution for a given date with a given current state of the board
  *
+ * @deprecated
  */
 const generateSolution = async (
   challengeDate: Pick<
