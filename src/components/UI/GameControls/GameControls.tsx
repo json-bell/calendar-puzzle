@@ -41,6 +41,13 @@ const GameControls: React.FC = () => {
         />
         <HintMenuButton />
         <HowToPlayButton />
+        <a href="https://github.com/json-bell/calendar-puzzle/">
+          <img
+            src="./GitHub_Lockup_White.svg"
+            alt="GitHub Project"
+            className={styles.githubLogo}
+          />
+        </a>
       </div>
     </div>
   );
